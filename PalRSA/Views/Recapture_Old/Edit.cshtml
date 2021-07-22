@@ -1,0 +1,647 @@
+﻿@model PalRSA.Core.DataAccess.CFIRegisterUser
+
+@{
+    ViewBag.Title = "Update - Data Recapture";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int id = Convert.ToInt32(TempData["id"]);
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("edit", new { id=id})"> <span> <i class="glyphicon glyphicon-user" style="color : #e98fa0;"></i> Biodata </span></a></button></li>
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("addemployment", new { id=id})"> <span> <i class="glyphicon glyphicon-list" style="color : #e98fa0;"></i> Employment Details </span></a></button></li>
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("AddNok", new { id=id})"> <span> <i class="glyphicon glyphicon-list-alt" style="color : #e98fa0;"></i> Next of Kin </span></a></button></li>
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("AddSalary", new { id=id})"> <span> <i class="glyphicon glyphicon-folder-close" style="color : #e98fa0;"></i> Salary Structure </span></a></button></li>
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("AddImages", new { id=id})"><span> <i class="glyphicon glyphicon-camera" style="color : #e98fa0;"></i> Upload Images</span></a></button></li>
+        @*<li class="breadcrumb-item"><a href="@Url.Action("SupportDoc", new { id=id})"><strong>Support Documents</strong></a></li>*@
+        <li class="breadcrumb-item"> <button type="button" class="btn"><a href="@Url.Action("SupportDoc", new { id=id})"><span> <i class="glyphicon glyphicon-lock" style="color : #e98fa0;"></i>Support Documents)</span></a></button></li>
+    </ol>
+</nav>
+
+<h4 class="box-title">
+    Personal Information
+    <span class="label label-danger">* Fields are required </span>&nbsp;
+    <span class="label label-warning"> ** Fields are conditionally required </span> &nbsp;
+
+</h4>
+<hr />
+<div class="col-md-12">
+    @Html.Partial("_Response")
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(d => d.UserId)
+    @Html.HiddenFor(d => d.DatetimeUpdated)
+    @Html.HiddenFor(d => d.DatetimeCreated)
+    @Html.HiddenFor(d => d.CreatedBy)
+    @Html.HiddenFor(d => d.ModifiedBy)
+    @Html.HiddenFor(d => d.Channel)
+    @Html.HiddenFor(d => d.DateUpdateChannel)
+
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+
+                </div>
+                <div class="box-body divBoxHeight">
+                    @*<div class="row">*@
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @if (Model.RecaptureStatus == "Accepted")
+                            { <label class="control-label label-success col-md-5" style="color:#dddddd">Your data was successfully recaptured! Thank you</label>}
+                            <div class="col-md-7">
+
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="row">
+                            <div class="form-group">
+                                <label class="label label-success control-label"> &nbsp;&nbsp;&nbsp; @Model.RecaptureStatus</label>&nbsp;
+
+
+                            </div>
+                        </div>*@
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">RSA PIN : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.Pin, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(m => m.Pin, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">PFA Name : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBox("PFAName", "Pensions Alliance Limited", new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(m => m.PFAName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">RSA Status : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("EmployeeStatusId", null, "Select Status", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.EmployeeStatusId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Title : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("TitleId", null, "Select Title", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TitleId, "", new { @class = "text-red" })
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Surname :   </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">First Name :  </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Middle Name : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">Maiden or Former Name : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.MotherMaidenName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MotherMaidenName, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5  ">Gender :  </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("GenderId", null, "-- Select Gender --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.GenderId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Maritial Status :  </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("MaritalStatusId", null, "-- Select Marital Status --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MaritalStatusId, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">NIN : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.NIN, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NIN, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">BVN : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.BVN, new { @class = "form-control" })
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">IPN (Non-Nigerians Only) : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.IPN, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-group required">
+                                    <label class="control-label col-md-5">Date Of Birth:   </label>
+
+                                    <div class="col-md-7">
+                                        @Html.TextBoxFor(m => m.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "datePicker", @style = "height: 34px;margin-right: 7px;" })
+                                        @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-red", @style = "display:block;" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Nationality: </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("NationalityId", null, "Select Title", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NationalityId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-group required">
+                                    <label class="control-label col-md-5">Place of Birth :   </label>
+                                    <div class="col-md-7">
+                                        @Html.TextBoxFor(m => m.PlaceOfBirth, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.PlaceOfBirth, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">State Of Origin (Nigeria): </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("PersonalStateOfOriginId", null, "Select State of Origin", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.DropDownListFor(m => m.PersonalStateOfOriginId, new SelectList(Model.StateOfOriginsList, "StateOfOriginId", "Name"), "-- Select State Of Origin --",
+                                        new
+                                        {
+                                            @class = "form-control"
+                                        })*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-group doubleRequired">
+                                    <label class="control-label col-md-5">LGA Origin (For Selected State): </label>
+                                    <div class="col-md-7">
+                                        @Html.DropDownList("LGAId", null, "Select LGA", htmlAttributes: new { @class = "form-control" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Residential Address</h3>
+                </div>
+                <div class="box-body divBoxHeight">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Location : </label>
+                                <div class="col-md-7">
+                                    @*<label for="chkYes">
+                                            <input type="radio" id="chkYes" name="chkPinNo" /> Nigeria
+                                        </label>
+                                        <label for="chkNo">
+                                            <input type="radio" id="chkNo" name="chkPinNo" />Abroad
+                                        </label>*@
+                                    <label>@Html.RadioButtonFor(m => m.IsNigerian, true, new { Checked = "checked" })Nigeria</label>
+                                    <label>@Html.RadioButtonFor(m => m.IsNigerian, false, new { })Abroad</label>
+                                    @Html.ValidationMessageFor(m => m.IsNigerian, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">House No./Name : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.HouseNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.HouseNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">Street Name : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.StreetName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.StreetName, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">Village/Town/City :</label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Country Residence Name : </label>
+                                <div class="col-md-7">
+                                    @*CountryOfResidanceId*@
+                                    @Html.DropDownList("CountryOfResidanceId", null, "Select country", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.DropDownListFor(m => m.CountryOfResidanceId, new SelectList(Model.CountryList, "CountryId", "Name"), "-- Select Country --", new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.CountryOfResidanceId, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row" id="dvPinNo">
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">State of Residence : </label>
+                                <div class="col-md-7">
+                                    @*@Html.TextBoxFor(m => m.StateCode, new { @class = "form-control" })*@
+                                    @Html.DropDownList("StateCode", null, "Select state", htmlAttributes: new { @class = "form-control" })
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">LGA of Residence : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("LGACode", null, "Select LGA", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.LGACode, new { @class = "form-control" })*@
+                                </div>
+
+                            </div>
+                        </div>
+                        @*<div class="col-md-6">
+                                <div class="form-group doubleRequired">
+                                    <label class="control-label col-md-5">Country Residence Code : </label>
+                                    <div class="col-md-7">
+                                        @Html.TextBoxFor(m => m.CountryCode, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group doubleRequired">
+                            <label class="control-label col-md-5">ZIP Code (Abroad): </label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.ZIP, new { @class = "form-control" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">P.O.Box or PMB(if any) : <br /></label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.POBox, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.POBox, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:1em">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Personal Email: </label>
+                            <div class="col-md-7">
+                                @Html.EditorFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Alt. Email: </label>
+                            <div class="col-md-7">
+                                @Html.EditorFor(m => m.Email2, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email2, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label class="control-label col-md-5">Mobile Phone:   </label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", maxlength = "11" })
+                                @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Phone No.:  </label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", maxlength = "11" })
+                                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+                <div class="col-md-2">
+                    <button type="button" href="javascript:void(0)" onclick="$('#rsaHolder').click();" id="pretab" class="btn btn-block btn-primary ">Previous</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" href="javascript:void(0)" onclick="$('#employmentRecord').click();" id="nexttab" class="btn btn-block btn-primary ">Next</button>
+                </div>
+            </div>
+
+    </div>
+    if (Model.RecaptureStatus != "Accepted")
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save & Continue >>" class="btn btn-primary" />
+            </div>
+        </div>}
+}
+
+
+
+@section scripts{
+    <script>
+
+        $(function () {
+            $('input[type=submit]').click(function (e) {
+                debugger;
+                //For Personal Data and Orign
+                // var isNig = $('#isNigeria option:checked').val();
+                // var isNig = $("input[name='IsNigerian']:checked").val();
+                var selected = $("input[type='radio'][name='IsNigerian']:checked");
+                var isNig = selected.val();
+
+                var nationality = $('#NationalityId option:selected').text();
+                var countryOfResidence = $('#CountryOfResidanceId  option:selected').text();
+
+                // $('#NationalityId option:selected').text() != 'Nigerian' && $('#NationalityId option:selected').text() != '-- Select Nationality --'
+                if ($('#NationalityId option:selected').text() === '') {
+                    e.preventDefault();
+                    alert("NationalityId is required.");
+                    $('#NationalityId').focus();
+                    return;
+                }
+                if (nationality == 'Nigeria') {
+
+                    if ($('#PersonalStateOfOriginId option:selected').val() == '') {
+                        e.preventDefault();
+                        alert("Personal State Of Origin is required in Personal Data.");
+                        $('#PersonalStateOfOriginId').focus();
+                        return;
+                    }
+                    else if ($('#LGAId option:selected').val() == '') {
+                        e.preventDefault();
+                        alert("LGA is required in Personal Data.");
+                        $('#LGAId').focus();
+                        return;
+                    }
+                }
+
+                if (countryOfResidence === 'Nigeria') {
+                    // Check for residence
+                    if ($('#HouseNo').val() == '') {
+                        e.preventDefault();
+                        alert("HouseNo is required in Personal Data.");
+                        $('#HouseNo').focus();
+                        return;
+                    }
+                    else if ($('#StreetName').val() == '') {
+                        e.preventDefault();
+                        alert("StreetName is required in Personal Data.");
+                        $('#StreetName').focus();
+                        return;
+                    }
+                    else if ($('#City').val() == '') {
+                        e.preventDefault();
+                        alert("City is required in Personal Data.");
+                        $('#City').focus();
+                        return;
+                    }
+                    else if ($('#StateCode').val() == '') {
+                        e.preventDefault();
+                        alert("State of Residence Code is required in Personal Data.");
+                        $('#StateCode').focus();
+                        return;
+                    }
+                    else if ($('#LGACode').val() == '') {
+                        e.preventDefault();
+                        alert("LGA Code is required in Personal Data.");
+                        $('#LGACode').focus();
+                        return;
+                    }
+                    else if ($('#City').val() == '') {
+                        e.preventDefault();
+                        alert("City is required in Personal Data.");
+                        $('#City').focus();
+                        return;
+                    }
+                }
+            });
+
+            $('.datePicker').datepicker({
+                defaultViewDate: null,
+                dateFormat: 'dd/mm/yyyy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '-100:+100',
+                buttonImage: "../../images/calender-icon.png",
+                showOn: "both",
+                buttonImageOnly: true,
+                autoclose: true,
+                buttonImageText: "Calendar",
+                format: 'dd/mm/yyyy',
+                todayHighlight: true
+
+            }).on('changeDate', function (selected) {
+                if (callBack != undefined) {
+                    callBack(this, selected);
+                }
+            });
+
+            //  enableButtons();
+
+            $('#PersonalStateOfOriginId').change(function () {
+
+                var selected = $("#PersonalStateOfOriginId").find(':selected').val();
+
+
+                $("#LGAId").html("<option value='Loading...'>Loading... </option>");
+                if (selected == "") {
+                    $("#LGAId").html("<option value='Please select state'>Please select state</option>");
+                }
+
+                var jqxhr = $.get("/Recapture/GetLGA?StateId=" + selected, function (response, status, xhr) {
+                    $("#LGAId").html(response);
+
+                }).fail(function (jqxhr, textStatus, error) {
+                    var err = textStatus + ", " + error;
+                    alert("Request Failed: " + err);
+                });
+
+            });
+
+            $('#KinStateId').change(function () {
+
+                var selected = $("#KinStateId").find(':selected').val();
+
+                $("#KinLGAId1").html("<option value='Loading...'>Loading... </option>");
+                if (selected == "") {
+                    $("#KinLGAId1").html("<option value='Please select NOK state'>Please select NOK state</option>");
+                }
+
+                var jqxhr = $.get("/Recapture/GetLGA?StateId=" + selected, function (response, status, xhr) {
+                    $("#KinLGAId1").html(response);
+
+                }).fail(function (jqxhr, textStatus, error) {
+                    var err = textStatus + ", " + error;
+                    // alert("Request Failed: " + err);
+                });
+
+            });
+
+            $('#StateCode').change(function () {
+
+                var selected = $("#StateCode").find(':selected').val();
+
+                $("#LGACode").html("<option value='Loading...'>Loading... </option>");
+                if (selected == "") {
+                    $("#LGACode").html("<option value='Please select state'>Please select state</option>");
+                }
+
+                var jqxhr = $.get("/Recapture/GetLGACode?StateCode=" + selected, function (response, status, xhr) {
+                    $("#LGACode").html(response);
+
+                }).fail(function (jqxhr, textStatus, error) {
+                    var err = textStatus + ", " + error;
+                    alert("Request Failed: " + err);
+                });
+            });
+
+
+
+            //enableUSBControl();
+            //disableButtons();
+
+            //$('input[type=radio][name=SelectDeviceConnectivityType]').change(function () {
+            //  alert('called');
+            //    if (this.value === 'USB') {
+            //        enableUSBControl();
+            //    } else if (this.value === 'Bluetooth') {
+            //        enableBluetoothControl();
+            //    }
+            //});
+        });
+    </script>
+
+}

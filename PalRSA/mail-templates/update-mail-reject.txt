@@ -1,0 +1,13 @@
+Hello {0},
+
+Apologies, your application needs to be modified as it has been rejected.
+
+The reason is stated below.
+
+{1}
+
+You will be notified constantly when your status changes.
+
+Regards
+
+Pal

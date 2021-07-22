@@ -1,0 +1,118 @@
+﻿@model PalRSA.Core.DataAccess.DigitalSubscription
+
+@{
+    ViewBag.Title = "Digital Subscription";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm("Edit", "emailNofications", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="details"><h3>@ViewBag.Title</h3></div>
+    <hr />
+    <div class="form-horizontal">
+        <h4>Please note that our default notification process is digital. If you would like to choose otherwise, please select below.</h4>
+        <p>&nbsp; <br /></p>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(d => d.Pin)
+        @Html.HiddenFor(model => model.ID)
+
+        @Html.HiddenFor(d => d.EventNofication)
+        @Html.HiddenFor(d => d.TransactionSMS)
+        @Html.HiddenFor(d => d.NewsLetters)
+        @*@Html.HiddenFor(d => d.QuaterlyEStatement)*@
+
+        @Html.HiddenFor(d => d.DateCreated)
+        @Html.HiddenFor(d => d.DateUpdated)
+
+
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <label>Digital statements</label>
+            </div>
+            <div class="col-md-5">
+                @Html.CheckBoxFor(x => x.DigitalStatement)
+                @Html.ValidationMessageFor(x => x.DigitalStatement)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <label>Hardcopy quarterly statements</label>
+            </div>
+            <div class="col-md-5">
+                @Html.CheckBoxFor(x => x.HardCopyStatement)
+                @Html.ValidationMessageFor(x => x.HardCopyStatement)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <label>No statements or alerts except on request</label>
+            </div>
+            <div class="col-md-5">
+                @Html.CheckBoxFor(x => x.NoStatementNoAlert)
+                @Html.ValidationMessageFor(x => x.NoStatementNoAlert)
+            </div>
+        </div>
+
+
+        @*
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">
+                        <label>Transaction SMS</label>
+                    </div>
+                    <div class="col-md-5">
+                        @Html.CheckBoxFor(x => x.TransactionSMS)
+                        @Html.ValidationMessageFor(x => x.TransactionSMS)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">
+                        <label>Event Nofications (Public holiday and events)</label>
+                    </div>
+                    <div class="col-md-5">
+                        @Html.CheckBoxFor(x => x.EventNofication)
+                        @Html.ValidationMessageFor(x => x.EventNofication)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">
+                        <label>NewsLetters & Industry updates</label>
+                    </div>
+                    <div class="col-md-5">
+                        @Html.CheckBoxFor(x => x.NewsLetters)
+                        @Html.ValidationMessageFor(x => x.NewsLetters)
+                    </div>
+                </div>
+            </div>*@
+
+
+        <div class="form-group">
+            <div class="col-md-offset-6 col-md-10">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

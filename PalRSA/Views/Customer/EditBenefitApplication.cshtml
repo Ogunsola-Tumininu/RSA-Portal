@@ -1,0 +1,123 @@
+﻿@model PalRSA.Core.DataAccess.BenefitProcess
+@*@model PalRSA.Core.DataAccess.BenefitApplication*@
+@*@using PalRSA.Core.DataAccess*@
+@{
+    //PALSiteDBEntities db = new PALSiteDBEntities();
+    //var user = db.Employees.Where(d => d.Pin == User.Identity.Name).FirstOrDefault();
+    //var userDetail = db.BenefitApplications.Where(d => d.Employee_Pin == User.Identity.Name).FirstOrDefault();
+    ViewBag.Title = "Edit BenefitApplication";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>BenefitProcess</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.PIN, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @*<input id="Pin" class="form-control" name="Pin" value="@user.Pin" readonly />*@
+                @Html.EditorFor(model => model.PIN, new { htmlAttributes = new { @class = "form-control text-uppercase" } })
+                @Html.ValidationMessageFor(model => model.PIN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Title</label>
+            <div class="col-md-2">
+                @*@Html.DropDownList("TitleId", null, "Select Title", htmlAttributes: new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.TitleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Benefit Application</label>
+            <div class="col-md-2">
+                @*<input id="BenefitSubClassId" class="form-control" name="BenefitSubClassId" value="@userDetail.BenefitSubClassId" readonly />*@
+                @*@Html.DropDownList("BenefitApplicationId", null, "Select Benefit Type", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.BenefitApplicationId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @*<input id="EmployeeName" class="form-control" name="EmployeeName" value="@user.Surname + " " + @user.FirstName+ " " +@user.OtherNames" readonly />*@
+                @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MobilePhone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @*<input id="MobilePhone" class="form-control" name="MobilePhone" value="@user.MobileNumber" readonly />*@
+                @Html.EditorFor(model => model.MobilePhone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.MobilePhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @*<input id="MobilePhone" class="form-control" name="MobilePhone" value="@user.Email"  />*@
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                <label class="control-label col-md-2">Status</label>
+                <div class="col-md-3 col-sm-3">
+                    @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $('.datepicker').datepicker({
+            changeMonth: true,
+            todayBtn: true,
+            todayHighlight: true,
+            autoclose: true,
+            format: "dd/mm/yyyy",
+            autoclose: true
+        });
+
+
+        $('#search').click(function () {
+            var pin = $('#PIN').val();
+
+            $.getJSON("/BenefitProcess/GetEmployee?pin=" + pin, function (json) {
+                // alert("JSON Data: " + json.EmployerName);
+                var fullName = json.Surname + " " + json.FirstName + " " + json.OtherNames
+                $("#EmployeeName").val(fullName);
+                $("#EmployerCode").val(json.EmployerCode);
+                $("#EmployerName").val(json.EmployerName);
+                $("#EmployeeAddress").val(json.HomeAddress);
+                $("#EmployeeAddress2").val(json.PermanentAddress);
+                $("#MobilePhone").val(json.MobilePhone);
+                $("#Email").val(json.Email); // PEN100107890711
+            });
+
+
+        });
+    })
+
+
+</script>

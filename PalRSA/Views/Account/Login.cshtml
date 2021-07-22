@@ -1,0 +1,176 @@
+﻿@using PalRSA.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+
+@Styles.Render("~/Content/login.css")
+@Styles.Render("~/Content/bootstrap.min.css")
+@Scripts.Render("~/bundles/modernizr")
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Page - PAL Pensions</title>
+    @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/Site1.css" rel="stylesheet" />
+    @*@Scripts.Render("~/bundles/modernizr")*@
+</head>
+
+
+
+<body style="position: relative; overflow-y:hidden">
+    <div class="col-md-12" style="padding: 0; height:100vh !important">
+        <div class="col-md-8 hidden-xs hidden-sm loginImage" style="position: relative;">
+            <div class="circle"> </div>
+            <div class="circle2"> </div>
+            <div class="img-div1" style="display: block">
+                @*<img src="~/Content/images/Group27.png" />*@
+                @*<img src="~/Content/images/Group582.png" style="width: 30%" />*@
+                <img src="~/Content/Images/Center-Image.png" style="width: 30%" />
+                @*<h4> <b>Welcome to PAL Pensions</b></h4>*@
+                <h4> <b>PAL Pensions RSA Portal</b></h4>
+                <p style="color: darkslateblue">@*Your Padi of life*@</p>
+            </div>
+            <div class="img-div2">
+                <img src="~/Content/images/image016.png" style="width: 70%" />
+                <h4><b>Save for the Future</b></h4>
+                <p style="color: darkslateblue">Save towards your goals. Start saving, Start today, Start now!</p>
+            </div>
+            <div class="img-div3">
+                <img src="~/Content/images/image017.png" style="width: 70%" />
+                <h4><b>Plan Your Finances</b></h4>
+                <p style="color: darkslateblue">Start planning today. Let us help you achieve the financial freedom you deserve</p>
+            </div>
+            <div class="img-div4">
+                <img src="~/Content/images/image018.png" style="width: 70%" />
+                <h4><b>Retire with a Smile</b></h4>
+                <p style="color: darkslateblue">Get your retirement benefits delivered to you with ease</p>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 login">
+            <div style="background-color: white !important; padding: 25px; padding-top: 9%; height: 100%; ">
+                <div class="title">
+                    <img src="~/Content/images/PALLogo.png" style="width: 40%" />
+                    <br />
+                    <h3> RSA Customer Login</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <div>
+                        @Html.Partial("_Response")
+                    </div>
+
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
+                    {
+
+
+                        <div class="row">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div> <br />
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.LabelFor(m => m.Username, new { @class = "control-label " })
+                            </div>
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control ", @placeholder = "RSA Pin" })
+                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.LabelFor(m => m.Password, new { @class = "control-label " })
+                            </div>
+                            <div class="col-md-12">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control ", @placeholder = "Password" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                <input type="checkbox" onclick="showPassword()" /> Show Password
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+                            </div>
+                        </div>
+                    }
+
+
+                    <div class=" text-center" style="padding-top:15px">
+                       
+                        <div class="forgot-passwor"><span class="forgot-pas">Forgot your password?</span> <span>@Html.ActionLink("Click here", "ForgotPassword")</span></div>
+                        <div class="forgot-passwor"><span class="forgot-pas">Activate Account?</span> <span>@Html.ActionLink("Click here", "ActivateAccount")</span></div>
+                        <div class="RS"><span class="rsa-question">You don't have an RSA yet?</span> <span><a href="https://reg.palpensions.com" target="_blank">Open RSA NOW!</a></span></div>
+                        <div class="forgot-passwor"><b><span><a href="https://www.palpensions.com/resources/privacy-notice/">Read Our Privacy Notice!</a></span></b></div>
+
+                    </div>
+                </div>
+            </div>
+            @*<div class="cont-div col-md-2 col-sm-2"><div class="client-login"><a href="/Account/AdminLogin">Admin Login <img src="~/images/login-bg2.png"></a></div></div>*@
+        </div>
+    </div>
+
+    @*<div class="clearfix"></div>
+        <div class="copy-right">&copy; @DateTime.Now.Year. PAL Pensions. All Rights Reserved</div>*@
+
+    <script>
+        function showPassword() {
+            var pass = document.getElementById("Password");
+            if (pass.type === "password") {
+                pass.type = "text";
+            }
+            else {
+                pass.type = "password";
+            }
+        }
+
+        $(document).ready(function () {
+            $(".alert").ready(function () {
+                setTimeout(function () {
+                    $(".alert").hide();
+                }, 10000);
+            })
+
+            $("#eduAlert").ready(function () {
+                setTimeout(function () {
+                    $(".alert").hide();
+                }, 10000);
+            })
+        })
+    </script>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        <script>
+
+            $(document).ready(function () {
+                $(".alert").ready(function () {
+                    setTimeout(function () {
+                        $(".alert").hide();
+                    }, 10000);
+                })
+
+                $("#eduAlert").ready(function () {
+                    setTimeout(function () {
+                        $(".alert").hide();
+                    }, 10000);
+                })
+            })
+
+        </script>
+    }
+</body>
+</html>
+

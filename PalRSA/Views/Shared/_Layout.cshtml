@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - PAL Pensions RSA Portal</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/Content/datepicker.css" rel="stylesheet" />*@
+    <link href="//cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    <script src="~/Content/vendor/intlTelInput.css"></script>
+
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/theme.css" rel="stylesheet" />
+    @*<link href="~/Content/jquery-ui.css" rel="stylesheet" />*@
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet" />
+    @*@Styles.Render("~/font-awesome-4.2.0/css/font-awesome.css")*@
+    @Styles.Render("~/Content/admin.css")
+    @Styles.Render("~/Content/template.css")
+
+    @Scripts.Render("~/bundles/jqueryui")
+
+
+    <style>
+        .thumbnail {
+            color: #fff;
+        }
+
+        .form-group.required .control-label:after, .form-group.required label:after {
+            content: "*";
+            color: red;
+        }
+
+        .form-group.doubleRequired .control-label:after {
+            content: "**";
+            color: red;
+        }
+    </style>
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/apply.js"></script>
+    <script src="~/Scripts/datepicker.en-gb.js"></script>
+    @*<script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")" type="text/javascript"></script>*@
+    <script type="text/javascript" src="~/Scripts/devteam.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.fancybox.js"></script>
+    <script src="~/Scripts/new-profile-validator.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".admin_nav_icon").click(function () {
+                $(".login_details").slideToggle("fast");
+            });
+
+            $('.datePicker').datepicker({
+                defaultViewDate: null,
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                //yearRange: '-120:+120',
+                yearRange: "-100:+0",
+                buttonImage: "../../images/calender-icon.png",
+                showOn: "both",
+                buttonImageOnly: true,
+                autoclose: true,
+                buttonImageText: "Calendar",
+                format: 'dd/mm/yy',
+                todayHighlight: true
+
+            })
+            $('.datePicker').datepicker($.datepicker.regional["en-GB"]);
+            $('.datePicker').datepicker($.datepicker.regional["en"]);
+
+            //$('.datepicker').datepicker({
+            //    defaultViewDate: true,
+            //    dateFormat: 'mm/dd/yyyy',
+            //    changeMonth: true,
+            //    changeYear: true,
+            //    //yearRange: '-20:+100',
+            //    yearRange: "-100:+0",
+            //   // buttonImage: "~/Content/Images/calender-icon.png",
+            //    buttonImage: "../../images/calender-icon.png",
+            //    showOn: "both",
+            //    buttonImageOnly: true,
+            //    autoclose: true,
+            //    buttonImageText: "Calendar",
+            //    format: 'mm/dd/yyyy',
+            //    todayHighlight: true
+            //}
+            //    ).on('changeDate', function () {
+            //        $(this).datepicker('hide');
+            //    });
+
+        });
+    </script>
+
+</head>
+<body>
+    @Html.Partial("_TopNav")
+    <div id="main" class="container-fluid">
+        <div class="row">
+            @Html.Partial("_SideNav")
+            <!--Start Content-->
+            <div id="content" class="col-xs-12 col-sm-10">
+
+                @RenderBody()
+                <hr class="line-foot" />
+                <footer class="footer-info">
+                    <p class="text-center">PAL Pensions RSA &copy; 2016 -  @DateTime.Now.Year</p>
+                </footer>
+            </div><!--End Content-->
+        </div>
+    </div>
+
+    @RenderSection("scripts", required: false)
+    <span class="alert alert-danger" id="err_alert">   </span>
+    <span class="alert alert-success" id="err_success">   </span>
+</body>
+</html>
+
+<div class="modal cpassword" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title">Change Password</h3>
+                <div class="register-success" style="display:none">
+                    <div class="alert alert-dismissable alert-success success-alert-div">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Well done!</strong> <span class="status"></span>.
+                    </div>
+                </div>
+                <div class="register-warning" style="display:none">
+                    <div class="alert alert-warning warning">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <span class="glyphicon glyphicon-record"></span> <strong>Warning</strong> &nbsp; <span class="status"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body modal-style reg-body">
+                <form action="#" class="form-horizontal" id="login_form" method="post" role="form">
+                    <input name="__RequestVerificationToken" type="hidden" value="sVYulJYvFS0v4SFuDHSWOjjbdUypiPk-Tgfnt_h837ZEqG9FkhHPoh6fAc7wgpzy6OVR9lfHGj7vKmg5qR9gEn-EJtXX_u97-nLlDuJsBAY1">
+                    <div class="validation-summary-valid text-danger" data-valmsg-summary="true">
+                        <ul>
+                            <li style="display:none"></li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input class="form-control" data-val="true" data-val-length="The Password must be at least 6 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="The Password field is required." id="old-password" name="OldPassword" placeholder="Old Password" type="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input class="form-control" data-val="true" data-val-length="The Password must be at least 6 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="The Password field is required." id="new-password" name="NewPassword" placeholder="New Password" type="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input class="form-control" data-val="true" data-val-equalto="The password and confirmation password do not match." data-val-equalto-other="*.Password" id="confirm-password" name="ConfirmPassword" placeholder="Confirm Password" type="password">
+                        </div>
+                    </div>
+                    <button type="button" class="btn-primary btn-sm submit-button">Submit</button>
+                    <img class="loading-gif" src="@Url.Content("~/images/loading.gif")" style="display: none" />
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

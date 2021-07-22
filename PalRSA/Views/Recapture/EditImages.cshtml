@@ -1,0 +1,461 @@
+﻿@model PalRSA.Core.DataAccess.CFIBiometric
+
+@{
+    ViewBag.Title = "Upload Images";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <meta http-equiv="content-type" content="image/png;">
+    int id = Convert.ToInt32(this.ViewContext.RouteData.Values["id"]);
+
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("edit", new { id=id})"> <span> <i class="glyphicon glyphicon-user" style="color : #e98fa0;"></i> Biodata </span></a></button></li>
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("addemployment", new { id=id})"> <span> <i class="glyphicon glyphicon-list" style="color : #e98fa0;"></i> Employment Details </span></a></button></li>
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("AddNok", new { id=id})"> <span> <i class="glyphicon glyphicon-list-alt" style="color : #e98fa0;"></i> Next of Kin </span></a></button></li>
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("AddSalary", new { id=id})"> <span> <i class="glyphicon glyphicon-folder-close" style="color : #e98fa0;"></i> Salary Structure </span></a></button></li>
+        <li class="breadcrumb-item"> <button type="button" class="btn"> <a href="@Url.Action("AddImages", new { id=id})"><span> <i class="glyphicon glyphicon-camera" style="color : #e98fa0;"></i> Upload Images</span></a></button></li>
+        @*<li class="breadcrumb-item"><a href="@Url.Action("SupportDoc", new { id=id})"><strong>Support Documents</strong></a></li>*@
+        <li class="breadcrumb-item"> <button type="button" class="btn"><a href="@Url.Action("SupportDoc", new { id=id})"><span> <i class="glyphicon glyphicon-lock" style="color : #e98fa0;"></i>Support Documents)</span></a></button></li>
+    </ol>
+</nav>
+
+@if (ViewBag.IsOando == true)
+{
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <span class="alert alert-danger">We are unable to complete your request at this time. Kindly visit any of our offices close to you to complete your recapture</span>
+}
+else
+{
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <p>
+        <h3 class="text-info">Please read the declaration below carefully and tick the box to give consent </h3>
+        <br />
+        @*<button class="btn">
+                <i class="glyphicon glyphicon-download" style="color : #e98fa0;"></i>
+                <a href="~/ConsentForm/ACKNOWLEDGEMENT SLIP-mini.pdf" target="_blank">Download Consent Form</a>
+            </button>*@
+    </p>
+
+    using (Html.BeginForm("EditImages", "Recapture", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(d => d.CFIBiometricId)
+        @Html.HiddenFor(d => d.UserId)
+        @Html.HiddenFor(d => d.DatetimeUpdated)
+        @Html.HiddenFor(d => d.DatetimeCreated)
+        @Html.HiddenFor(d => d.Active)
+
+
+        <div class="col-md-12">
+            @Html.Partial("_Response")
+        </div>
+
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Biometrics Upload</h3>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img />
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <div style="padding-left: 150px">
+                        <table>
+                            <tr>
+                                <td style="width:30%">
+                                    <div class="responsive">
+                                        <div class="gallery">
+                                            <img id="output" width="100" height="100" src="@Url.Action("ShowPassport", new { id = id })" alt="@Model.Passport" /><br>
+                                            <input type="file" id="browse" accept="image/*" name="passport" style="display: none" onChange="Handlechange(); loadFile(event);" />
+                                            <br />
+                                            <span class="text-danger"><strong>(White background passport photograph @*and Allowed size is 224kb*@)</strong></span>
+                                            <br />
+                                            <input id="filename" readonly style="display: none" type="text" />
+                                            &nbsp;<input type="button" value="Pass Port.." id="fakeBrowse" class="btn btn-primary biometric_margin-top_10 biometric-disabled" onclick="HandleBrowseClick();" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width:30%">
+                                    <div class="responsive">
+                                        @*<div>
+
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input" required id="customSwitches">
+                                                    <label class="custom-control-label" for="customSwitches">Toggle this switch element</label>
+                                                </div>
+                                            </div>*@
+                                        <div class="gallery">
+                                            <img id="signature" width="100" height="100" src="@Url.Action("ShowSignature", new { id = id })" alt="@Model.ContributorSignature" /><br>
+                                            <input type="file" id="browseSignature" accept="image/*" name="signature" style="display: none" onChange="HandlechangeSignature();loadFileSignature(event);" />
+                                            <br />
+                                            <span class="text-danger"><strong>@*(Allowed size is 224kb)*@</strong></span>
+                                            <br />
+                                            <input id="filenameSignature" readonly style="display: none" type="text" />
+                                            <input type="button" value="Contributor Signature.." id="fakeBrowse" class="btn btn-primary biometric_margin-top_10 biometric-disabled" onclick="HandleBrowseClickSignature();" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width:40%">
+                                    <div class="responsive">
+                                        <div>
+                                            <h4><strong>Declaration / Consent</strong></h4>
+                                            <span style="padding:5px 0">
+                                                I hereby certify that the information provided in this form is correct.
+                                                I further consent and authorize the National Identity Management Commission to release my NIN information (as may be required) to the National Pension Commission (PenCom),
+                                                upon request by my Pension Fund Administrator, for the maintenance and operation of my Retirement Savings Account.
+                                                It is my understanding that PenCom shall exercise due care to ensure that my information is secure and protected.
+                                            </span>
+                                            <div class="checkbox">
+
+
+                                                @Html.CheckBoxFor(x => x.ConsentAccepted, new { id = Html.NameFor(x => x.ConsentAccepted), name = Html.NameFor(x => x.ConsentAccepted), @class = "css-checkbox" })
+                                                <label for="@Html.NameFor(x => x.ConsentAccepted)"><strong>I consent/agree to the declaration</strong> </label>
+                                                @*<input type="checkbox" name="checkboxG5" id="checkboxG5" class="css-checkbox" checked="checked" />*@
+                                                @*@Html.CheckBoxFor(m => m.ConsentAccepted, new { @class = "css-checkbox" })*@
+                                                @*<input type="checkbox" name="ConsentAccepted" id="ConsentAccepted" required>*@
+                                                @*<span class="cr"><i class="cr-icon fa fa-check"></i></span>*@
+                                                @*Bigger*@
+
+                                            </div>
+
+                                        </div>
+                                        @*<div>
+                                                                        <h4><strong>Declaration / Consent</strong></h4>
+                                                                        <span style="padding:5px 0">
+                                                                            I hereby certify that the information provided in this form is correct.
+                                                                            I further consent and authorize the National Identity Management Commission to release my NIN information (as may be required) to the National Pension Commission (PenCom), upon request by my Pension Fund Administrator, for the maintenance and operation of my Retirement Savings Account. It is my understanding that Pen Com shall exercise due care to ensure that my information is secure and protected.
+                                                                        </span>
+                                                                        <div class="checkbox">
+                                                                            <label style="font-size: 1.5em">
+
+                                                                                @Html.CheckBoxFor(x => x.ConsentAccepted, new { id = Html.NameFor(x => x.ConsentAccepted), name = Html.NameFor(x => x.ConsentAccepted), @class = "css-checkbox" })
+                                                                                <label for="@Html.NameFor(x => x.ConsentAccepted)">I Consent/Agree to the declaration </label>
+                                                                                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                                                                @*Bigger
+                                                                    </label>
+                                                            </div>
+                                            </div>*@
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" id="submit" value="Save & Continue >>" class="btn btn-primary" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section scripts {
+    <script>
+        $().ready(function () {
+            e.preventDefault();
+
+
+        })
+        $("#submit").click(function () {
+            //
+            e.preventDefault();
+            if ($('#ConsentAccepted') !== true) {
+                alert('Please Accept consent');
+                return false;
+            }
+        });
+
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClick() {
+            var fileinput = document.getElementById("browse");
+            fileinput.click();
+        }
+
+        function Handlechange() {
+            var fileinput = document.getElementById("browse");
+            var textinput = document.getElementById("filename");
+            textinput.value = fileinput.value;
+        }
+
+        //this is for Contributor's Signature
+        var loadFileSignature = function (event) {
+            var output = document.getElementById('signature');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickSignature() {
+            var fileinput = document.getElementById("browseSignature");
+            fileinput.click();
+        }
+
+        function HandlechangeSignature() {
+            var fileinput = document.getElementById("browseSignature");
+            var textinput = document.getElementById("filenameSignature");
+            textinput.value = fileinput.value;
+        }
+        //this is for Consent Form
+        var loadFileConsent = function (event) {
+            var output = document.getElementById('consent');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickConsent() {
+            var fileinput = document.getElementById("browseConsent");
+            fileinput.click();
+        }
+
+        function HandlechangeConsent() {
+            var fileinput = document.getElementById("browseConsent");
+            var textinput = document.getElementById("filenameConsent");
+            textinput.value = fileinput.value;
+        }
+
+
+        //this is for PFA Signature
+        var loadFilePfaSignature = function (event) {
+            var output = document.getElementById('pfaSignature');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickPfaSignature() {
+            var fileinput = document.getElementById("pfaBrowseSignature");
+            fileinput.click();
+        }
+
+        function HandlechangePfaSignature() {
+            var fileinput = document.getElementById("pfaBrowseSignature");
+            var textinput = document.getElementById("pfaFilenameSignature");
+            textinput.value = fileinput.value;
+        }
+
+        ////For Right Thumb
+        //var loadFileRightThumb = function (event) {
+        //    var output = document.getElementById('rightThumb');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickRightThumb() {
+        //    var fileinput = document.getElementById("browseRightThumb");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeRightThumb() {
+        //    var fileinput = document.getElementById("browseRightThumb");
+        //    var textinput = document.getElementById("filenameRightThumb");
+        //    textinput.value = fileinput.value;
+        //}
+
+        ////For Right Index
+        //var loadFileRightIndex = function (event) {
+        //    var output = document.getElementById('rightIndex');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickRightIndex() {
+        //    var fileinput = document.getElementById("browseRightIndex");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeRightIndex() {
+        //    var fileinput = document.getElementById("browseRightIndex");
+        //    var textinput = document.getElementById("filenameRightIndex");
+        //    textinput.value = fileinput.value;
+        //}
+
+        ////For Right Middle
+        //var loadFileRightMiddle = function (event) {
+        //    var output = document.getElementById('rightMiddle');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickRightMiddle() {
+        //    var fileinput = document.getElementById("browseRightMiddle");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeRightMiddle() {
+        //    var fileinput = document.getElementById("browseRightMiddle");
+        //    var textinput = document.getElementById("filenameRightMiddle");
+        //    textinput.value = fileinput.value;
+        //}
+
+        ////For Right Ring
+        //var loadFileRightRing = function (event) {
+        //    var output = document.getElementById('rightRing');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickRightRing() {
+        //    var fileinput = document.getElementById("browseRightRing");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeRightRing() {
+        //    var fileinput = document.getElementById("browseRightRing");
+        //    var textinput = document.getElementById("filenameRightRing");
+        //    textinput.value = fileinput.value;
+        //}
+
+        ////For Right Little
+        //var loadFileRightLittle = function (event) {
+        //    var output = document.getElementById('rightLittle');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickRightLittle() {
+        //    var fileinput = document.getElementById("browseRightLittle");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeRightLittle() {
+        //    var fileinput = document.getElementById("browseRightLittle");
+        //    var textinput = document.getElementById("filenameRightLittle");
+        //    textinput.value = fileinput.value;
+        //}
+
+        ////For Left Thumb
+
+        //var loadFileLeftThumb = function (event) {
+        //    var output = document.getElementById('leftThumb');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickLeftThumb() {
+        //    var fileinput = document.getElementById("browseLeftThumb");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeLeftThumb() {
+        //    var fileinput = document.getElementById("browseLeftThumb");
+        //    var textinput = document.getElementById("filenameLeftThumb");
+        //    textinput.value = fileinput.value;
+        //}
+
+        ////For Left index
+
+        //var loadFileLeftIndex = function (event) {
+        //    var output = document.getElementById('leftIndex');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickLeftIndex() {
+        //    var fileinput = document.getElementById("browseLeftIndex");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeLeftIndex() {
+        //    var fileinput = document.getElementById("browseLeftIndex");
+        //    var textinput = document.getElementById("filenameLeftIndex");
+        //    textinput.value = fileinput.value;
+        //}
+
+        ////For Left middle
+
+        //var loadFileLeftMiddle = function (event) {
+        //    var output = document.getElementById('leftMiddle');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickLeftMiddle() {
+        //    var fileinput = document.getElementById("browseLeftMiddle");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeLeftMiddle() {
+        //    var fileinput = document.getElementById("browseLeftMiddle");
+        //    var textinput = document.getElementById("filenameLeftMiddle");
+        //    textinput.value = fileinput.value;
+        //}
+
+
+        ////For Left Ring
+
+        //var loadFileLeftRing = function (event) {
+        //    var output = document.getElementById('leftRing');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickLeftRing() {
+        //    var fileinput = document.getElementById("browseLeftRing");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeLeftRing() {
+        //    var fileinput = document.getElementById("browseLeftRing");
+        //    var textinput = document.getElementById("filenameLeftRing");
+        //    textinput.value = fileinput.value;
+        //}
+
+        ////For Left Little
+
+        //var loadFileLeftLittle = function (event) {
+        //    var output = document.getElementById('leftLittle');
+        //    output.src = URL.createObjectURL(event.target.files[0]);
+        //};
+
+        //function HandleBrowseClickLeftLittle() {
+        //    var fileinput = document.getElementById("browseLeftLittle");
+        //    fileinput.click();
+        //}
+
+        //function HandlechangeLeftLittle() {
+        //    var fileinput = document.getElementById("browseLeftRing");
+        //    var textinput = document.getElementById("filenameLeftLittle");
+        //    textinput.value = fileinput.value;
+        //}
+
+
+        $('input[type=submit]').click(function (e) {
+            debugger;
+
+            //if ($('#browseConsent').val() == '') {        //browseConsent  filenameConsent
+            //    e.preventDefault();
+            //    alert("Consent Form is required. You can click the download below, fill it, then upload to complete your recapture!");
+            //    $('#filenameConsent').focus();
+            //    return;
+            //}
+
+
+            //consent  browseConsent
+            if (document.getElementById("consent").files.length == 0) {
+                alert("Consent Form is required. You can click the download below, fill it, then upload to complete your recapture!");
+                e.preventDefault();
+                return;
+            }
+
+            //browseSignature   filenameSignature
+            if (document.getElementById("browseSignature").files.length == 0) {
+                alert("Signature is required to complete your recapture!");
+                e.preventDefault();
+                return;
+            }
+
+            //filename  browse
+
+            if (document.getElementById("browse").files.length == 0) {
+                alert("Passport is required to complete your recapture!");
+                e.preventDefault();
+                return;
+            }
+
+        });
+
+    </script>
+}

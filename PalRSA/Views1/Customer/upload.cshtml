@@ -1,0 +1,224 @@
+﻿
+@*@model PalRSA.Core.Models.UploadChecklistMV*@
+@using PalRSA.Core.DataAccess
+
+@{
+    PALSiteDBEntities db = new PALSiteDBEntities();
+    int id = ViewBag.Id;
+    var BenefitProcess = db.BenefitProcesses.Where(d => d.Id==id && d.PIN == User.Identity.Name).FirstOrDefault();
+    ViewBag.Title = "Benefit Upload";
+}
+
+<style>
+    #success_alert {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99999
+    }
+</style>
+
+@*@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+<div class="col-md-offset-1 col-md-9">
+    <span class="alert alert-success" id="success_alert" style="display: none"></span>
+    <!-- general form elements -->
+    <div>
+        <div class="box box-default" style="padding-left:40px; padding-right:40px;">
+            <div class="box-header with-border">
+
+            </div>
+            <h2>Benefit Upload</h2> <hr />
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="form-group">
+                    <label class="control-label  col-md-2">Client Name</label>
+                    <div class="col-md-10">
+                        <input id="ClientName" name="ClientName" type="text" readonly="readonly" class="form-control" value="@BenefitProcess.EmployeeName" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="form-group">
+                    <label class="control-label  col-md-2">PIN</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PIN" name="PIN" readonly="readonly" class="form-control" value="@BenefitProcess.PIN" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="form-group">
+                    <label class="control-label  col-md-2">Benefit Class</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PaymentTypeId" name="PaymentTypeId" readonly="readonly" class="form-control" value="@BenefitProcess.BenefitClass.BenefitName" />
+                    </div>
+                </div>
+            </div>
+
+           
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Document/File </label>
+
+                    <div class="col-md-4">
+                        @Html.DropDownList("BenefitDocument", ViewBag.BenefitDocument as IEnumerable<SelectListItem>, new { @class = "form-control dropdown col-md-3" })
+                        @*@Html.ValidationMessageFor(model => model.PIN, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-4">
+                        <input type="file" name="file" id="file" class="form-control" />
+                        <input type="text" name="fileName" id="fileName" class="hidden" />
+                        <input type="hidden" name="BenProcessId" id="BenProcessId" value="@ViewBag.Id" class="hidden" />
+                    </div>
+                    <div class="col-md-1"><input type="submit" value="Upload" onclick="upload()" name="submitDoc" id="submitDoc" class="btn" /></div>
+                </div>
+            </div>
+
+            @*--------*@
+            <div>
+                <h3>Uploaded document(s)</h3>
+                <table class="table">
+                    <tr><td>Document ID</td><td>Document File</td><td>Document</td></tr>
+                    @{
+
+                        //Response.Write(id);
+                        //return ;
+                        var docs = db.BenefitFiles.Where(x => x.BenefitProcessId == BenefitProcess.Id);
+                        foreach (var doc in docs.ToList())
+                        {
+
+                            <tr>
+                                <td>@doc.FileId </td>
+                                <td>@doc.FileName </td>
+                                <td>
+                                    <a href="@Url.Action("ShowSupportFile",new { id=doc.FileId })">
+                                        &nbsp;
+                                        <i class="fa fa-paperclip fa-3x" aria-hidden="true"></i>@doc.FileName &nbsp;
+                                        <img id="signature" width="100" height="100" src="@Url.Action("ShowSupportFile",new { id=doc.FileId })" alt="@doc.FileName" title="@doc.FileName" />
+                                    </a>
+                                </td>
+                                <td><button class="btn btn-danger" onclick="DeleteImage(@doc.FileId);"><span>Remove Image</span></button></td>
+                            </tr>
+
+                        }
+                    }
+                </table>
+            </div>
+            @*--------*@
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @*<input type="submit" value="Submit" id="finish" name="submit" class="btn btn-default" />*@
+                    <a id="finish" name="submit" href="@Url.Action("Home", "Customer")" class="btn btn-primary">Submit </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+//}
+
+
+
+
+<script type="text/javascript">
+
+    function removeRow(Id) {
+        debugger
+        $("#table>tbody>tr").each(function () {
+            /*alert (Id)*/
+            var id = $(this).children("td").eq(0).html();//Name
+            if (Id == id) {
+                $(this).children("td").remove();
+
+                $("#success_alert").html("File Deleted Successfully").show();
+                //alert("Please Check Your Form");
+
+                setTimeout(function () {
+                    $("#success_alert").fadeOut('fast');
+                }, 5000);
+            }
+
+
+
+        });
+    }
+    function DeleteImage(id) {
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: "/Customer/DeleteBenefitFile/" + id,
+            success: function (data) {
+                if (data.success) {
+                    /* alert(data.message)*/
+                    window.location.reload();
+                    removeRow(id)
+                }
+                else {
+                    alert(data.message)
+                }
+            },
+            error: function (a, jqXHR, exception) {
+            }
+        });
+    }
+
+    function upload() {
+        if ($('#file').val() == "") {
+            alert("Please select a file");
+            return false
+        }
+        var fd = new FormData();
+        var files = $('#file')[0].files[0];
+        var benDoc = $('#BenefitDocument').val();
+        var benProcessId = $('#BenProcessId').val();
+        fd.append('file', files);
+        fd.append('BenefitDocument', benDoc);
+        fd.append('BenefitProcessId', benProcessId);
+
+        $.ajax({
+            url: '/Customer/UploadAPI',
+            type: 'post',
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                debugger
+                if (response.success == true) {
+                    markup = "<tr>" +
+                        "<td>" + response.benefit.FileId + "</td>" +
+                        "<td>" + benDoc + "</td>" +
+                        "<td> <a href='/Customer/ShowSupportFile/" + response.filepath + "'>&nbsp;" +
+                        "<i class='fa fa-paperclip fa-3x' aria-hidden='true'></i>" + benDoc
+                        + "<img id='signature' width='100' height='100' src='/Customer/ShowSupportFile/" + response.fileId + "' alt='" + benDoc + "' title='" + benDoc + "' /></a> </td>" +
+                        "<td><button class='btn btn-danger' onclick='DeleteImage(" + response.benefit.FileId + ")'><span>Remove Image</span></button></td>" + "</tr>";
+                    tableBody = $("table tbody");
+                    tableBody.append(markup);
+
+                    $("#success_alert").html("File Uploaded Successfully").show();
+                    //alert("Please Check Your Form");
+
+                    setTimeout(function () {
+                        $("#success_alert").fadeOut('fast');
+                    }, 5000);
+                    //alert('file uploaded');
+                }
+                else {
+                    alert('file not uploaded');
+                }
+            },
+        });
+
+    }
+
+</script>
+
+
+

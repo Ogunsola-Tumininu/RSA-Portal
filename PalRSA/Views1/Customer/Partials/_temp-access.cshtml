@@ -1,0 +1,166 @@
+﻿@model PalRSA.Core.Models.Enbloc
+@using PalRSA.Core.DataAccess
+@{ PALSiteDBEntities _db = new PALSiteDBEntities();
+
+    ViewBag.BenefitDocument = new SelectList(_db.BenefitDocuments.Where(d => d.BenefitTypeId != null).OrderBy(d => d.DocumentName), "DocumentName", "DocumentName");
+    var id = _db.BenefitProcesses.Where(d => d.PIN == User.Identity.Name && d.PaymentTypeId == 3).FirstOrDefault().Id; 
+ }
+
+
+<div id="response"></div>
+
+<div id="enbloc_form">
+    @*@using (Ajax.BeginForm("EnBloc", "Customer", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "response", OnSuccess = "getresult" }, new { @class = "form-horizontal", id = "enblocForm", enctype = "multipart/form-data" }))*@
+    @*@using (Html.BeginForm("upload", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+@Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)*@
+
+                                <div class="alert alert-warning" id="warning" style="display: none">
+
+                                </div>
+                                       <p class="erroralert"> <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"></span><span class="impoalert">Important Information: Application will ONLY be processed if all the required documents are complete</span></p>
+
+
+                                        <div class="full_instru">
+                                            <p class="paragraph_details">Temporary Access - Temporary Access Features</p>
+
+                                            <p class="paragraph_details2">To apply for this payment the underlisted applies</p>
+                                            <ul class="paragraphs_list">
+                                                @*<li>Clients must be 50 years of age or above</li>
+                                                    <li>Client must have exited from service</li>
+                                                    <li>Clients' Retirement Savings Account balance must be above N550,000.00</li>*@
+
+                                                <li>4 passport photographs</li>
+                                                <li>Birth certificate or Sworn declaration of age</li>
+                                                <li>Bank account statement</li>
+                                                <li>Means of identification (National ID card, Voters Card, Valid international Passport or Valid Drivers license)</li>
+                                                <li>Request letter for 25% of your RSA balance</li>
+                                                <li>Exit letter from employer (acceptance of resignation if applicable)</li>
+                                                <li>A copy of your pay-slip for any of the last three months before month of exit</li>
+                                                <li>Employer confirmation letter confirming payment of contributions</li>
+                                                <li>Data recapture (validated)</li>
+                                            </ul>
+                                        </div>
+
+                                        <input type="hidden" id="appid" />
+                                            <input type="hidden" id="benefitid" value="@TempData["id"]" />
+                                            <div class="row">
+
+                                                <div class="col-md-12 col-sm-12" id="app-warning">
+                                                    <div class="alert alert-warning exceed" style="display: none">
+                                                        <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> &nbsp; <span class="stat"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12 col-sm-12" id="app-success">
+                                                    <div class="alert alert-success exceed" style="display: none">
+                                                        <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"></span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="form-group products_disp">
+                                                        <label class="control-label col-md-2">Document/File </label>
+
+                                                        <div class="col-md-4">
+                                                            @Html.DropDownList("BenefitDocument", ViewBag.BenefitDocument as IEnumerable<SelectListItem>, new { @class = "form-control dropdown col-md-3" })
+                                                            @Html.ValidationMessageFor(model => model.BenefitFile.PIN, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input type="file" name="file" id="file" class="form-control" />
+                                                            <input type="text" name="fileName" id="fileName" class="hidden" />
+                                                        </div>
+                                                        <div class="col-md-1"><input type="submit" value="Upload" onclick="upload()" name="submitDoc" id="submitDoc" class="btn" /></div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <h3>Uploaded document(s)</h3>
+                                                    <table class="table">
+                                                        <tr><td>Document ID</td><td>Document File</td><td>Document</td></tr>
+                                                        @{ var docs = _db.BenefitFiles.Where(x => x.BenefitProcessId == id);
+                                                            foreach (var doc in docs)
+                                                            {
+
+                                                                <tr>
+                                                                    <td>@doc.FileId </td>
+                                                                    <td>@doc.FileName </td>
+                                                                    <td>
+                                                                        <a href="@Url.Action("ShowSupportFile",new { id=doc.BenefitProcessId })">
+                                                                            &nbsp;
+                                                                            <i class="fa fa-paperclip fa-3x" aria-hidden="true"></i>@doc.FileName &nbsp;
+                                                                            <img id="signature" width="100" height="100" src="@Url.Action("ShowSupportFile",new { id=doc.BenefitProcessId })" alt="@doc.FileName" title="@doc.FileName" />
+                                                                        </a>
+                                                                    </td>
+                                                                    <td><button class="btn btn-danger" onclick="DeleteImage(@doc.FileId);"><span>Remove Image</span></button></td>
+                                                                    @*<td>@Html.ActionLink("Delete", "DeleteBenefitFile", new { id = doc.BenefitProcessId }, new { @class = "btn btn-warning", @style = "color:white" })</td>*@
+                                                                </tr> 
+                                                } 
+                                            }
+                                                    </table>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        @*<input type="submit" value="Finish" id="finish" name="submit" class="btn btn-default" />*@
+                                                        <a id="finish" name="submit" href="@Url.Action("Home", "Customer")" class="btn btn-primary">Submit </a>
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="send">
+                                                        <button class="btn-info btn btn-sm submit" type="button">Finish</button>
+                                                        <img class="loading-gif" src="@Url.Content("~/images/loading.gif")" style="display: none" />
+                                                    </div>*@
+
+
+
+                                            </div>
+                                            @*}*@
+</div>
+
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script type="text/javascript">
+        function removeRow(Id) {
+            $("#table>tbody>tr").each(function () {
+                /*alert (Id)*/
+                var id = $(this).children("td").eq(0).html();//Name
+                if (Id == id) {
+                    $(this).children("td").remove();
+
+                    $("#success_alert").html("File Deleted Successfully").show();
+                    //alert("Please Check Your Form");
+
+                    setTimeout(function () {
+                        $("#success_alert").fadeOut('fast');
+                    }, 5000);
+                }
+
+
+
+            });
+        }
+        function DeleteImage(id) {
+            debugger
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url: "/Customer/DeleteBenefitFile/" + id,
+                success: function (data) {
+                    if (data.success) {
+                        /* alert(data.message)*/
+                        removeRow(id)
+                    }
+                    else {
+                        alert(data.message)
+                    }
+                },
+                error: function (a, jqXHR, exception) {
+                }
+            });
+        }
+
+    </script>
+}

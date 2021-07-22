@@ -1,0 +1,76 @@
+﻿@model PalRSA.Core.Models.CFIUpdateViewModel
+
+<link href="~/Content/BiometricSite.css" rel="stylesheet" />
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">For Official Use Only</h3>
+                </div>
+                <div class="box-body divBoxHeight">
+                    @*<div class="row">*@
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label">Does the Contributor have any Fingerprint Challenge? : </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>@Html.RadioButtonFor(m => m.IsFingerprintChallenge, true)Yes</label>
+                                <label>@Html.RadioButtonFor(m => m.IsFingerprintChallenge, false)No</label>
+                                @Html.ValidationMessageFor(m => m.IsFingerprintChallenge, "", new { @class = "text-red" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">If yes: Tick Type </label>
+                            <div class="col-md-7">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-7">
+                                <label>@Html.RadioButtonFor(m => m.ChallengeType, "Partial")Partial</label>
+                                <label>@Html.RadioButtonFor(m => m.ChallengeType, "Complete")Complete</label>
+                                <label>@Html.RadioButtonFor(m => m.ChallengeType, "Others")Others</label>
+                                @Html.ValidationMessageFor(m => m.ChallengeType, "", new { @class = "text-red", @style = "display:block;" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" href="javascript:void(0)" onclick="$('#contributorCertification').click();" id="pretab" class="btn btn-block btn-primary ">Previous</button>
+            </div>
+
+            <div class="col-md-2">
+                <button type="button" href="javascript:void(0)" onclick="$('#PFACertification').click();" id="nexttab" class="btn btn-block btn-primary ">Next</button>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+}
+
+

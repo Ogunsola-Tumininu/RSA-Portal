@@ -1,0 +1,90 @@
+﻿@model PalRSA.Core.Models.Enbloc
+
+<div id="response"></div>
+
+<div id="enbloc_form">
+    @using (Ajax.BeginForm("EnBloc", "Customer", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "response", OnSuccess = "getresult" }, new { @class = "form-horizontal", id = "enblocForm", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+<div class="alert alert-warning" id="warning" style="display: none">
+           
+        </div>
+        <p class="erroralert"> <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"></span><span class="impoalert">Important Information: Application will ONLY be processed if all the required documents are complete</span></p>
+
+       
+        <div class="full_instru">
+            <p class="paragraph_details">Full Access - Program Withdrawal Features</p>
+
+            <p class="paragraph_details2">To apply for this payment the underlisted applies</p>
+            <ul class="paragraphs_list">
+                <li>Clients must be 50 years of age or above</li>
+                <li>Client must have exited from service</li>
+                <li>Clients' Retirement Savings Account balance must be above N550,000.00</li>
+            </ul>
+        </div>
+
+        <input type="hidden" id="appid"/>
+        <input type="hidden" id="benefitid" value="@TempData["id"]" />
+
+        <div class="col-md-12 col-sm-12" id="app-warning">
+            <div class="alert alert-warning exceed" style="display: none">
+                <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> &nbsp; <span class="stat"></span>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12" id="app-success" >
+            <div class="alert alert-success exceed" style="display:none">
+                <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"></span>
+            </div>
+        </div>
+
+        <div class="products_disp form-group">
+            @Html.LabelFor(model => model.NsitfStatement, new { @class = "col-md-6 col-sm-6 control-label" })
+            <div class="col -md-3 col-sm-3 fupload">
+                @Html.TextBoxFor(model => model.NsitfStatement, new {@class = "form-control col-md-2 col-sm-2 img inputfile", Type = "file", onchange = "Validate('img', this.value, this);", data_first = "true"})
+                <label for="NsitfStatement"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file&hellip;</strong></label>
+            </div>
+            <div class="col-md-1 col-sm-1 pass" style="display: none">
+                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+            </div>
+			<div class="col-xs-1 loading-gif" style="display: none">
+                <img class="" src="@Url.Content("~/images/loading32.GIF")"/>
+            </div>
+        </div>
+
+        <div class=" products_disp form-group">
+                @Html.LabelFor(model => model.MeansOfId, new {@class = "col-md-6 col-sm-6 control-label"})
+            <div class="col-md-3 col-sm-3 fupload">
+                @Html.TextBoxFor(model => model.MeansOfId, new {@class = "form-control col-md-2 col-sm-2 img inputfile", Type = "file", onchange = "Validate('img', this.value, this);"})
+                <label for="MeansOfId"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file&hellip;</strong></label>
+            </div>
+            <div class="col-md-1 col-sm-1 pass" style="display: none">
+                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+            </div>
+			<div class="col-xs-1 loading-gif" style="display: none">
+                <img class="" src="@Url.Content("~/images/loading32.GIF")"/>
+            </div>
+        </div>
+
+		<div class="form-group products_disp">
+			@Html.LabelFor(model => model.PalNsitfForm, new {@class = "col-md-6 col-sm-6 control-label"})
+			<div class="col-md-3 col-sm-3 fupload">
+				@Html.TextBoxFor(model => model.PalNsitfForm, new { @class = "form-control col-md-2 col-sm-2 img inputfile", Type = "file", onchange = "Validate('img', this.value, this);" })
+				<label for="PalNsitfForm"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" /></svg> Choose a file&hellip;</strong></label>
+			</div>
+			<div class="col-md-1col-sm-1 pass" style="display: none">
+				<span class="glyphicon glyphicon-ok" style="color:green"></span>
+			</div>
+			<div class="col-xs-1 loading-gif" style="display: none">
+				<img class="" src="@Url.Content("~/images/loading32.GIF")"/>
+			</div>
+		</div>
+
+        <div class="send">
+            <button class="btn-info btn btn-sm submit" type="button">Finish</button>
+            <img class="loading-gif" src="@Url.Content("~/images/loading.gif")" style="display: none" />
+        </div>
+    }
+</div>

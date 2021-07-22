@@ -1,0 +1,195 @@
+﻿@using PalRSA.Core.Models
+@using PalRSA.Helpers
+@model PalRSA.Core.Models.EmployeeReportSummation
+
+@{
+    Layout = null;
+    var start =DateTime.Parse("2000-01-01");
+    var end = DateTime.Now;
+
+    if (TempData["StartDate"] != null)
+    {
+        start = Convert.ToDateTime(TempData["StartDate"]);
+        end = DateTime.Parse(TempData["EndDate"].ToString());
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/statement.css" rel="stylesheet" />
+    
+    <title>ExportAsExl</title>
+</head>
+<body>
+
+<div class="view-profile">
+
+    <br>
+
+    <div class="container">
+        <h3 class="logo col-md-4 col-sm-4 pull-right">
+            <img id="logo" src="~/images/logo.png" alt="Logo">
+        </h3><!--//logo-->
+
+        <div class="row">
+
+            <div class="col-xs-12">
+                <div class="invoice-title">
+                   
+                    @{if (Convert.ToInt32(TempData["fundId"]) == 1)
+                        {
+                            <h4 class="text-center">PAL RSA Fund II Statement from @start.ToString("MMMM dd, yyyy") to @Model.LastValueDate.ToString("MMMM dd, yyyy") </h4>                          
+                        }
+                        else if (Convert.ToInt32(TempData["fundId"]) == 10000175)
+                        {
+
+                            <h4 class="text-center">PAL RSA Fund I Statement from @start.ToString("MMMM dd, yyyy") to @Model.LastValueDate.ToString("MMMM dd, yyyy")</h4>
+                        }
+                        else if (Convert.ToInt32(TempData["fundId"]) == 10000176)
+                        {
+
+                            <h4 class="text-center">PAL RSA Fund III Statement from @start.ToString("MMMM dd, yyyy") to @Model.LastValueDate.ToString("MMMM dd, yyyy")</h4>
+                        }
+                        else if (Convert.ToInt32(TempData["fundId"]) == 10000053)
+                        {
+
+                            <h4 class="text-center">PAL RSA Fund IV Statement from @start.ToString("MMMM dd, yyyy") to @Model.LastValueDate.ToString("MMMM dd, yyyy") </h4>
+                        }
+                        else if (Convert.ToInt32(TempData["fundId"]) == 10000188)
+                        {
+                            <h4 class="text-center">PAL Micro Pension Fund Statement from @start.ToString("MMMM dd, yyyy") to @Model.LastValueDate.ToString("MMMM dd, yyyy") </h4>
+                        }
+                        else
+                        {
+                            <h4 class="text-center">Retirement Fund Account Statement from @start.ToString("MMMM dd, yyyy") to @Model.LastValueDate.ToString("MMMM dd, yyyy")</h4>
+                        }                       
+                    }
+
+                   
+
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <strong>Name: </strong>&nbsp; @Model.FullName<br>
+                        <strong>Contact Address: </strong>&nbsp; @Model.Address<br>
+                        <strong>Pin: </strong>&nbsp; @Model.Pin<br>
+                        <strong>Employer: </strong>&nbsp; @Model.EmployerDetail<br>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <table class="table tabel-no-pad">
+                            <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th class="text-right">RSA (₦)</th>
+                                <th class="text-right">Voluntary (₦)</th>
+                                <th class="text-right">Total (₦)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr><td class="text-left">Net Contributions from Inception</td><td class="text-right">@Model.NetContributionRsa.ToString("N2")</td><td>@Model.NetContributionVc.ToString("N2")</td><td>@Model.totalContribution.ToString("N2")</td></tr>
+                            <tr><td class="text-left">Total Income On Contribution</td><td class="text-right">@Model.RsaIncome.ToString("N2")</td><td>@Model.VcIncome.ToString("N2")</td><td>@Model.TotalIncome.ToString("N2")</td></tr>
+                            <tr><td class="text-left">Balance Before Withdrawal</td><td class="text-right">@Model.rsaBeforeWithdrawal.ToString("N2")</td><td>@Model.vcBeforeWithdrawal.ToString("N2")</td><td>@Model.totalBeforeWithdrawal.ToString("N2")</td></tr>
+                            <tr><td class="text-left">Withdrawal</td><td class="text-right">@Model.RsaWithdrawal.ToString("N2")</td><td>@Model.VcWithdrawal.ToString("N2")</td><td>@Model.TotalWithdrawal.ToString("N2")</td></tr>
+                            <tr class="info"><td class="text-left">Current Balance</td><td class="text-right">@Model.rsaBalance.ToString("N2")</td><td>@Model.vcBalance.ToString("N2")</td><td>@Model.totalBalance.ToString("N2")</td></tr>
+                            <tr><td class="text-left">Units Held</td><td class="text-right">@Model.SumUnitsRsa.ToString("N2")</td><td>@Model.SumUnitsVc.ToString("N2")</td><td>@Model.TotalUnits.ToString("N2")</td></tr>
+                            <tr><td class="text-left">Unit Price</td><td class="text-right">@Model.CurrentUnitPrice.ToString("N4")</td><td>@Model.CurrentUnitPrice.ToString("N4")</td><td></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <strong>Retirement Savings Account Details</strong>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                    <th>Narration</th>
+                                    <th>Transaction <br />Date</th>
+                                    <th>Employee <br />Contribution</th>
+                                    <th>Employer<br /> Contribution</th>
+                                    <th>Withdrawal</th>
+                                    <th>Withdrawal<br /> VC</th>
+                                    <th>Total <br />Contributions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @{
+                                    if (Model.Contributions.Any())
+                                    {
+
+                                        foreach (var trans in Model.Contributions.OrderByDescending(x => x.ValueDate))
+                                        {
+                                            <tr>
+                                                <td>@trans.Narration</td>
+                                                <td>@trans.ValueDate.Value.ToString("MMM dd, yyyy")</td>
+                                                <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.EmployeeContribution, 2))</td>
+                                                <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.EmployerContribution, 2))</td>
+                                                <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.Withdrawal, 2))</td>
+                                                <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.WithdrawalVc, 2))</td>
+                                                <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.EmployeeContribution + (decimal)trans.EmployerContribution, 2), 2)</td>
+
+                                            </tr>
+                                        }
+
+                                    }
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <blockquote style="font-size: 1.1rem; font-style: italic">
+        <p class="text-center">This is a computer generated Statement and if issued without any alteration requires no signature.</p>
+        <footer>
+            Notes:
+            <ol>
+                <li>FURTHER INFORMATION AND BREAKDOWN/DETAILS OF THIS STATEMENT CAN BE PROVIDED ON REQUEST TO: Pension Service Centre; EMAIL:info@palpensions.com; TEL: 01-2802290-3, 01-4622478</li>
+                <li>This is a computer generated statement and if issued without any alteration requires no signature</li>
+                <li>
+                    PAL Pensions charges an Administrative fee of N80 monthly, deducted from your contribution. Investment Management Fees are also charged and deducted from the value of the Fund. PAL
+                    Pensions (1.6% per annum); UBA Pension Custodian (0.4% per annum) and the National Pension Commission (0.25% per annum). The fees above are regulated by the National Pension
+                    Commission and are subject to change with notice from time to time; no other charges are made to your account.
+                </li>
+                <li>
+                    Up to 25% of your pension may be invested in the Stock Market and therefore the value of your RSA could fluctuate over time. Past performance is therefore not a guarantee of the future
+                    performance
+                </li>
+                <li>
+                    PAL Pensions is a licensed Pension Fund Administrator responsible for managing pension funds only as regulated by the National Pension Commission. We DO NOT accept deposit by way
+                    of investment from individuals. All pension remittances must be issued in the name of Pension Alliance Limited/UBA Pension Custodian with an accompanying payment schedule.
+                </li>
+            </ol>
+            <dl>
+                <dd class="list-unstyled">
+                    <h5><strong>Disclaimer</strong></h5>
+                </dd>
+                <dd>
+                    Statement downloaded from this website may not be complete or accurate because of lag-in-time between the source system and the website.
+                </dd>
+
+            </dl>
+        </footer>
+    </blockquote>
+</body>
+</html>
+
+
+

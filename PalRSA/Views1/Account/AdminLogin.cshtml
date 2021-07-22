@@ -1,0 +1,57 @@
+﻿@using PalRSA.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+
+@Styles.Render("~/Content/login.css")
+@Styles.Render("~/Content/bootstrap.min.css")
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $(".navbar").hide();
+            $(".admin-nav").hide();
+        });
+    </script>*@
+
+<div id="bg"><img src="~/images/template-bg.jpg"></div>
+
+<header class="admin-header">
+    <div class="container-fluid">
+        <div class=" logo col-md-3 "><a href="index.php"><img src="~/images/logo3.png" alt="logo"> </a></div>
+    </div>
+</header>
+<div class="cont-row">
+    <div class="col-md-12 cont-drow">
+        <div class="cont-text col-md-3 col-sm-3"><span class="span-admin">Administrator</span><br><span class="span-login">Login</span></div>
+        <div class="cont-login col-md-2 col-sm-2 col-xs-2"><img src="~/images/login.png" alt="login image"></div>
+        <div class="cont-middle col-md-5 col-sm-5">
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="cont-user-info">
+                    @Html.TextBoxFor(m => m.Username, new { @class = "user-name", @placeholder = "Username" })
+                    <br>
+                    <div class="cont-line"></div>
+                    @Html.PasswordFor(m => m.Password, new { @class = "pass-word", @placeholder = "Password" })
+
+                    <div class="login-icon">
+                        <input class="btn btn-primary but-login" type="submit" value="" />
+                    </div>
+
+
+
+                </div>
+            }
+            <div class="forgot-password"><span class="forgot-pass">Forgot your password?</span> <span><a href="">Click here</a></span></div>
+            <div class="RSA"><span class="rsa-question">You don't have an RSA yet?</span> <span class="open-rsa"><a href="">Open RSA NOW!</a></span></div>
+        </div>
+        <div class="cont-div col-md-2 col-sm-2"><div class="client-login"><a href="Login">Customer Login <img src="~/images/login-bg2.png"></a></div></div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="copy-right">&copy; @DateTime.Now.Year. Pal Pensions. All Right Reserved</div>
+

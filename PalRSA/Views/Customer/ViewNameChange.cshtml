@@ -1,0 +1,141 @@
+﻿@using System.Configuration
+@using PalRSA.Helpers
+@model PalRSA.Core.DataAccess.ChangeOfNameProfile
+
+@{
+    ViewBag.Title = "View Change of Name";
+    var path = ConfigurationManager.AppSettings["profile-change-thumb"];
+    var full = ConfigurationManager.AppSettings["profile-change"];
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+    });
+</script>
+
+<div class="rightside  view-profile">
+    <div class="details">
+        <h3>Approve Change of Name</h3>
+    </div>
+
+    @if ((string)TempData["Status"] == "success")
+    {
+        <div class="alert alert-success exceed">
+            <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Changes Saved</span>
+        </div>
+    }
+    else if ((string)TempData["Status"] == "invalid")
+    {
+        <div class="alert alert-warning col-md-12" id="warning">
+            <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"> Something went wrong</span>
+        </div>
+    }
+
+    <div class="">
+        @using (Html.BeginForm("ViewNameChange", "Customer", FormMethod.Post, new { @class = "form-horizontal", id = "change-of-name", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Old Surname</span></h4>
+                    @Html.TextBoxFor(model => model.OldName, new { @class = "form-control", @readonly = true })
+                    @Html.HiddenFor(model => model.Pin)
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.DocumentId)
+                    @Html.HiddenFor(model => model.Doc1)
+                    @Html.HiddenFor(model => model.Doc2)
+                    @Html.HiddenFor(model => model.Ext1)
+                    @Html.HiddenFor(model => model.Ext2)
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">New Surname</span></h4>
+                    @Html.TextBoxFor(model => model.NewName, new { @class = "form-control"})
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Old First Name</span></h4>
+                    @Html.TextBoxFor(model => model.OldFirstName, new { @class = "form-control", @readonly = true })
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">New First Name</span></h4>
+                    @Html.TextBoxFor(model => model.NewFirstName, new { @class = "form-control"})
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Old Middle Name</span></h4>
+                    @Html.TextBoxFor(model => model.OldMiddleName, new { @class = "form-control", @readonly = true })
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">New Middle Name</span></h4>
+                    @Html.TextBoxFor(model => model.NewMiddleName, new { @class = "form-control"})
+                </div>
+            </div>
+
+            <div class="row">
+                @if ((string)TempData["Sex"] == "M")
+                {
+                    <div class="col-md-6 col-sm-6">
+                        <h4><span class="label label-default">Court Affidavit</span></h4>
+                        <input type="file" class="form-control" name="doc1" id="doc1"/>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-6 col-sm-6">
+                        <h4><span class="label label-default">Marriage Certificate</span></h4>
+                        <input type="file" class="form-control" name="doc1" id="doc1" />
+                    </div>
+                }
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Newspaper Publication</span></h4>
+                    <input type="file" class="form-control" name="doc2" id="doc2"/>
+                    <input type="hidden" name="sex" value="@TempData["Sex"]"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <h4><span class="label label-default">Description</span></h4>
+                    @Html.TextAreaFor(model => model.Description, new {@class = "form-control"})
+                </div>
+            </div>
+
+            <div class="row"></div>
+
+            <div class="row">
+                @{
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <a class="thumbnail fancybox" href="@Url.Content(full + Model.DocumentId + '/' + Model.Doc1 + Model.Ext1)">
+                            <img class="img-responsive" src='@Url.Content(path + Model.DocumentId + '/' + Model.Doc1 + Model.Ext1)'>
+                        </a>
+                        <label class="text-center">@Model.Doc1</label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <a class="thumbnail fancybox" href="@Url.Content(full + Model.DocumentId + '/' + Model.Doc2 + Model.Ext2)">
+                            <img class="img-responsive" src='@Url.Content(path + Model.DocumentId + '/' + Model.Doc2 + Model.Ext2)'>
+                        </a>
+                        <label class="text-center">@Model.Doc2</label>
+                    </div>
+                }
+
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2 pull-right">
+                    <input type="submit" value="Submit Changes" class="btn-primary btn-block" />
+                </div>
+            </div>
+                    }
+    </div>
+</div>
+
+

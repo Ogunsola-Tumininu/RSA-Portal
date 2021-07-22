@@ -1,0 +1,63 @@
+﻿@model PalRSA.Core.DataAccess.ExpressionOfInterest
+    
+<div class="form-horizontal">
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <h4><span class="label label-default">RSA Pin</span></h4>
+            @Html.TextBoxFor(model => model.RsaPin, new {@class = "form-control", @readonly = true})
+
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <h4><span class="label label-default">Surname</span></h4>
+            @Html.TextBoxFor(model => model.Surname, new {@class = "form-control", @readonly = true})
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <h4><span class="label label-default">First Name</span></h4>
+            @Html.TextBoxFor(model => model.Firstname, new { @class = "form-control", @readonly = true })
+
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <h4><span class="label label-default">Middle Name</span></h4>
+            @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control", @readonly = true })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <h4><span class="label label-default">Employer Name</span></h4>
+            @Html.TextBoxFor(model => model.EmployerName, new {@class = "form-control", @readonly = true})
+
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <h4><span class="label label-default">Current PFA</span></h4>
+            @Html.TextBoxFor(model => model.CurrentPfa, new {@class = "form-control", @readonly = true})
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <h4><span class="label label-default">Mobile Number 1</span></h4>
+            @Html.TextBoxFor(model => model.Telephone1, new { @class = "form-control", @readonly = true })
+
+        </div>
+        <div class="col-md-3 col-sm-3">
+            <h4><span class="label label-default">Mobile Number 2</span></h4>
+            @Html.TextBoxFor(model => model.Telephone2, new {@class = "form-control", @readonly = true})
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <h4><span class="label label-default">Email</span></h4>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = true })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h4><span class="label label-default">Address</span></h4>
+            @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @readonly = true })
+        </div>
+    </div>
+</div>

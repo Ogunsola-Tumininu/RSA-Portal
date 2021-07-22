@@ -1,0 +1,285 @@
+﻿@model PalRSA.Core.DataAccess.BenefitApplication
+@using System.Configuration
+@using PalRSA.Helpers
+
+@{
+    ViewBag.Title = "EditBenefitApplication";
+}
+
+<div class="view-profile retirement ">
+<h3>Edit Benefit Application</h3>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+    });
+</script>
+
+    <link href="~/Content/dim.css" rel="stylesheet" />
+
+<div class="dim" style="display: none"></div>
+
+<div class="">
+    <div class="">
+
+        <input type="hidden" id="appid" value="@Model.BenefitApplicationId"/>
+        <input type="hidden" id="benefitid" value="@Model.BenefitSubClassId"/>
+
+        <div class="" id="app-warning">
+            <div class="alert alert-warning exceed" style="display: none">
+                <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> &nbsp; <span class="stat"></span>
+            </div>
+        </div>
+
+        <div class="" id="app-success">
+            <div class="alert alert-success exceed" style="display: none">
+                <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"></span>
+            </div>
+        </div>
+
+        <div class="">
+            <h4 class="page-header">@Helper.GetApplicationTypeName(Model.BenefitSubClassId) Application</h4>
+        </div>
+
+        <div class="row">
+            @{
+                foreach (var doc in Model.EmployeeBenefitDocuments)
+                {
+                    if (doc.DateUploaded != null)
+                    {
+                        var path = "";
+                        var full = "";
+                        if (doc.ext == ".jpg" || doc.ext == ".png")
+                        {
+                            path = ConfigurationManager.AppSettings["document-folder-thumb"] + Model.DocumentId + '/' + doc.Filename + doc.ext;
+                            full = ConfigurationManager.AppSettings["document-folder"] + Model.DocumentId + '/' + doc.Filename + doc.ext;
+                            <div class="col-md-4 col-lg-3 col-xs-6 thumb">
+                                <a class="thumbnail fancybox" href="@Url.Content(full)">
+                                    <img class="img-responsive" src='@Url.Content(path)' alt="" data-docinfoid="@doc.Id">
+                                </a>
+                                <label class="text-center">@Helper.SplitCamelCase(@doc.Filename)</label>
+                                <input type="file" class="img inputfile" id="@Model.DocumentId" name="@doc.Filename" onchange="ReUpload('img', this.value, this);">
+                                <a class="text-right glyphicon glyphicon-cloud-upload upload_link" href=""></a>
+                            </div>
+                        }
+                        else
+                        {
+                            path = ConfigurationManager.AppSettings["pdf-placeholder"];
+                            <div class="col-md-4 col-lg-3  col-xs-6 thumb">
+                                <a class="thumbnail" href="#">
+                                    <img class="img-responsive" src='@Url.Content(path)' alt="" data-docinfoid="@doc.Id">
+                                </a>
+                                <label class="text-center">@Helper.SplitCamelCase(@doc.Filename)</label>
+                                <input type="file" class="img inputfile" id="@Model.DocumentId" name="@doc.Filename" onchange="ReUpload('img', this.value, this);">
+                                <a class="text-right glyphicon glyphicon-cloud-upload upload_link" href=""></a>
+                            </div>
+                        }
+
+                    }
+                }
+            }
+        </div>
+
+
+        <div class="row" style="margin-top: 3em;">
+
+            @using (Ajax.BeginForm("EnBloc", "Customer", new AjaxOptions() {HttpMethod = "POST", UpdateTargetId = "response", OnSuccess = "getresult"}, new {@class = "form-horizontal", id = "enblocForm", enctype = "multipart/form-data"}))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                foreach (var doc in Model.EmployeeBenefitDocuments.Where(doc => doc.DateUploaded == null))
+                {
+                    <div class="form-group upload-edit">
+                        <label class="col-xs-6 col-md-7 control-label">@Helper.GetLabel(doc.Filename)</label>
+                        <div class="col-xs-3">
+                            <input type="file" class="form-control col-xs-2 img inputfile" id="@doc.Filename" name="@doc.Filename" onchange="Validate('img', this.value, this);">
+                            <label for="@doc.Filename"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" /></svg> Choose a file&hellip;</strong></label>
+                        </div>
+                        <div class="col-xs-1" style="display: none">
+                            <span class="glyphicon glyphicon-ok" style="color: green"></span>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+    @if (Model.Status1.StatusValue == "Not Complete")
+    {
+        <div class="send">
+            <button class="btn-info btn btn-sm submitApplication" type="button">Finish</button>
+            <img class="loading-gif" src="@Url.Content("~/images/loading.gif")" style="display: none" />
+        </div>
+    }
+</div>
+
+<script>
+
+    function getExt(filename) {
+        var x = filename.split("\\");
+        var filenameLength = x.length;
+        var ext = x[filenameLength - 1].split(".");
+        var length = ext.length;
+        return ext[length - 1];
+    }
+
+    var getresult = function (data) {
+        alert(data.result);
+    };
+
+    function alertWarning(context, message) {
+        $("#app-warning").find(".stat").empty();
+        $("#app-warning").find(".stat").append(message);
+        context.val('');
+        $("#app-warning").find(".exceed").fadeIn(1000, function () {
+            $("#app-warning").find(".exceed").fadeOut(10000);
+        });
+    }
+
+    function alertSuccess(message) {
+        $("#app-success").find(".stat").empty();
+        $("#app-success").find(".stat").append(message);
+        $("#app-success").find(".exceed").fadeIn(1000, function () {
+            $("#app-success").find(".exceed").fadeOut(5000);
+        });
+    }
+
+    function validateForm() {
+        var status = true;
+        $('.upload-edit').each(function () {
+            if (!$(this).hasClass("valid")) {
+                alertWarning($(this), " Some files have not been uploaded. Check your entries for the one without the pass mark");
+                return status = false;
+            }
+        });
+        return status;
+    }
+
+    $(".submitApplication").click(function () {
+        var element = $(this);
+        if (validateForm() === true) {
+            element.hide();
+            element.closest(".send").find(".loading-gif").show();
+            $.ajax({
+                url: "/Customer/FinalizeApplication",
+                type: "POST",
+                data: {id : $("#appid").val()},
+                success: function (response) {
+                    $(".submitApplication").attr("disabled", true);
+                    element.closest(".send").find(".loading-gif").hide();
+                    element.show();
+                    alertSuccess(" Application has been submitted successfully");
+                }
+            });
+        }
+    });
+
+    $(function () {
+        $(".upload_link").on('click', function (e) {
+            e.preventDefault();
+            $(this).closest(".thumb").find(".img:hidden").trigger('click');
+        });
+    });
+
+    function ReUpload(fileid, filename, val) {
+        var x = getExt(filename);
+        var valid = $(val);
+
+        try {
+            var fileSize;
+            fileSize = valid[0].files[0].size;
+            fileSize = fileSize / 1048576; //size in mb
+            $("#errorStatus").find("#vidStat").empty();
+
+            if (fileSize > 2) {
+                alertWarning(valid, " File is too large: Max 2mb");
+            } else if (x === "png" || x === "jpg") {
+                var data = new FormData();
+                var files = valid.get(0).files;
+                if (files.length > 0) {
+                    data.append("Doc", files[0]);
+                }
+
+                data.append("appid", $("#appid").val());
+                data.append("filename", valid.attr('name'));
+
+                $(".dim").show();
+
+                $.ajax({
+                    url: "/Customer/ReUploadImage",
+                    type: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: data,
+                    success: function (response) {
+                        $(".dim").hide();
+                        alertSuccess(" File successfully uploaded");
+                    },
+                    error: function (er) {
+                        console.log(er);
+                    }
+
+                });
+            } else {
+                alertWarning(valid, " Incorrect format: png or jpg");
+            }
+
+        } catch (e) {
+            alert("Error is :" + e);
+        }
+    }
+
+    function Validate(fileid, filename, val) {
+        var x = getExt(filename);
+        var valid = $(val);
+
+        try {
+            var fileSize;
+            fileSize = valid[0].files[0].size;
+            fileSize = fileSize / 1048576; //size in mb
+            $("#errorStatus").find("#vidStat").empty();
+
+            if (fileSize > 2) {
+                alertWarning(valid, " File is too large: Max 2mb");
+            } else if (x === "png" || x === "jpg" || x === "pdf") {
+                var data = new FormData();
+                var files = valid.get(0).files;
+                if (files.length > 0) {
+                    data.append("Doc", files[0]);
+                }
+
+                data.append("first", valid.data("first"));
+                data.append("appid", $("#appid").val());
+                data.append("benefitId", $("#benefitid").val());
+                data.append("filename", valid.attr("name"));
+                data.append("docid", valid.data("docinfoid"));
+
+                $.ajax({
+                    url: "/Customer/UploadImage",
+                    type: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+                        valid.attr('data-docinfoid', response.docInfoId);
+                        $("#appid").val(response.appId);
+                        valid.closest(".form-group").addClass("valid");
+                        valid.closest(".form-group").find(".col-xs-1").show();
+                        alertSuccess(" File successfully uploaded");
+                    },
+                    error: function (er) {
+                        console.log(er);
+                    }
+
+                });
+            } else {
+                alertWarning(valid, " Incorrect format: png or jpg");
+            }
+
+        } catch (e) {
+            alert("Error is :" + e);
+        }
+    }
+</script>
+</div>

@@ -1,0 +1,91 @@
+﻿@model PalRSA.Core.DataAccess.AccountManager
+
+@{
+    ViewBag.Title = "UploadPublications";
+}
+
+<script type="text/javascript" src="~/Scripts/new-profile-validator.js"></script>
+
+
+
+<div class="rightside view-profile">
+
+<div class="details">
+<h3>Account Officer Details</h3>
+</div>
+    <div class="">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <h4><span class="label label-default">Account Managers Name</span></h4>
+                @Html.TextBoxFor(model => model.AccountManagers, new {@class = "form-control", @readonly = "true"})
+                @Html.HiddenFor(model => model.ManagerId)
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <h4><span class="label label-default">Phone Number</span></h4>
+                @Html.TextBoxFor(model => model.Phonenumber, new {@class = "form-control", @readonly = "true" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <h4><span class="label label-default">Region</span></h4>
+                @Html.TextBoxFor(model => model.Region, new {@class = "form-control", @readonly = "true" })
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <h4><span class="label label-default">Email</span></h4>
+                @Html.TextBoxFor(model => model.EMAIL, new {@class = "form-control", @readonly = "true" })
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br/>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#admin-dash').DataTable();
+    });
+</script>
+<!--<div class="container-fluid rside"> -->
+
+
+
+<div class="rightside view-profile">
+    <div class="right-details">
+        <div class="right-top-text">All Transaction</div>
+        <div class="table-responsive main-transaction">
+            <table class="table table-condensed" id="admin-dash">
+                <thead>
+                    <tr>
+                        <th>Pin</th>
+                        <th>Registration Code</th>
+                        <th>First Name</th>
+                        <th>Surname</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>Employer</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var client in Model.Employees)
+                        {
+                            <tr>
+                                <td>@client.Pin</td>
+                                <td>@client.RegistrationCode</td>
+                                <td>@client.FirstName</td>
+                                <td>@client.Surname</td>
+                                <td>@client.Gender</td>
+                                <td>@client.Email</td>
+                                <td>@client.EmployerDetail.EmployerName</td>
+                                <td>@Html.ActionLink("Change Officer", "ChangeManager", new { pin = client.Pin }, new { @class = "glyphicon glyphicon-edit" })</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

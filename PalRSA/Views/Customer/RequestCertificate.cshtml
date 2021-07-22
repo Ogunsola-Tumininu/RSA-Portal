@@ -1,0 +1,107 @@
+﻿
+@using PalRSA.Core.DataAccess
+
+@{ 
+    PALSiteDBEntities _db = new PALSiteDBEntities();
+    var userDetail = _db.Employees.Where(d => d.Pin == User.Identity.Name).FirstOrDefault();
+
+    ViewBag.Title = "Request Certificate";
+ }
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 ">
+                <div class="view-profile">
+                    <div class="details">
+                        <h3 style="margin-left:15px">@ViewBag.Title</h3>
+                        <hr />
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> PIN </label>
+                            <div class="col-md-12">
+                                <input id="Pin" class="form-control" value="@userDetail.Pin" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Surname : </label>
+                            <div class="col-md-12">
+                                <input id="Surname" name="Surname" class="form-control" value="@userDetail.Surname" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Firstname : </label>
+                            <div class="col-md-12">
+                                <input id="Firstname" name="Firstname" class="form-control" value="@userDetail.FirstName" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Mobile : </label>
+                            <div class="col-md-12">
+                                <input id="Mobile" name="Mobile" class="form-control" value="@userDetail.MobileNumber" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Mobile : </label>
+                            <div class="col-md-12">
+                                <input id="Email" name="Email" class="form-control" value="@userDetail.Email" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-left:15px">
+                    @*@Html.ActionLink("Download as PDF", "ReportPdf", "Customer", new { startDate = TempData["StartDate"], endDate = TempData["EndDate"], fundId = TempData["fundId"] }, new { @class = "btn-info btn btn-sm" });*@ 
+
+                    <button onclick="emailCertificate()" id="getCertificate" class="btn-success btn btn-sm">Email Certificate</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script>
+    function emailCertificate() {
+        debugger
+        var clientPin = $("#Pin").val();
+        $.ajax({
+            url: 'https://services.palpensions.com/api/PaperlessGateway/RegCertificateRequest?pin=' + clientPin,
+            type: 'GET',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert('Certificate sent to your email address');
+            },
+        });
+
+    }
+</script>

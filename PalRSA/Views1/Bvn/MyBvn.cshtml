@@ -1,0 +1,61 @@
+﻿@model IEnumerable<PalRSA.Core.DataAccess.BVNdata>
+
+@{
+    ViewBag.Title = "My BVN";
+}
+
+<h4>@ViewBag.Title</h4>
+
+
+@if (!Model.Any())
+{
+    <p>
+        @Html.ActionLink("Submit BVN", "SubmitBvn")
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bvn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nin)
+        </th>
+        <th>
+            Date Submitted
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Confimed)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bvn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedOn)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Confimed)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "EditBvn") @*|, new { id=item.Id }*@
+             
+            
+        </td>
+    </tr>
+}
+
+</table>

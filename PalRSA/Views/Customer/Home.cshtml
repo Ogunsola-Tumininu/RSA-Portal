@@ -1,0 +1,193 @@
+﻿@model PalRSA.Core.Models.EmployeeReportSummation
+@using PalRSA.Core.DataAccess
+@{ 
+    ViewBag.Title = "Home";
+     var contributions = ViewBag.contributions as IEnumerable<Contribution>;
+     contributions = contributions.OrderByDescending(d => d.ValueDate);
+            // var contAgg = (ViewBag.ContributionAggregate as IEnumerable<GetContributionAggregate_Result>).Single();
+
+}
+
+
+
+@if(contributions.Any())
+{
+<div class="retirement">
+    <div class="">
+        <div>
+            @*<div>
+                    <button class="btn btn-primary" type="button">
+                        <span class="badge"> </span>
+                    </button>
+                </div>*@
+        </div>
+        <div class="">
+            <h3 id="header-tag">@Html.Raw(ViewBag.Header)</h3>
+            @*<h3 class="box-title">
+                    <span class="label label-warning" style="font-size:large">
+                        This page is under maintenance. The content is being updated and will be completed in a shortwhile. Please bear with us.
+                    </span>&nbsp;
+                </h3>*@
+        </div>
+        @*@if (Convert.ToBoolean(TempData["isRetirementToo"]))
+            {
+                <div class="">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Show Fund Type
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#" class="value-fund" data-ref ="value">Value Fund</a></li>
+                            <li><a href="#" class="value-fund" data-ref ="retire">Retirement Fund</a></li>
+                        </ul>
+                    </div>
+                </div>
+            }*@
+    </div>
+    <div class="right-details">
+        <div class="loading-summary text-center" style="display: none">
+            <img id="preform-loading" src="@Url.Content("~/images/loading.gif")" />
+        </div>
+        <div class="summary">
+            <div class="right-top-text">Statement Summary</div>
+            <div class="table-responsive main-transaction">
+                <table class="table-transaction retirement-table table-bordered table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>RSA (₦)</th>
+                            <th>Voluntary (₦)</th>
+                            <th>Total (₦)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Net Contributions from Inception</td><td>@Model.NetContributionRsa.ToString("N2")</td><td>@Model.NetContributionVc.ToString("N2")</td><td>@Model.totalContribution.ToString("N2")</td></tr>
+                        <tr><td>Total Income On Contribution</td><td>@Model.RsaIncome.ToString("N2")</td><td>@Model.VcIncome.ToString("N2")</td><td>@Model.TotalIncome.ToString("N2")</td></tr>
+                        <tr><td>Balance Before Withdrawal</td><td>@Model.rsaBeforeWithdrawal.ToString("N2")</td><td>@Model.vcBeforeWithdrawal.ToString("N2")</td><td>@Model.totalBeforeWithdrawal.ToString("N2")</td></tr>
+                        <tr><td>Withdrawal</td><td>@Model.RsaWithdrawal.ToString("N2")</td><td>@Model.VcWithdrawal.ToString("N2")</td><td>@Model.TotalWithdrawal.ToString("N2")</td></tr>
+                        <tr class="info"><td>Current Balance</td><td>@Model.rsaBalance.ToString("N2")</td><td>@Model.vcBalance.ToString("N2")</td><td>@Model.totalBalance.ToString("N2")</td></tr>
+                        <tr><td>Units Held</td><td>@Model.SumUnitsRsa.ToString("N2")</td><td>@Model.SumUnitsVc.ToString("N2")</td><td>@Model.TotalUnits.ToString("N2")</td></tr>
+                        <tr><td>Unit Price</td><td>@Model.CurrentUnitPrice.ToString("N4")</td><td>@Model.CurrentUnitPrice.ToString("N4")</td><td></td></tr>
+
+                        @*<tr><td>Contributions from Inception</td><td>@Model.NetContributionRsa.ToString("N2")</td><td>@Model.SumAvc.ToString("N2")</td><td>@Model.NetContributionRsa.ToString("N2")</td></tr>
+                            <tr><td>Total Income On Contribution</td><td>@Model.RsaIncome.ToString("N2")</td><td>@Model.VcIncome.ToString("N2")</td><td>@Model.TotalIncome.ToString("N2")</td></tr>
+                            <tr><td>Balance Before Withdrawal</td><td>@Model.rsaBeforeWithdrawal.ToString("N2")</td><td>@Model.vcBeforeWithdrawal.ToString("N2")</td><td>@Model.totalBeforeWithdrawal.ToString("N2")</td></tr>
+                            <tr><td>Withdrawal</td><td>@Model.RsaWithdrawal.ToString("N2")</td><td>@Model.VcWithdrawal.ToString("N2")</td><td>@Model.TotalWithdrawal.ToString("N2")</td></tr>
+                            <tr class="info"><td>Current Balance</td><td>@Model.rsaBalance.ToString("N2")</td><td>@Model.vcBalance.ToString("N2")</td><td>@Model.totalBalance.ToString("N2")</td></tr>
+                            <tr><td>Units Held</td><td>@Model.SumUnitsRsa.ToString("N2")</td><td>@Model.SumUnitsVc.ToString("N2")</td><td>@Model.TotalUnits.ToString("N2")</td></tr>
+                            <tr><td>Unit Price</td><td>@Model.CurrentUnitPrice.ToString("N4")</td><td>@Model.CurrentUnitPrice.ToString("N4")</td><td></td></tr>*@
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="table-responsive main-transaction">
+            <table class="table-transaction employee-table" id="customer-dash">
+                <thead>
+                    <tr>
+                        <th>Narration</th>
+                        <th>Transaction Date</th>
+                        <th>Employee Contribution</th>
+                        <th>Employer Contribution</th>
+                        <th>Other Contibution</th>
+                        <th>Withdrawal</th>
+                        <th>Total Contributions</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ //if (Model.Contributions.Any())
+                                        //{
+
+                                        foreach (var trans in contributions)
+                                        {
+                        <tr>
+                            <td>@trans.Narration</td>
+                            <td>@trans.ValueDate.Value.ToString("MMM dd, yyyy")</td>
+                            <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.EmployeeContribution, 2))</td>
+                            <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.EmployerContribution, 2))</td>
+                            <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.OtherContribution, 2))</td>
+                            <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.Withdrawal, 2))</td>
+                            <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.EmployeeContribution + (decimal)trans.EmployerContribution, 2))</td>
+                            <td></td>
+                        </tr> }
+
+                                        //}
+                       }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    @if (Model.Manager != null)
+    {
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">Account Manager’s Name</div>
+                <span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-up"></i></span>
+            </div>
+            <div class="panel-body">
+                <label> Name: @Model.Manager.AccountManagers</label><br />
+                <label> Phone: @Model.Manager.Phonenumber</label><br />
+                <label> Email: @Model.Manager.EMAIL</label>
+            </div>
+        </div>
+    </div>
+</div>}
+
+</div> 
+}
+else
+{
+<div>
+    <br /><br /><br />
+    <h4 class="text-danger">Your Account has not been funded yet. Please Contact your employer or visit for details on how to get your account funded !!</h4>
+</div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#customer-dash').DataTable({
+            order: [[1, 'desc'], [0, 'asc']],
+            "pageLength": 50
+        });
+
+        function changeAccountHeader(ref) {
+            switch (ref) {
+                case "value":
+                    $("#header-tag").text("Pensions Alliance Value Fund Account Summary");
+                    break;
+                case "retire":
+                    $("#header-tag").text("Retirement Savings Account Summary");
+                    break;
+            }
+        };
+
+        $(".value-fund").click(function () {
+            var ref = $(this).data("ref");
+            $(".summary").empty();
+            $(".loading-summary").show();
+
+            $.ajax({
+                url: "/Customer/GetSummaryReport",
+                type: "POST",
+                data: { type: ref },
+                success: function (response) {
+                    changeAccountHeader(ref);
+                    $(".loading-summary").hide();
+                    $(".summary").html(response);
+                }
+            });
+        });
+
+    });
+</script>
+
+
+
+

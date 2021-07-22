@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PalRSA.Core.DataAccess.BenefitApplication>
+@using PalRSA.Helpers
+@using PalRSA.Core.DataAccess
+
+@{
+    PALSiteDBEntities _db = new PALSiteDBEntities();
+    var benAppId = _db.BenefitFiles.Where(d => d.PIN == User.Identity.Name).FirstOrDefault().BenefitProcessId;
+    ViewBag.Title = "Benefits";
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#benefits').DataTable();
+    });
+</script>
+
+
+<div class="">
+<div class="details" >
+    <h3>Benefits</h3>
+</div>
+<div class="clearfix"></div>
+        <div class="right-details">
+            <div class="right-top-text">All Benefits</div>
+        <div class="table-responsive main-transaction">
+                <div class="table-responsive">
+                    <table class="table-transaction" id="benefits">
+                        <thead>
+                        <tr>
+                            <th>Application Type</th>
+                            <th>Status</th>
+                            <th>Date Applied</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @{
+                            foreach (var app in Model)
+                            {
+                                                    <tr>
+                                                        <td>@Helper.GetApplicationTypeName(@app.BenefitSubClassId)</td>
+                                                        <td>@Helper.GetStatusValue(@app.Status)</td>
+                                                        <td>@app.DateApplied.ToString("MMMM dd, yyyy")</td>
+                                                        @*<td>@Html.ActionLink("Edit", "EditBenefitApplication", new {id = app.BenefitApplicationId}, new {@class = "glyphicon glyphicon-edit"})</td>*@
+                                                        @if (Helper.GetApplicationTypeName(@app.BenefitSubClassId) == "AVC")
+                                                        {
+                                                            <td>@Html.ActionLink("Edit", "upload", new { id = 2 }, new { @class = "glyphicon glyphicon-edit" })</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@Html.ActionLink("Edit", "upload", new { id = 3}, new { @class = "glyphicon glyphicon-edit" })</td>
+                                                        }
+
+                                                    </tr>
+                            }
+                        }
+                        </tbody>
+                    </table>
+                </div>
+           </div>
+   </div>
+</div>

@@ -1,0 +1,92 @@
+﻿@using PalRSA.Core.Models
+
+@{
+    ViewBag.Title = "Dashboard";
+    var clientInfo = (ICollection<AdminDashboard>)TempData["OneWeekLogin"];
+}
+
+@Styles.Render("~/Content/admin.css")
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#admin-dash').DataTable();
+    });
+</script>
+
+<link href="~/Content/admin-dashboard.css" rel="stylesheet" />
+
+<!--<div class="container-fluid rside"> -->
+    <div class="details">
+        <h3>Dashboard</h3>
+    </div>
+<div class="">
+    <div class="right-details">
+        <br/>
+
+        <div class="right-top-text">Customers who logged on in the last 7 days</div>
+        <div class="table-responsive main-transaction">
+            <table class="table table-condensed" id="admin-dash">
+                <thead>
+                <tr>
+                    <th>Pin</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Last Login</th>
+                    <th>Employer</th>
+                </tr>
+                </thead>
+                <tbody>
+                @{
+                    if (clientInfo != null)
+                    {
+                        foreach (var client in clientInfo)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(client.Pin, "ViewClientProfile", new {pin = client.Pin}, new {@class = "glyphicon glyphicon-globe"})</td>
+                                <td>@client.FullName</td>
+                                <td>@client.Email</td>
+                                <td>@client.LastLogin.ToString("MMM dd, yyyy")</td>
+                                <td>@client.Employer</td>
+                            </tr>
+                        }
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <br/>
+    <br />
+
+    <div class="col-xs-12 divider text-center">
+        <div class="col-xs-12 col-sm-4 emphasis pull-left">
+            <h2>
+                <strong> @TempData["TotalNumberOfApplications"] </strong>
+            </h2>
+            <p>
+                <small>Pending Benefit Applications</small>
+            </p>
+            <a class="btn btn-success btn-block" href="ViewApplications"><span class="fa fa-plus-circle"></span> Show </a>
+        </div>
+        <div class="col-xs-12 col-sm-4 emphasis">
+            <h2>
+                <strong> @TempData["TotalNumberOfCompletedApplications"] </strong>
+            </h2>
+            <p>
+                <small>Treated Benefit Applications</small>
+            </p>
+            <a class="btn btn-success btn-block" href="ViewTreatedApplications"><span class="fa fa-plus-circle"></span> Show </a>
+        </div>
+        <div class="col-xs-12 col-sm-4 emphasis pull-right">
+            <h2>
+                <strong>@TempData["ProfileChanges"]</strong>
+            </h2>
+            <p>
+                <small>Pending Profile Changes</small>
+            </p>
+            <a class="btn btn-info btn-block" href="ViewChanges"><span class="fa fa-user"></span> View </a>
+        </div>
+    </div>
+</div>

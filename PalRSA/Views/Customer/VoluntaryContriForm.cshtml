@@ -1,0 +1,159 @@
+﻿@using PalRSA.Core.DataAccess
+@using PalRSA.Core.Models
+
+@using PalRSA.Core 
+
+@{
+    PALSiteDBEntities _db = new PALSiteDBEntities();
+    PalManager _manager = new PalManager();
+    var user = _db.Employees.Where(d => d.Pin == User.Identity.Name).FirstOrDefault();
+
+    var fundId = _manager.GetFunId(User.Identity.Name);
+    var report = _manager.EmployeeReportSummationMethod(User.Identity.Name, fundId, null);
+
+    ViewBag.Title = "Voluntary Contribution Form";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-md-offset-3 col-md-6">
+
+        <!-- general form elements -->
+        <div>
+            <div class="box box-default" style="padding-left:40px; padding-right:40px;">
+                <div class="box-header with-border">
+
+                </div>
+                <h2>@ViewBag.Title</h2> <hr />
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12">PIN </label>
+                            <div class="col-md-12">
+                                <input id="PIN" class="form-control" name="PIN" value="@user.Pin" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12">Gender </label>
+                            <div class="col-md-12">
+                                @*@Html.DropDownList("TitleId", null, "Select Title", htmlAttributes: new { @class = "form-control" })*@
+                                <input id="Gender" class="form-control" name="Gender" value="@user.Gender" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12">Date Of Birth </label>
+                            <div class="col-md-12">
+                                <input id="DateOfBirth" class="form-control" name="DateOfBirth" value="@user.DateOfBirth" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Current Age </label>
+                            <div class="col-md-12">
+                                <input id="currentAge" class="form-control" type="number" name="currentAge" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Mobile </label>
+                            <div class="col-md-12">
+                                <input id="MobilePhone" class="form-control" name="MobilePhone" value="@user.MobileNumber" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Email </label>
+                            <div class="col-md-12">
+                                <input id="Email" class="form-control" name="Email" value="@user.Email" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Voluntary Cont. Category </label>
+                            <div class="col-md-12">
+                                <input id="VC" class="form-control" name="VC" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Voluntary Cont. Balance (₦) </label>
+                            <div class="col-md-12">
+                                <input id="Balance" class="form-control" name="Balance"  value="@report.vcBalance.ToString("N2")" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Contingent/Fixed Amount (₦) </label>
+                            <div class="col-md-12">
+                                <input id="fixedAmount" class="form-control" type="number" name="fixedAmount" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Amount Requested (₦) </label>
+                            <div class="col-md-12">
+                                <input id="amountRequested" class="form-control" name="amountRequested" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-2 ">
+                                <input type="submit" value="Submit Request" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+}

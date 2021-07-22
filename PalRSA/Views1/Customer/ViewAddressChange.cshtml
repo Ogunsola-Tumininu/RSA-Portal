@@ -1,0 +1,102 @@
+﻿@using System.Configuration
+@model PalRSA.Core.DataAccess.ChangeOfAddressProfile
+
+@{
+    ViewBag.Title = "View Change of Address";
+    var path = ConfigurationManager.AppSettings["profile-change-thumb"];
+    var full = ConfigurationManager.AppSettings["profile-change"];
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+
+    });
+</script>
+
+<div class="rightside  view-profile">
+    <div class="details">
+        <h3>Approve Change of Address</h3>
+    </div>
+
+    @if ((string) TempData["Status"] == "success")
+    {
+        <div class="alert alert-success exceed">
+            <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Changes Saved</span>
+        </div>
+    }
+    else if ((string) TempData["Status"] == "invalid")
+    {
+        <div class="alert alert-warning col-md-12" id="warning">
+            <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"> Something went Wrong</span>
+        </div>
+    }
+
+    <div class="">
+        @using (Html.BeginForm("ViewAddressChange", "Customer", FormMethod.Post, new {@class = "form-horizontal", id = "change-of-address", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Old Address</span></h4>
+                    @Html.TextAreaFor(model => model.OldAddress, new {@class = "form-control", @readonly = true})
+                    @Html.HiddenFor(model => model.Pin)
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.DocumentId)
+                    @Html.HiddenFor(model => model.Doc)
+                    @Html.HiddenFor(model => model.Ext)
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">New Address</span></h4>
+                    @Html.TextAreaFor(model => model.NewAddress, new {@class = "form-control"})
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Utility Bill</span></h4>
+                    <input type="file" class="form-control" name="utility" id="utility"/>
+                </div>
+            </div>
+
+            <div class="row"></div>
+
+            <div class="row">
+                @{
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb text-center">
+                        <a class="thumbnail fancybox" href="@Url.Content(full + Model.DocumentId + '/' + Model.Doc + Model.Ext)">
+                            <img class="img-responsive" src='@Url.Content(path + Model.DocumentId + '/' + Model.Doc + Model.Ext)'>
+                        </a>
+                        <label class="text-left">@Model.Doc</label>
+                    </div>
+                }
+
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-2 pull-right">
+                    <input type="submit" value="Save Changes" class="btn-primary btn-block"/>
+                </div>
+            </div>
+
+            if (Model.Reason != null)
+            {
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <h4><span class="label label-default">Rejection Reason</span></h4>
+                        @Html.TextAreaFor(model => model.Reason, new { @class = "form-control", @readonly = true })
+                    </div>
+                </div>
+            }
+                    }
+    </div>
+</div>
+
+

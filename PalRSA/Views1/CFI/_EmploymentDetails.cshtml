@@ -1,0 +1,254 @@
+﻿@model PalRSA.Core.Models.CFIUpdateViewModel
+
+<link href="~/Content/BiometricSite.css" rel="stylesheet" />
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Employment Details</h3>
+                </div>
+                <div class="box-body divBoxHeight">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Sector </label>
+                                <div class="col-md-7">
+                                   @Html.DropDownList("SectorId", null, "-- Select Sector --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.SectorId, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">Employer Under IPPIS? : </label>
+                                <div class="col-md-7">
+                                    @Html.EditorFor(m => m.IsEmployerIPPIS, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">Employer Name: </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.EmployerName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" >
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Current Business Address: </label>
+                                <div class="col-md-7">
+                                    <label>@Html.RadioButtonFor(m => m.IsNigerianEmployer, true, new { Checked = "checked" })Nigeria</label>
+                                    <label>@Html.RadioButtonFor(m => m.IsNigerianEmployer, false)Abroad</label>
+                                    @Html.ValidationMessageFor(m => m.IsNigerianEmployer, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" >
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Building No./Name : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.Building, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Building, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" >
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Street Name : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.EmployerStreetName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.EmployerStreetName, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">Village/Town/City : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.EmployerCity, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">Country Code : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("EmployerCountryCode", null, "Select employer country", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.EmployerCountryCode, new { @class = "form-control" })*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">State Code : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("EmployerStateCode", null, "Select employer state", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.EmployerStateCode, new { @class = "form-control" })*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" >
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">Local Government Code : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("LocalGovernmentCode", null, "Select employer LGA", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.LocalGovernmentCode, new { @class = "form-control" })*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group doubleRequired">
+                                <label class="control-label col-md-5">Zip Code : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.EmployerZIP, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">P.O.Box or PMB(if any) : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.EmployerPOBox, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">Phone No. : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.EmployerPhoneNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.EmployerPhoneNo, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Mobile Number : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.EmployerMobileNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.EmployerMobileNo, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Employee Id: </label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.EmployeeId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.EmployeeId, "", new { @class = "text-red" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group doubleRequired">
+                            <label class="control-label col-md-5">**Service / ID Number (Police & Paramilitary Only) : </label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.ServiceIdNo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.ServiceIdNo, "", new { @class = "text-red" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Designation/Rank : </label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.Designation, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Designation, "", new { @class = "text-red" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group doubleRequired">
+                            <label class="control-label col-md-5">Date of First Appointment with Public Sector: </label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.DateOfFirstAppointment, new { @class = "datePicker", @style = "height: 34px;margin-right: 7px;" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group doubleRequired">
+                            <label class="control-label col-md-5">Date of Current Apppointment Or Date of Transfer of Service (Public Sector Only) : </label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.DateOfCurrentAppointment, new { @class = "datePicker", @style = "height: 34px;margin-right: 7px;" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group doubleRequired">
+                            <label class="control-label col-md-5">Date of Employment (Private Sector Only) : </label>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(m => m.DateOfEmployment, new { @class = "datePicker", @style = "height: 34px;margin-right: 7px;" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" href="javascript:void(0)" onclick="$('#personalData').click();" id="pretab" class="btn btn-block btn-primary ">Previous</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" href="javascript:void(0)" onclick="$('#salary').click();" id="nexttab" class="btn btn-block btn-primary ">Next</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function GetEmployer() {
+        var id = $('#EmployerId').val();
+        $.ajax({
+            url: '/Registration/GetEmployerDetail',
+            type: "GET",
+            datatype: "JSON",
+            data: { EmployerId: id },
+            success: function (employerDetail) {
+                debugger;
+
+                $("#EmployerCode").val(employerDetail.EmployerCode);
+                $("#EmployerName").val(employerDetail.EmployerName);
+                $("#EmployerAddress").val(employerDetail.EmployerAddress);
+                $("#EmployerStateId").val(employerDetail.EmployerStateId);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,116 @@
+﻿@model PalRSA.Core.DataAccess.BenefitApplication
+@using System.Configuration
+@using PalRSA.Helpers
+
+@{
+    ViewBag.Title = "View Benefit Application";
+}
+
+<div class="rightside col-md-10">
+    <div class="details">
+        <h3>View Benefit Application</h3>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".fancybox").fancybox();
+
+            $("#StatusId").change(function () {
+                if (parseInt($(this).val()) === 8) {
+                    $("#show-desc").show();
+                } else {
+                    $("#show-desc").hide();
+                }
+            });
+        });
+    </script>
+
+    <div class="">
+    <div class="row">
+
+        <input type="hidden" id="appid" value="@Model.BenefitApplicationId" />
+        <input type="hidden" id="benefitid" value="@Model.BenefitSubClassId" />
+
+        <div class="col-md-12 col-sm-12" id="app-warning">
+            <div class="alert alert-warning exceed" style="display: none">
+                <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> &nbsp; <span class="stat"></span>
+            </div>
+        </div>
+        @if ((string)TempData["Done"] == "Done")
+        {
+            <div class="col-md-12 col-sm-12" id="app-success">
+                <div class="alert alert-success exceed">
+                    <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Status has been changed. An email has been sent to the client.</span>
+                </div>
+            </div>
+        }
+
+
+<div class="col-md-12 col-sm-12">
+        @Html.ActionLink("Download Zip", "DownloadZip", new { folderId = Model.DocumentId, type = "application" }, new { @class = "btn-info btn btn-sm" })
+</div>
+<div class=""></div>
+        <div class="col-md-12 col-sm-12">
+            @using (Html.BeginForm("ViewBenefitApplication", "Admin", FormMethod.Post, new { @class = "form-inline" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.DropDownList("StatusId", ViewData["Status"] as SelectList, "--Select Status--", new {@class = "form-control status"})
+                    @Html.Hidden("benefitId", Model.BenefitApplicationId)
+                    @Html.Hidden("pin", Model.Employee_Pin)
+                </div>
+                <div class="form-group" id="show-desc" style="display: none">
+                    @Html.TextArea("description", null, new {@class = "form-control", placeholder = "Enter Description", @cols = 50, @rows = 5 })
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn-info btn btn-sm">Update Status</button>
+                </div>    
+             }
+          </div>
+
+
+        <div class="col-md-12 col-sm-12">
+            <h3 class="page-header">@Helper.GetApplicationTypeName(Model.BenefitSubClassId) Application</h3>
+        </div>
+        @{
+            foreach (var doc in Model.EmployeeBenefitDocuments)
+            {
+                if (doc.DateUploaded != null)
+                {
+                    var path = "";
+                    var full = "";
+                    if (doc.ext == ".jpg" || doc.ext == ".png")
+                    {
+                        path = ConfigurationManager.AppSettings["document-folder-thumb"] + Model.DocumentId + '/' + doc.Filename + doc.ext;
+                        full = ConfigurationManager.AppSettings["document-folder"] + Model.DocumentId + '/' + doc.Filename + doc.ext;
+                        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                            <a class="thumbnail fancybox" href="@Url.Content(full)">
+                                <img class="img-responsive" src='@Url.Content(path)' alt="" data-docinfoid="@doc.Id">
+                            </a>
+                            <label class="text-center">@Helper.SplitCamelCase(@doc.Filename)</label>
+                        </div>
+                    }
+                    else
+                    {
+                        path = ConfigurationManager.AppSettings["pdf-placeholder"];
+                        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                                <img class="img-responsive" src='@Url.Content(path)' alt="" data-docinfoid="@doc.Id">
+                            </a>
+                        </div>
+                    }
+
+                }
+            }
+        }
+    </div>
+    @if (Helper.CheckStatus(Model.Status))
+    {
+        <div class="send">
+            <button class="btn-info btn btn-sm submitApplication" type="button">Finish</button>
+            <img class="loading-gif" src="@Url.Content("~/images/loading.gif")" style="display: none" />
+        </div>
+    }
+</div>
+</div>

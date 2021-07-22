@@ -1,0 +1,137 @@
+﻿@model PalRSA.Core.DataAccess.Employee
+
+@{
+    ViewBag.Title = "View Client Profile";
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#report-table').DataTable();
+    });
+</script>
+
+<div class="rightside view-profile">
+
+<div class="details">
+    <h3>Personal Details</h3>
+</div>
+
+<div class="row">
+    <div class="col-md-3 col-sm-3">
+        <h5><span class="label label-default">Pin</span></h5>
+        @Html.TextBoxFor(model => model.Pin, new { @class = "form-control", @readonly = true })
+    </div>
+    <div class="col-md-3 col-sm-3">
+        <h5><span class="label label-default">Registration Code</span></h5>
+        @Html.TextBoxFor(model => model.RegistrationCode, new { @class = "form-control", @readonly = true })
+    </div>
+    <div class="col-md-3 col-sm-3">
+        <h5><span class="label label-default">Surname</span></h5>
+        @Html.TextBoxFor(model => model.Surname, new { @class = "form-control", @readonly = true })
+    </div>
+    <div class="col-md-3 col-sm-3">
+        <h5><span class="label label-default">Other Names</span></h5>
+        @Html.TextBoxFor(model => model.OtherNames, new { @class = "form-control", @readonly = true })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-sm-3">
+        <h5><span class="label label-default">First Name</span></h5>
+        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @readonly = true })
+    </div>
+    <div class="col-md-1 col-sm-1">
+        <h5><span class="label label-default">Gender</span></h5>
+        @Html.TextBoxFor(model => model.Gender, new { @class = "form-control", @readonly = true })
+    </div>
+    <div class="col-md-2 col-sm-2">
+        <h5><span class="label label-default">Date Of Birth</span></h5>
+        @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control", @readonly = true })
+    </div>
+    <div class="col-md-3 col-sm-3">
+        <h5><span class="label label-default">Mobile Number</span></h5>
+        @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", @readonly = true })
+    </div>
+    <div class="col-md-3 col-sm-3">
+        <h5><span class="label label-default">Mobile Number 2</span></h5>
+        @Html.TextBoxFor(model => model.MobileNumber2, new { @class = "form-control", @readonly = true })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 col-sm-4">
+        <h5><span class="label label-default">Email</span></h5>
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = true })
+    </div>
+    <div class="col-md-8 col-sm-8">
+        <h5><span class="label label-default">Permanent Address</span></h5>
+        @Html.TextBoxFor(model => model.PermanentAddress, new { @class = "form-control", @readonly = true })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h5><span class="label label-default">Home Address</span></h5>
+        @Html.TextBoxFor(model => model.HomeAddress, new { @class = "form-control", @readonly = true })
+    </div>
+</div>
+
+<br/>
+
+
+    <div class="details">
+        <h3>Contributions</h3>
+    
+
+    <div class="">
+        <div class="table-responsive">
+            <table class="table-transaction" id="report-table">
+                <thead>
+                    <tr>
+                        <th>Employee Contribution</th>
+                        <th>Employer Contribution</th>
+                        <th>Contribution Date</th>
+                        <th>Other Contribution</th>
+                        <th>Employee Fee</th>
+                        <th>Employer Fee</th>
+                        <th>Other Fee</th>
+                        <th>Total Units</th>
+                        <th>Total Contribution</th>
+                        <th>Total Fee</th>
+                        <th>Payment Date</th>
+                        <th>Trans Date</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+                            foreach (var trans in Model.Contributions)
+                            {
+                                <tr>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.EmployeeContribution, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.EmployerContribution, 4))</td>
+                                    <td>@trans.ContributionDate.ToString("MMM dd, yyyy")</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.OtherContribution, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.EmployeeFee, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.EmployerFee, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.OtherFee, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.TotalUnits, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.TotalContribution, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.TotalFee, 4))</td>
+                                    <td>@trans.PaymentDate.ToString("MMM dd, yyyy")</td>
+                                    <td>@trans.TransDate.ToString("MMM dd, yyyy")</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.Price, 4))</td>
+                                </tr>
+                            }
+                        }
+
+                    }
+                </tbody>
+            </table>
+            @*@Html.PagedListPager((IPagedList)ViewBag.OnePage, page => Url.Action("GenerateReport", new { page }))*@
+        </div>
+
+    </div>
+</div>
+</div>
+
+

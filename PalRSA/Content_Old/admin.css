@@ -1,0 +1,626 @@
+body {
+    background: url(../images/Bg.jpg);
+    width: 100%;
+    height: 100%;
+}
+
+
+.form-group.required .control-label:after, .form-group.required label:after {
+    content: "*";
+    color: red;
+}
+
+.form-group.doubleRequired .control-label:after {
+    content: "**";
+    color: red;
+}
+.field-validation-error, .text-red {
+    color: #ff0000;
+}
+.top-head {
+    padding-top: 30px;
+}
+
+.notification {
+    float: left;
+    padding-right: 50px;
+    padding-top: 30px;
+}
+
+.search-div {
+    padding-top: 30px;
+}
+
+.search {
+    background: #03b2ad;
+    padding: 25px 10px;
+    border-radius: 5px;
+}
+
+.admin-name {
+    color: #085799;
+    font-weight: bold;
+    font-size: 11px;
+    float: right; /*padding-top:20px; */
+    padding-right: 30px;
+}
+/*.admin{float:right; padding-right:20px}
+.admin img{padding-top:10px;}*/
+/*.navbar{float:right; padding-top:15px;}
+*/ .bar {
+    display: block;
+    width: 28px;
+    margin-bottom: 3px;
+    height: 4px;
+    background-color: #307ab9;
+    border-radius: 1px;
+}
+
+.leftside {
+    background: #307ab9;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.rightside {
+}
+
+.leftside li.active {
+    border-top: 1px solid #04d2ad;
+    border-bottom: 1px solid #04d2ad;
+}
+
+    .leftside li.active a {
+        color: #04d2ad;
+    }
+
+.rside {
+    padding-right: 5px;
+}
+
+.dash {
+    background: url(../images/dash.png) no-repeat;
+    padding-left: 40px;
+    background-position: 0 5px;
+}
+
+.trans {
+    background: url(../images/transaction.png) no-repeat;
+    padding-left: 40px;
+}
+
+.pay {
+    background: url(../images/payment.png) no-repeat;
+    padding-left: 40px;
+    background-position: 0 8px;
+}
+
+.changepass {
+    background: url(../images/password.png) no-repeat;
+    padding-left: 40px;
+    background-position: 0 8px;
+}
+
+.profile {
+    background: url(../images/user.png) no-repeat;
+    padding-left: 40px;
+    background-position: 0px 5px;
+}
+
+.leftside ul {
+    padding: 0;
+    margin: 0;
+}
+
+    .leftside ul li {
+        padding-bottom: 5px;
+        list-style: none;
+        padding-top: 5px;
+    }
+
+        .leftside ul li a {
+            color: #fff;
+            font-size: 12px;
+        }
+
+            .leftside ul li a:hover, .leftside ul li a.active {
+                color: #cfccc7;
+                text-decoration: none;
+            }
+
+.right-details { /*padding:50px;background:#303030;*/
+}
+
+.right-top {
+    width: 100%;
+    background: #00b6b0;
+    padding: 20px 0;
+}
+
+.right-top-text {
+    width: auto;
+    text-align: center;
+    background-image: url(../images/trans.png);
+    background-color: #03b2ad;
+    background-repeat: no-repeat;
+    background-position: 43% 10px;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.main-transaction {
+    background: #f9f9f9;
+    width: 100%;
+    color: #333;
+}
+
+.table-transaction {
+    width: 100%;
+}
+
+    .table-transaction th {
+        border-bottom: 2px solid #03b2ad;
+        font-weight: bold;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        color: #03b2ad;
+    }
+
+    .table-transaction .first-row {
+        padding-left: 50px;
+    }
+
+    .table-transaction .last-row {
+        padding-right: 50px;
+    }
+
+    .table-transaction tr:nth-child(even) {
+        background: #eee;
+    }
+
+    .table-transaction td {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+table th {
+    color: #03b2ad;
+}
+
+#report {
+    font-size: 12px;
+}
+
+.copy-right {
+    margin: auto;
+    text-align: center;
+    color: #0159a3;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.topbardiv {
+    display: none !important;
+}
+
+.body-content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.login_reg li {
+    float: none !important;
+}
+
+.login_reg {
+    margin-right: 0 !important;
+}
+
+    .login_reg > li > a {
+        padding: 5px !important;
+        color: #FFFFFF !important;
+        font-size: 13px;
+    }
+
+        .login_reg > li > a:hover {
+            background: #03b2ad !important;
+            color: #085799 !important;
+        }
+
+.login_details {
+    background: #307ab9;
+    height: 100px;
+    /*padding: 1%;*/
+    position: absolute;
+    right: 2%;
+    width: 150px;
+    z-index: 100;
+    display: none;
+}
+
+.navbar-nav > li > a { /*padding:17px 13px 15px 18px !important; line-height:0;*/
+    color: #fff !important;
+}
+
+.nav > li > a:focus, .nav > li > a:hover, .nav > li > a.active {
+    background: none;
+    color: #04d2ad !important;
+}
+
+
+.admin_nav_icon {
+    cursor: pointer;
+}
+
+.line-foot {
+    clear: both !important;
+}
+
+.products_disp {
+    background: #f9f9f9;
+    padding: 1%;
+    /*width:95% !important;*/
+    color: #307ab9;
+}
+
+#enbloc_form .form-horizontal .form-group {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+#enbloc_form .fupload {
+    border: 1px solid #e9e9e9;
+}
+
+#enbloc_form .btn-info {
+    background: #307ab9;
+}
+
+.formContainer {
+    /*margin-left:10% !important;*/
+}
+
+.erroralert {
+    border: 1px solid #fcc1c1;
+    padding: 1%;
+    color: #d86d6d;
+    /*text-shadow: 0 1px 0 #fff; */
+    border-radius: 5px 5px 5px 5px;
+    background: #fadddd;
+}
+
+.impoalert {
+    margin-left: 1%;
+}
+
+.full_instru {
+    background: #eee;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.paragraph_details {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    line-height: 20px;
+    font-size: 13px;
+    color: #307ab9;
+    font-weight: bold;
+}
+
+.paragraph_details2 {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    line-height: 20px;
+    font-size: 13px;
+    color: #666666;
+}
+
+.paragraphs_list {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    line-height: 20px;
+    font-size: 13px;
+    color: #666666;
+}
+
+.table-transaction th {
+}
+
+.table-transaction td {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.copy-right {
+    margin: auto;
+    text-align: center;
+    color: #0159a3;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 980px) {
+    .rside {
+        padding-right: 15px;
+    }
+
+    .rightside {
+        padding-right: 15px;
+    }
+
+    .right-top-text {
+        padding-left: 100px;
+    }
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .right-top-text {
+        background-position: 36% 10px;
+    }
+
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+
+    /*
+	Label the data
+	*/
+    /*td:nth-of-type(1):before { content: "Type"; }
+	td:nth-of-type(2):before { content: "Period"; }
+	td:nth-of-type(3):before { content: "Debit Amount"; }
+	td:nth-of-type(4):before { content: "Credit Amount"; }
+	td:nth-of-type(5):before { content: "Units Purchase"; }
+	td:nth-of-type(6):before { content: "Unit Price"; }*/
+
+    .table-transaction .first-row {
+        padding-left: 50%;
+    }
+
+    .table-transaction .last-row {
+        padding-right: 50%;
+    }
+
+    .right-details {
+        padding: 10px;
+    }
+}
+
+.view-profile h2 {
+    color: #307ab9;
+    margin-top: 10px !important;
+}
+
+.details h3 {
+    color: #03b2ad;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.view-profile .label-default {
+    background: none;
+    color: #307ab9;
+}
+
+.view-profile .form-control {
+    border-radius: 0;
+    border: 1px solid #307ab9;
+}
+
+.retirement h3 {
+    margin-top: 10px;
+    padding-bottom: 10px;
+    color: #03b2ad;
+}
+
+.glyphicon-globe:before {
+    padding-right: 5px;
+    position: relative;
+    top: 2px;
+}
+
+.glyphicon-globe {
+    text-decoration: none !important;
+}
+
+a.glyphicon-globe:hover {
+    color: #03b2ad;
+}
+
+.glyphicon-edit:before {
+    padding-right: 5px;
+    position: relative;
+    top: 2px;
+}
+
+.glyphicon-edit {
+    text-decoration: none !important;
+}
+
+a.glyphicon-edit:hover {
+    color: #03b2ad;
+}
+
+.glyphicon:before {
+    padding-right: 5px;
+    position: relative;
+    top: 2px;
+}
+
+.glyphicon {
+    text-decoration: none !important;
+    font-size: 14px;
+}
+
+a.glyphicon:hover {
+    color: #03b2ad;
+}
+
+#benefits a {
+    font-weight: bold;
+}
+
+.input-sm {
+    height: 20px;
+    padding: 0;
+}
+
+select.input-sm {
+    height: 20px;
+    padding: 0;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    font-size: 9px;
+}
+
+.pagination > li > a, .pagination > li > span {
+    padding: 3px 12px;
+    font-size: 9px;
+}
+
+.rightside th {
+    color: #03b2ad;
+}
+
+.retirement a {
+    color: #307ab9;
+    ;
+    font-weight: bold;
+}
+
+.leftside .dropdown-menu {
+    background-color: #307ab9;
+    width: 100%;
+}
+
+    .leftside .dropdown-menu .divider {
+        display: none;
+    }
+
+    .leftside .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+        background: none;
+    }
+
+.modal-title {
+    color: #307ab9;
+}
+
+.cpassword .form-control {
+    border-radius: 0;
+    border: 1px solid #307ab9;
+    color: #307ab9;
+}
+
+.pagination > .disabled > a, .pagination > .disabled > a:focus, .pagination > .disabled > a:hover, .pagination > .disabled > span, .pagination > .disabled > span:focus, .pagination > .disabled > span:hover {
+    color: #03b2ad;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #03b2ad;
+    border-color: #03b2ad;
+}
+
+.dataTables_length {
+    padding-left: 5px;
+    color: #03b2ad;
+    padding-top: 5px;
+}
+
+.dataTables_info {
+    padding-left: 5px;
+    color: #03b2ad;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    padding-right: 5px;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    padding-right: 5px;
+    padding-top: 5px;
+    color: #03b2ad;
+}
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        border-radius: 0;
+        box-shadow: none;
+        border: 1px solid #03b2ad;
+    }
+
+.pagination > li > a, .pagination > li > span {
+    border: 1px solid #03b2ad !important;
+    border-radius: 0 !important;
+}
+
+.form-control {
+    border: 1px solid #307ab9;
+    border-radius: 0;
+}
+
+.btn-info {
+    background: #307ab9 !important;
+}
+
+a.text-right.glyphicon.glyphicon-cloud-upload {
+    float: right;
+}
+
+.changemanager span.label {
+    padding-left: 0 !important;
+}
+
+li.logoutmenu a i.fa {
+    margin-top: 0;
+    font-size: 14px;
+}
+
+#myModal .modal-dialog {
+    z-index: 2001;
+}
+
+.upload {
+    display: none;
+}

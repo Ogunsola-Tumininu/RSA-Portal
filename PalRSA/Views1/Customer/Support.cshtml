@@ -1,0 +1,76 @@
+﻿@model PalRSA.Core.Models.Support
+@{
+    ViewBag.Title = "Support";
+}
+
+<script type="text/javascript" src="~/Scripts/new-profile-validator.js"></script>
+
+<div class="rightside  view-profile">
+
+    @if ((string)TempData["Status"] == "success")
+    {
+        <div class="alert alert-success exceed">
+            <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Support request received. You will be contacted shortly</span>
+        </div>
+    }
+    else if ((string)TempData["Status"] == "invalid")
+    {
+        <div class="alert alert-warning col-md-12" id="warning">
+            <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"> Please check your entries</span>
+        </div>
+    }
+
+<div class="">
+    @using (Html.BeginForm("Support", "Customer", FormMethod.Post, new { @class = "form-horizontal", id = "support" }))
+    {
+@Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="col-md-offset-3 col-md-6">
+                                   
+            <!-- general form elements -->
+            <div>
+                <div class="box box-default" style="padding-left:40px; padding-right:40px;">
+                    <div class="box-header with-border">
+
+                    </div>
+
+                    <h2>@ViewBag.Title</h2> <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4><span class="label label-default">Support Category</span></h4>
+                            @Html.DropDownListFor(model => model.Category, ViewData["SupportType"] as SelectList, "--Select Category--", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4><span class="label label-default">Summary</span></h4>
+                            @Html.TextBoxFor(model => model.Summary, new { @class = "form-control", placeholder = "Summary" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4><span class="label label-default">Explanation</span></h4>
+                            @Html.TextAreaFor(model => model.Explanation, new { @class = "form-control", placeholder = "Explanation", rows = "4" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input type="submit" value="Submit" class="btn-primary" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+     }
+</div>
+
+</div>
+
+
+

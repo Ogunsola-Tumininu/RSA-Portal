@@ -1,0 +1,103 @@
+﻿
+@using PalRSA.Core.DataAccess
+
+@{ 
+    PALSiteDBEntities _db = new PALSiteDBEntities();
+    var userDetail = _db.Employees.Where(d => d.Pin == User.Identity.Name).FirstOrDefault();
+
+    ViewBag.Title = "Account Officer";
+    }
+
+<div class="col-md-offset-3 col-md-6">
+
+    <div>
+        <div class="box box-default" style="padding-left:40px; padding-right:40px;">
+            <div class="box-header with-border">
+
+            </div>
+            <h2>@ViewBag.Title</h2>
+            <hr />
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-12"> Client Pin </label>
+                        <div class="col-md-12">
+                            <input id="Pin" name="Pin" class="form-control" value="@userDetail.Pin" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-12"> Surname </label>
+                        <div class="col-md-12">
+                            <input id="Surname" name="Surname" class="form-control" value="@userDetail.Surname" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-12"> Firstname </label>
+                        <div class="col-md-12">
+                            <input id="FirstName" name="FirstName" class="form-control" value="@userDetail.FirstName" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-12"> Mobile</label>
+                        <div class="col-md-12">
+                            <input id="MobileNumber" name="MobileNumber" class="form-control" value="@userDetail.MobileNumber" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-12"> Account Officer Name </label>
+                        <div class="col-md-12">
+                            <input id="Account_Officer" name="Account_Officer" class="form-control" value="@userDetail.Account_Officer" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-12"> Account Officer Email </label>
+                        <div class="col-md-12">
+                            <input id="Account_Officer_Email" name="Account_Officer_Email" class="form-control" value="@userDetail.Account_Officer_Email" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-md-12"> Account Officer Mobile </label>
+                        <div class="col-md-12">
+                            <input id="Account_Officer_Mobile" name="Account_Officer_Mobile" class="form-control" value="@userDetail.Account_Officer_Mobile" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+

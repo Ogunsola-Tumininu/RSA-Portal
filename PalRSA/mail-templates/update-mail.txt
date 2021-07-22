@@ -1,0 +1,10 @@
+Hello {0},
+
+We thought you will like to know that your application status has changed.
+Your status is now currently "{1}".
+
+You will be notified constantly when your status changes.
+
+Regards
+
+Pal

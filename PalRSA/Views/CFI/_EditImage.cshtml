@@ -1,0 +1,298 @@
+﻿@model PalRSA.Core.Models.CFIUpdateViewModel
+<!-- Main content -->
+<style>
+    table, th, td {
+        padding: 20px;
+    }
+    th, td {
+        padding: 20px;
+    }
+</style>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Registration List</h3>
+                   
+                </div>
+                <div style="padding-left: 150px">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="responsive">
+                                    <div class="gallery">
+                                        <img id="output" width="100" height="100" alt=""/><br>
+                                        <input type="file" id="browse" accept="image/*" name="passport" style="display: none" onChange="Handlechange(); loadFile(event);"/>
+                                        <input id="filename" readonly style="display: none" type="text" />
+                                        &nbsp;<input type="button" value="Pass Port" id="fakeBrowse" class="btn btn-primary biometric_margin-top_10 biometric-disabled" onclick="HandleBrowseClick();"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="responsive">
+                                    <div class="gallery">
+                                        <img id="signature" width="100" height="100" alt="" /><br>
+                                        <input type="file" id="browseSignature" accept="image/*" name="signature" style="display: none" onChange="HandlechangeSignature();loadFileSignature(event);" />
+                                        <input id="filenameSignature" readonly style="display: none" type="text" />
+                                        <input type="button" value="Contributor Signature" id="fakeBrowse" class="btn btn-primary biometric_margin-top_10 biometric-disabled" onclick="HandleBrowseClickSignature();" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="responsive">
+                                    <div class="gallery">
+                                        <img id="pfaSignature" width="100" height="100" alt="" /><br>
+                                        <input type="file" id="pfaBrowseSignature" accept="image/*" name="pfaSignature" style="display: none" onChange="HandlechangePfaSignature();loadFilePfaSignature(event);" />
+                                        <input id="pfaFilenameSignature" readonly style="display: none" type="text" />
+                                        <input type="button" value="PFA Signature" id="pfaFakeBrowse" class="btn btn-primary biometric_margin-top_10 biometric-disabled" onclick="HandleBrowseClickPfaSignature();" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+               
+                    <button type="button"  href="javascript:void(0)" onclick = "$('#nextOfKin').click();" id="pretab" class="btn btn-block btn-primary ">Previous</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" id="submit" class="btn btn-primary ">Submit</button>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <script>
+        var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClick() {
+            var fileinput = document.getElementById("browse");
+            fileinput.click();
+        }
+
+        function Handlechange() {
+            var fileinput = document.getElementById("browse");
+            var textinput = document.getElementById("filename");
+            textinput.value = fileinput.value;
+        }
+
+        //this is for Contributor's Signature
+        var loadFileSignature = function(event) {
+            var output = document.getElementById('signature');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickSignature() {
+            var fileinput = document.getElementById("browseSignature");
+            fileinput.click();
+        }
+
+        function HandlechangeSignature() {
+            var fileinput = document.getElementById("browseSignature");
+            var textinput = document.getElementById("filenameSignature");
+            textinput.value = fileinput.value;
+        }
+
+        //this is for PFA Signature
+        var loadFilePfaSignature = function (event) {
+            var output = document.getElementById('pfaSignature');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickPfaSignature() {
+            var fileinput = document.getElementById("pfaBrowseSignature");
+            fileinput.click();
+        }
+
+        function HandlechangePfaSignature() {
+            var fileinput = document.getElementById("pfaBrowseSignature");
+            var textinput = document.getElementById("pfaFilenameSignature");
+            textinput.value = fileinput.value;
+        }
+
+        //For Right Thumb
+        var loadFileRightThumb = function(event) {
+            var output = document.getElementById('rightThumb');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickRightThumb() {
+            var fileinput = document.getElementById("browseRightThumb");
+            fileinput.click();
+        }
+
+        function HandlechangeRightThumb() {
+            var fileinput = document.getElementById("browseRightThumb");
+            var textinput = document.getElementById("filenameRightThumb");
+            textinput.value = fileinput.value;
+        }
+
+        //For Right Index
+        var loadFileRightIndex = function(event) {
+            var output = document.getElementById('rightIndex');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickRightIndex() {
+            var fileinput = document.getElementById("browseRightIndex");
+            fileinput.click();
+        }
+
+        function HandlechangeRightIndex() {
+            var fileinput = document.getElementById("browseRightIndex");
+            var textinput = document.getElementById("filenameRightIndex");
+            textinput.value = fileinput.value;
+        }
+
+        //For Right Middle
+        var loadFileRightMiddle = function(event) {
+            var output = document.getElementById('rightMiddle');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickRightMiddle() {
+            var fileinput = document.getElementById("browseRightMiddle");
+            fileinput.click();
+        }
+
+        function HandlechangeRightMiddle() {
+            var fileinput = document.getElementById("browseRightMiddle");
+            var textinput = document.getElementById("filenameRightMiddle");
+            textinput.value = fileinput.value;
+        }
+
+        //For Right Ring
+        var loadFileRightRing = function(event) {
+            var output = document.getElementById('rightRing');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickRightRing() {
+            var fileinput = document.getElementById("browseRightRing");
+            fileinput.click();
+        }
+
+        function HandlechangeRightRing() {
+            var fileinput = document.getElementById("browseRightRing");
+            var textinput = document.getElementById("filenameRightRing");
+            textinput.value = fileinput.value;
+        }
+
+        //For Right Little
+        var loadFileRightLittle = function(event) {
+            var output = document.getElementById('rightLittle');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickRightLittle() {
+            var fileinput = document.getElementById("browseRightLittle");
+            fileinput.click();
+        }
+
+        function HandlechangeRightLittle() {
+            var fileinput = document.getElementById("browseRightLittle");
+            var textinput = document.getElementById("filenameRightLittle");
+            textinput.value = fileinput.value;
+        }
+
+        //For Left Thumb
+
+        var loadFileLeftThumb = function(event) {
+            var output = document.getElementById('leftThumb');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickLeftThumb() {
+            var fileinput = document.getElementById("browseLeftThumb");
+            fileinput.click();
+        }
+
+        function HandlechangeLeftThumb() {
+            var fileinput = document.getElementById("browseLeftThumb");
+            var textinput = document.getElementById("filenameLeftThumb");
+            textinput.value = fileinput.value;
+        }
+
+        //For Left index
+
+        var loadFileLeftIndex = function(event) {
+            var output = document.getElementById('leftIndex');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickLeftIndex() {
+            var fileinput = document.getElementById("browseLeftIndex");
+            fileinput.click();
+        }
+
+        function HandlechangeLeftIndex() {
+            var fileinput = document.getElementById("browseLeftIndex");
+            var textinput = document.getElementById("filenameLeftIndex");
+            textinput.value = fileinput.value;
+        }
+
+        //For Left middle
+
+        var loadFileLeftMiddle = function(event) {
+            var output = document.getElementById('leftMiddle');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickLeftMiddle() {
+            var fileinput = document.getElementById("browseLeftMiddle");
+            fileinput.click();
+        }
+
+        function HandlechangeLeftMiddle() {
+            var fileinput = document.getElementById("browseLeftMiddle");
+            var textinput = document.getElementById("filenameLeftMiddle");
+            textinput.value = fileinput.value;
+        }
+
+
+        //For Left Ring
+
+        var loadFileLeftRing = function(event) {
+            var output = document.getElementById('leftRing');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickLeftRing() {
+            var fileinput = document.getElementById("browseLeftRing");
+            fileinput.click();
+        }
+
+        function HandlechangeLeftRing() {
+            var fileinput = document.getElementById("browseLeftRing");
+            var textinput = document.getElementById("filenameLeftRing");
+            textinput.value = fileinput.value;
+        }
+
+        //For Left Little
+
+        var loadFileLeftLittle = function(event) {
+            var output = document.getElementById('leftLittle');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function HandleBrowseClickLeftLittle() {
+            var fileinput = document.getElementById("browseLeftLittle");
+            fileinput.click();
+        }
+
+        function HandlechangeLeftLittle() {
+            var fileinput = document.getElementById("browseLeftRing");
+            var textinput = document.getElementById("filenameLeftLittle");
+            textinput.value = fileinput.value;
+        }
+    </script>

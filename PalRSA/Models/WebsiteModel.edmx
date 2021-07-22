@@ -1,0 +1,710 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebsiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WEBSITE.dbo.EMPLOYEES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EMPLOYEES">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="PIN" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REGISTRATION_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="PIN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TITLE" Type="varchar" MaxLength="50" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="50" />
+          <Property Name="FIRSTNAME" Type="varchar" MaxLength="50" />
+          <Property Name="OTHERNAMES" Type="varchar" MaxLength="50" />
+          <Property Name="GENDER" Type="char" MaxLength="1" />
+          <Property Name="DATE_OF_BIRTH" Type="datetime" />
+          <Property Name="MARITAL_STATUS_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="PERMANENT_ADDRESS" Type="text" />
+          <Property Name="NATIONALITY_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="STATE_OF_ORIGIN" Type="varchar" MaxLength="50" />
+          <Property Name="LGA_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="QUALIFICATION_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="OCCUPATION_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="INDUSTRY_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="HOME_PHONE" Type="varchar" MaxLength="60" />
+          <Property Name="MOBILE_PHONE" Type="varchar" MaxLength="60" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="200" />
+          <Property Name="NOK_NAME" Type="varchar" MaxLength="80" />
+          <Property Name="NOK_ADDRESS" Type="text" />
+          <Property Name="NOK_RELATIONSHIP" Type="varchar" MaxLength="50" />
+          <Property Name="NOK_OFFICE_PHONE" Type="varchar" MaxLength="60" />
+          <Property Name="NOK_MOBILE_PHONE" Type="varchar" MaxLength="60" />
+          <Property Name="NOK_HOME_PHONE" Type="varchar" MaxLength="60" />
+          <Property Name="EMPLOYEE_ID" Type="varchar" MaxLength="50" />
+          <Property Name="employer_name" Type="varchar" MaxLength="255" />
+          <Property Name="EMPLOYER_RCNO" Type="varchar" MaxLength="20" />
+          <Property Name="EMPLOYER_ADDRESS" Type="varchar" MaxLength="197" />
+          <Property Name="EMPLOYER_ADDRESS1" Type="varchar" MaxLength="200" />
+          <Property Name="EMPLOYER_PHONE" Type="varchar" MaxLength="60" />
+          <Property Name="EMPLOYER_EMAIL" Type="varchar" MaxLength="80" />
+          <Property Name="EMPLOYER_WEBSITE" Type="varchar" MaxLength="80" />
+          <Property Name="EMPLOYER_CONTACT" Type="varchar" MaxLength="80" />
+          <Property Name="EMPLOYER_BANK" Type="varchar" MaxLength="50" />
+          <Property Name="EMPLOYER_INDUSTRY" Type="varchar" MaxLength="50" />
+          <Property Name="EMPLOYER_BUSINESS" Type="varchar" MaxLength="50" />
+          <Property Name="DATE_EMPLOYED" Type="datetime" />
+          <Property Name="MONTHLY_SALARY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PICTURE_URL" Type="varchar" MaxLength="200" />
+          <Property Name="SIGNATURE_URL" Type="varchar" MaxLength="200" />
+          <Property Name="INVESTOR_ID" Type="varchar" MaxLength="50" />
+          <Property Name="PFA_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="BRANCH_CODE" Type="varchar" MaxLength="10" />
+          <Property Name="UPLOAD" Type="bit" />
+          <Property Name="CORRESPONDENCE_ADDS" Type="text" />
+          <Property Name="EMPLOYEE_CONTRIBUTION" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EMPLOYER_CONTRIBUTION" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OTHER_CONTRIBUTION" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DEPARTMENT" Type="varchar" MaxLength="50" />
+          <Property Name="DESIGNATION" Type="varchar" MaxLength="100" />
+          <Property Name="PASSPORT" Type="varchar" MaxLength="40" />
+          <Property Name="SIGNATURE" Type="varchar" MaxLength="40" />
+          <Property Name="STATUS" Type="varchar" MaxLength="50" />
+          <Property Name="AGENT_CODE" Type="varchar" MaxLength="15" />
+          <Property Name="DATE_CONFIRMED" Type="datetime" />
+          <Property Name="SALARY_SCALE" Type="varchar" MaxLength="15" />
+          <Property Name="GRADE_LEVEL" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="STEP" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="POSTING_LOCATION" Type="varchar" MaxLength="40" />
+          <Property Name="BASIC_ALLOWANCE" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TRANSPORT_ALLOWANCE" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HOUSING_ALLOWANCE" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OTHER_ALLOWANCE" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EMPLOYEE_TYPE" Type="char" MaxLength="1" />
+          <Property Name="MAIDEN_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="SCHEME_ID" Type="varchar" MaxLength="25" />
+          <Property Name="EMPLOYER_CITY" Type="varchar" MaxLength="50" />
+          <Property Name="EMPLOYER_STATECODE" Type="varchar" MaxLength="50" />
+          <Property Name="CORRESPONDENCE_ADDS1" Type="text" />
+          <Property Name="NOK_SURNAME" Type="varchar" MaxLength="50" />
+          <Property Name="NOK_OTHERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="NOK_GENDER" Type="varchar" MaxLength="50" />
+          <Property Name="NOK_STATECODE" Type="varchar" MaxLength="50" />
+          <Property Name="NOK_CORRADDRESS1" Type="text" />
+          <Property Name="NOK_CORRADDRESS2" Type="text" />
+          <Property Name="NOK_CITY" Type="varchar" MaxLength="50" />
+          <Property Name="NOK_EMAILADDRESS" Type="varchar" MaxLength="45" />
+          <Property Name="CITY" Type="varchar" MaxLength="50" />
+          <Property Name="STATE_OF_POSTING" Type="varchar" MaxLength="10" />
+          <Property Name="STATE" Type="varchar" MaxLength="10" />
+          <Property Name="PFA_TRANS_IN" Type="varchar" MaxLength="50" />
+          <Property Name="RSA_NUMBER" Type="varchar" MaxLength="16" />
+          <Property Name="CLIENT_STATUS" Type="char" MaxLength="1" />
+          <Property Name="FORM_IMAGE" Type="varchar" MaxLength="40" />
+          <Property Name="BIOMETRICS" Type="varchar" MaxLength="40" />
+          <Property Name="DATE_CREATED" Type="datetime" />
+          <Property Name="USERID" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="PIN_BATCH" Type="varchar" MaxLength="50" />
+          <Property Name="BATCH_ID" Type="varchar" MaxLength="50" />
+          <Property Name="FORM_REFNO" Type="varchar" MaxLength="100" />
+          <Property Name="NOK_GENDER1" Type="bit" />
+          <Property Name="NOK_TITLE" Type="varchar" MaxLength="50" />
+          <Property Name="NOK_COUNTRY" Type="varchar" MaxLength="50" />
+          <Property Name="OLD_EMPLOYEEID" Type="varchar" MaxLength="50" />
+          <Property Name="EMPLOYEE_GROUP" Type="varchar" MaxLength="50" />
+          <Property Name="LOCATION_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="STAFF_GRADE" Type="varchar" MaxLength="50" />
+          <Property Name="DATE_JOINED_FUND" Type="datetime" />
+          <Property Name="LAST_PROMO_DATE" Type="datetime" />
+          <Property Name="DATE_SENT" Type="datetime" />
+          <Property Name="UPLOAD_PIN" Type="varchar" MaxLength="50" />
+          <Property Name="PICTURE_IMAGE" Type="image" />
+          <Property Name="SIGNATURE_IMAGE" Type="image" />
+          <Property Name="THUMBPRINT" Type="image" />
+          <Property Name="THUMBPRINT1" Type="image" />
+          <Property Name="EXIT_DATE" Type="datetime" />
+          <Property Name="EMPLOYEE_CATEGORY" Type="varchar" MaxLength="50" />
+          <Property Name="UPLOAD_DATE" Type="datetime" />
+          <Property Name="PERM_STATE" Type="varchar" MaxLength="50" />
+          <Property Name="PERM_CITY" Type="varchar" MaxLength="50" />
+          <Property Name="OLDVALUE" Type="varchar" MaxLength="500" />
+          <Property Name="NEWVALUE" Type="varchar" MaxLength="500" />
+          <Property Name="NOK2_TITLE" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_SURNAME" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_FIRSTNAME" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_OTHERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_GENDER" Type="char" MaxLength="1" />
+          <Property Name="NOK2_DATE_OF_BIRTH" Type="datetime" />
+          <Property Name="NOK2_RELATIONSHIP" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_MAIDENNAME" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_ADDRESS" Type="text" />
+          <Property Name="NOK2_CITY" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_STATECODE" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_COUNTRYCODE" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_MOBILEPHONE" Type="varchar" MaxLength="50" />
+          <Property Name="NOK2_EMAILADDRESS" Type="varchar" MaxLength="80" />
+          <Property Name="FILE_NUM" Type="varchar" MaxLength="50" />
+          <Property Name="ACCOUNT_OFFICERS" Type="varchar" MaxLength="50" />
+          <Property Name="ER_ADDR" Type="text" />
+          <Property Name="NOK_DOB" Type="datetime" />
+          <Property Name="NOK_DOB2" Type="datetime" />
+          <Property Name="EMAIL_ONLY" Type="char" MaxLength="1" />
+          <Property Name="BRANCHADDRESS_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="ADDRESS_CODE" Type="varchar" MaxLength="50" />
+          <Property Name="SECTOR" Type="varchar" MaxLength="50" />
+          <Property Name="ACCOUNT_OFFICER_PHONE" Type="varchar" MaxLength="50" />
+          <Property Name="ACCOUNT_OFFICER_EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="BVN" Type="varchar" MaxLength="50" />
+          <Property Name="FUND_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="NIN" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="WebsiteModelStoreContainer">
+          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EMPLOYEES].[ID] AS [ID], 
+    [EMPLOYEES].[REGISTRATION_CODE] AS [REGISTRATION_CODE], 
+    [EMPLOYEES].[PIN] AS [PIN], 
+    [EMPLOYEES].[TITLE] AS [TITLE], 
+    [EMPLOYEES].[SURNAME] AS [SURNAME], 
+    [EMPLOYEES].[FIRSTNAME] AS [FIRSTNAME], 
+    [EMPLOYEES].[OTHERNAMES] AS [OTHERNAMES], 
+    [EMPLOYEES].[GENDER] AS [GENDER], 
+    [EMPLOYEES].[DATE_OF_BIRTH] AS [DATE_OF_BIRTH], 
+    [EMPLOYEES].[MARITAL_STATUS_CODE] AS [MARITAL_STATUS_CODE], 
+    [EMPLOYEES].[PERMANENT_ADDRESS] AS [PERMANENT_ADDRESS], 
+    [EMPLOYEES].[NATIONALITY_CODE] AS [NATIONALITY_CODE], 
+    [EMPLOYEES].[STATE_OF_ORIGIN] AS [STATE_OF_ORIGIN], 
+    [EMPLOYEES].[LGA_CODE] AS [LGA_CODE], 
+    [EMPLOYEES].[QUALIFICATION_CODE] AS [QUALIFICATION_CODE], 
+    [EMPLOYEES].[OCCUPATION_CODE] AS [OCCUPATION_CODE], 
+    [EMPLOYEES].[INDUSTRY_CODE] AS [INDUSTRY_CODE], 
+    [EMPLOYEES].[HOME_PHONE] AS [HOME_PHONE], 
+    [EMPLOYEES].[MOBILE_PHONE] AS [MOBILE_PHONE], 
+    [EMPLOYEES].[EMAIL] AS [EMAIL], 
+    [EMPLOYEES].[NOK_NAME] AS [NOK_NAME], 
+    [EMPLOYEES].[NOK_ADDRESS] AS [NOK_ADDRESS], 
+    [EMPLOYEES].[NOK_RELATIONSHIP] AS [NOK_RELATIONSHIP], 
+    [EMPLOYEES].[NOK_OFFICE_PHONE] AS [NOK_OFFICE_PHONE], 
+    [EMPLOYEES].[NOK_MOBILE_PHONE] AS [NOK_MOBILE_PHONE], 
+    [EMPLOYEES].[NOK_HOME_PHONE] AS [NOK_HOME_PHONE], 
+    [EMPLOYEES].[EMPLOYEE_ID] AS [EMPLOYEE_ID], 
+    [EMPLOYEES].[employer_name] AS [employer_name], 
+    [EMPLOYEES].[EMPLOYER_RCNO] AS [EMPLOYER_RCNO], 
+    [EMPLOYEES].[EMPLOYER_ADDRESS] AS [EMPLOYER_ADDRESS], 
+    [EMPLOYEES].[EMPLOYER_ADDRESS1] AS [EMPLOYER_ADDRESS1], 
+    [EMPLOYEES].[EMPLOYER_PHONE] AS [EMPLOYER_PHONE], 
+    [EMPLOYEES].[EMPLOYER_EMAIL] AS [EMPLOYER_EMAIL], 
+    [EMPLOYEES].[EMPLOYER_WEBSITE] AS [EMPLOYER_WEBSITE], 
+    [EMPLOYEES].[EMPLOYER_CONTACT] AS [EMPLOYER_CONTACT], 
+    [EMPLOYEES].[EMPLOYER_BANK] AS [EMPLOYER_BANK], 
+    [EMPLOYEES].[EMPLOYER_INDUSTRY] AS [EMPLOYER_INDUSTRY], 
+    [EMPLOYEES].[EMPLOYER_BUSINESS] AS [EMPLOYER_BUSINESS], 
+    [EMPLOYEES].[DATE_EMPLOYED] AS [DATE_EMPLOYED], 
+    [EMPLOYEES].[MONTHLY_SALARY] AS [MONTHLY_SALARY], 
+    [EMPLOYEES].[PICTURE_URL] AS [PICTURE_URL], 
+    [EMPLOYEES].[SIGNATURE_URL] AS [SIGNATURE_URL], 
+    [EMPLOYEES].[INVESTOR_ID] AS [INVESTOR_ID], 
+    [EMPLOYEES].[PFA_CODE] AS [PFA_CODE], 
+    [EMPLOYEES].[BRANCH_CODE] AS [BRANCH_CODE], 
+    [EMPLOYEES].[UPLOAD] AS [UPLOAD], 
+    [EMPLOYEES].[CORRESPONDENCE_ADDS] AS [CORRESPONDENCE_ADDS], 
+    [EMPLOYEES].[EMPLOYEE_CONTRIBUTION] AS [EMPLOYEE_CONTRIBUTION], 
+    [EMPLOYEES].[EMPLOYER_CONTRIBUTION] AS [EMPLOYER_CONTRIBUTION], 
+    [EMPLOYEES].[OTHER_CONTRIBUTION] AS [OTHER_CONTRIBUTION], 
+    [EMPLOYEES].[DEPARTMENT] AS [DEPARTMENT], 
+    [EMPLOYEES].[DESIGNATION] AS [DESIGNATION], 
+    [EMPLOYEES].[PASSPORT] AS [PASSPORT], 
+    [EMPLOYEES].[SIGNATURE] AS [SIGNATURE], 
+    [EMPLOYEES].[STATUS] AS [STATUS], 
+    [EMPLOYEES].[AGENT_CODE] AS [AGENT_CODE], 
+    [EMPLOYEES].[DATE_CONFIRMED] AS [DATE_CONFIRMED], 
+    [EMPLOYEES].[SALARY_SCALE] AS [SALARY_SCALE], 
+    [EMPLOYEES].[GRADE_LEVEL] AS [GRADE_LEVEL], 
+    [EMPLOYEES].[STEP] AS [STEP], 
+    [EMPLOYEES].[POSTING_LOCATION] AS [POSTING_LOCATION], 
+    [EMPLOYEES].[BASIC_ALLOWANCE] AS [BASIC_ALLOWANCE], 
+    [EMPLOYEES].[TRANSPORT_ALLOWANCE] AS [TRANSPORT_ALLOWANCE], 
+    [EMPLOYEES].[HOUSING_ALLOWANCE] AS [HOUSING_ALLOWANCE], 
+    [EMPLOYEES].[OTHER_ALLOWANCE] AS [OTHER_ALLOWANCE], 
+    [EMPLOYEES].[EMPLOYEE_TYPE] AS [EMPLOYEE_TYPE], 
+    [EMPLOYEES].[MAIDEN_NAME] AS [MAIDEN_NAME], 
+    [EMPLOYEES].[SCHEME_ID] AS [SCHEME_ID], 
+    [EMPLOYEES].[EMPLOYER_CITY] AS [EMPLOYER_CITY], 
+    [EMPLOYEES].[EMPLOYER_STATECODE] AS [EMPLOYER_STATECODE], 
+    [EMPLOYEES].[CORRESPONDENCE_ADDS1] AS [CORRESPONDENCE_ADDS1], 
+    [EMPLOYEES].[NOK_SURNAME] AS [NOK_SURNAME], 
+    [EMPLOYEES].[NOK_OTHERNAME] AS [NOK_OTHERNAME], 
+    [EMPLOYEES].[NOK_GENDER] AS [NOK_GENDER], 
+    [EMPLOYEES].[NOK_STATECODE] AS [NOK_STATECODE], 
+    [EMPLOYEES].[NOK_CORRADDRESS1] AS [NOK_CORRADDRESS1], 
+    [EMPLOYEES].[NOK_CORRADDRESS2] AS [NOK_CORRADDRESS2], 
+    [EMPLOYEES].[NOK_CITY] AS [NOK_CITY], 
+    [EMPLOYEES].[NOK_EMAILADDRESS] AS [NOK_EMAILADDRESS], 
+    [EMPLOYEES].[CITY] AS [CITY], 
+    [EMPLOYEES].[STATE_OF_POSTING] AS [STATE_OF_POSTING], 
+    [EMPLOYEES].[STATE] AS [STATE], 
+    [EMPLOYEES].[PFA_TRANS_IN] AS [PFA_TRANS_IN], 
+    [EMPLOYEES].[RSA_NUMBER] AS [RSA_NUMBER], 
+    [EMPLOYEES].[CLIENT_STATUS] AS [CLIENT_STATUS], 
+    [EMPLOYEES].[FORM_IMAGE] AS [FORM_IMAGE], 
+    [EMPLOYEES].[BIOMETRICS] AS [BIOMETRICS], 
+    [EMPLOYEES].[DATE_CREATED] AS [DATE_CREATED], 
+    [EMPLOYEES].[USERID] AS [USERID], 
+    [EMPLOYEES].[PIN_BATCH] AS [PIN_BATCH], 
+    [EMPLOYEES].[BATCH_ID] AS [BATCH_ID], 
+    [EMPLOYEES].[FORM_REFNO] AS [FORM_REFNO], 
+    [EMPLOYEES].[NOK_GENDER1] AS [NOK_GENDER1], 
+    [EMPLOYEES].[NOK_TITLE] AS [NOK_TITLE], 
+    [EMPLOYEES].[NOK_COUNTRY] AS [NOK_COUNTRY], 
+    [EMPLOYEES].[OLD_EMPLOYEEID] AS [OLD_EMPLOYEEID], 
+    [EMPLOYEES].[EMPLOYEE_GROUP] AS [EMPLOYEE_GROUP], 
+    [EMPLOYEES].[LOCATION_CODE] AS [LOCATION_CODE], 
+    [EMPLOYEES].[STAFF_GRADE] AS [STAFF_GRADE], 
+    [EMPLOYEES].[DATE_JOINED_FUND] AS [DATE_JOINED_FUND], 
+    [EMPLOYEES].[LAST_PROMO_DATE] AS [LAST_PROMO_DATE], 
+    [EMPLOYEES].[DATE_SENT] AS [DATE_SENT], 
+    [EMPLOYEES].[UPLOAD_PIN] AS [UPLOAD_PIN], 
+    [EMPLOYEES].[PICTURE_IMAGE] AS [PICTURE_IMAGE], 
+    [EMPLOYEES].[SIGNATURE_IMAGE] AS [SIGNATURE_IMAGE], 
+    [EMPLOYEES].[THUMBPRINT] AS [THUMBPRINT], 
+    [EMPLOYEES].[THUMBPRINT1] AS [THUMBPRINT1], 
+    [EMPLOYEES].[EXIT_DATE] AS [EXIT_DATE], 
+    [EMPLOYEES].[EMPLOYEE_CATEGORY] AS [EMPLOYEE_CATEGORY], 
+    [EMPLOYEES].[UPLOAD_DATE] AS [UPLOAD_DATE], 
+    [EMPLOYEES].[PERM_STATE] AS [PERM_STATE], 
+    [EMPLOYEES].[PERM_CITY] AS [PERM_CITY], 
+    [EMPLOYEES].[OLDVALUE] AS [OLDVALUE], 
+    [EMPLOYEES].[NEWVALUE] AS [NEWVALUE], 
+    [EMPLOYEES].[NOK2_TITLE] AS [NOK2_TITLE], 
+    [EMPLOYEES].[NOK2_SURNAME] AS [NOK2_SURNAME], 
+    [EMPLOYEES].[NOK2_FIRSTNAME] AS [NOK2_FIRSTNAME], 
+    [EMPLOYEES].[NOK2_OTHERNAME] AS [NOK2_OTHERNAME], 
+    [EMPLOYEES].[NOK2_GENDER] AS [NOK2_GENDER], 
+    [EMPLOYEES].[NOK2_DATE_OF_BIRTH] AS [NOK2_DATE_OF_BIRTH], 
+    [EMPLOYEES].[NOK2_RELATIONSHIP] AS [NOK2_RELATIONSHIP], 
+    [EMPLOYEES].[NOK2_MAIDENNAME] AS [NOK2_MAIDENNAME], 
+    [EMPLOYEES].[NOK2_ADDRESS] AS [NOK2_ADDRESS], 
+    [EMPLOYEES].[NOK2_CITY] AS [NOK2_CITY], 
+    [EMPLOYEES].[NOK2_STATECODE] AS [NOK2_STATECODE], 
+    [EMPLOYEES].[NOK2_COUNTRYCODE] AS [NOK2_COUNTRYCODE], 
+    [EMPLOYEES].[NOK2_MOBILEPHONE] AS [NOK2_MOBILEPHONE], 
+    [EMPLOYEES].[NOK2_EMAILADDRESS] AS [NOK2_EMAILADDRESS], 
+    [EMPLOYEES].[FILE_NUM] AS [FILE_NUM], 
+    [EMPLOYEES].[ACCOUNT_OFFICERS] AS [ACCOUNT_OFFICERS], 
+    [EMPLOYEES].[ER_ADDR] AS [ER_ADDR], 
+    [EMPLOYEES].[NOK_DOB] AS [NOK_DOB], 
+    [EMPLOYEES].[NOK_DOB2] AS [NOK_DOB2], 
+    [EMPLOYEES].[EMAIL_ONLY] AS [EMAIL_ONLY], 
+    [EMPLOYEES].[BRANCHADDRESS_NAME] AS [BRANCHADDRESS_NAME], 
+    [EMPLOYEES].[ADDRESS_CODE] AS [ADDRESS_CODE], 
+    [EMPLOYEES].[SECTOR] AS [SECTOR], 
+    [EMPLOYEES].[ACCOUNT_OFFICER_PHONE] AS [ACCOUNT_OFFICER_PHONE], 
+    [EMPLOYEES].[ACCOUNT_OFFICER_EMAIL] AS [ACCOUNT_OFFICER_EMAIL], 
+    [EMPLOYEES].[BVN] AS [BVN], 
+    [EMPLOYEES].[FUND_ID] AS [FUND_ID], 
+    [EMPLOYEES].[NIN] AS [NIN]
+    FROM [dbo].[EMPLOYEES] AS [EMPLOYEES]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebsiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="PIN" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="REGISTRATION_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OTHERNAMES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SSN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_OF_BIRTH" Type="DateTime" Precision="3" />
+          <Property Name="MARITAL_STATUS_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PERMANENT_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NATIONALITY_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STATE_OF_ORIGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LGA_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QUALIFICATION_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OCCUPATION_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INDUSTRY_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HOME_PHONE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="MOBILE_PHONE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_RELATIONSHIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_OFFICE_PHONE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_MOBILE_PHONE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_HOME_PHONE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employer_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_RCNO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_ADDRESS" Type="String" MaxLength="197" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_PHONE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_EMAIL" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_WEBSITE" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_CONTACT" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_BANK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_INDUSTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_BUSINESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_EMPLOYED" Type="DateTime" Precision="3" />
+          <Property Name="MONTHLY_SALARY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PICTURE_URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SIGNATURE_URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SERIAL" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="INVESTOR_ID" Type="Decimal" />
+          <Property Name="EXTRACTED" Type="Boolean" Nullable="false" />
+          <Property Name="PFA_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BRANCH_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CHECKED_BY" Type="Boolean" Nullable="false" />
+          <Property Name="CHECKED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="APPROVED_BY" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="APPROVED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CHECKED" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="APPROVED" Type="Boolean" Nullable="false" />
+          <Property Name="EXP_TO_PENCOM" Type="Boolean" Nullable="false" />
+          <Property Name="EXP_TO_PRINT" Type="Boolean" Nullable="false" />
+          <Property Name="PIN_NOTIFICATION" Type="Boolean" Nullable="false" />
+          <Property Name="UPLOAD" Type="Boolean" />
+          <Property Name="CORRESPONDENCE_ADDS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_CONTRIBUTION" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EMPLOYER_CONTRIBUTION" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OTHER_CONTRIBUTION" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESIGNATION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PASSPORT" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="SIGNATURE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRINTED_BY" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="NO_OF_PRINTS" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="PRINT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PRINT_STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="PICTURE_TYPE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SIGNATURE_TYPE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="COY_SELECT_OPTION" Type="Boolean" Nullable="false" />
+          <Property Name="AGENT_CODE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FINGER_PRINT" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DATE_CONFIRMED" Type="DateTime" Precision="3" />
+          <Property Name="SALARY_SCALE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="GRADE_LEVEL" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="STEP" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="POSTING_LOCATION" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="BASIC_ALLOWANCE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TRANSPORT_ALLOWANCE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HOUSING_ALLOWANCE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OTHER_ALLOWANCE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EMPLOYEE_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MAIDEN_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INVEST_PRODUCT1" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="INVEST_PRODUCT2" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="INVEST_PERCENTAGE2" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="INVEST_PRODUCT3" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="INVEST_PERCENTAGE3" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="INVEST_PRODUCT4" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="INVEST_PERCENTAGE4" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="INVEST_PRODUCT5" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="INVEST_PERCENTAGE5" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SCHEME_ID" Type="Decimal" />
+          <Property Name="INVEST_PERCENTAGE1" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="EMPLOYER_ADDRESS1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYER_STATECODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CORRESPONDENCE_ADDS1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_OTHERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_STATECODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_CORRADDRESS1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_CORRADDRESS2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_EMAILADDRESS" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STATE_OF_POSTING" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="STATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PFA_TRANS_IN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACCT_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="RSA_NUMBER" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="CLIENT_STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FORM_IMAGE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="BIOMETRICS" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_CREATED" Type="DateTime" Precision="3" />
+          <Property Name="USERID" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="PIN_BATCH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ER_NO_OF_PRINTS" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="ER_PRINT_STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="ER_PRINTED_BY" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="ER_PRINT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="BIOMETRICS1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="BATCH_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FORM_REFNO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GENDER1" Type="Boolean" Nullable="false" />
+          <Property Name="MARITAL_STATUS1" Type="Boolean" Nullable="false" />
+          <Property Name="NOK_GENDER1" Type="Boolean" />
+          <Property Name="NOK_TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK_COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PIN_INVALID" Type="Boolean" Nullable="false" />
+          <Property Name="EE_NO_OF_PRINTS" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="EE_PRINTED_BY" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="EE_PRINT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="EE_PRINT_STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="EE_PFC_CHECK" Type="Boolean" Nullable="false" />
+          <Property Name="ER_PFC_CHECK" Type="Boolean" Nullable="false" />
+          <Property Name="EE_PFC_BATCH" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ER_PFC_BATCH" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="OLD_EMPLOYEEID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_GROUP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOCATION_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SAP_NO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="MEAL_SUBSIDY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LEAVE_ALLOWANCE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="STAFF_GRADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_JOINED_FUND" Type="DateTime" Precision="3" />
+          <Property Name="LAST_PROMO_DATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_SENT" Type="DateTime" Precision="3" />
+          <Property Name="REQ_BY_PENCOM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="UPLOAD_PIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PICTURE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SIGNATURE_IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="THUMBPRINT" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="THUMBPRINT1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="GRATUITY_RATE" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="EXIT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="EMPLOYEE_CATEGORY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STMT_OPTION" Type="Boolean" Nullable="false" />
+          <Property Name="PIN_INVALID1" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PIN_NOTIFY" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="APPROVED1" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="UPLOAD_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_CONTRIBUTION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="FLAGNARRATION" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FLAGDESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TEAM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="COMMENT" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PERM_STATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PERM_CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SAP" Type="Boolean" Nullable="false" />
+          <Property Name="CODE" Type="Int32" />
+          <Property Name="OLDVALUE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NEWVALUE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="COLUMN_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ATTRIBUTE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UPLOAD_DATE1" Type="DateTime" Precision="3" />
+          <Property Name="EMPLOYER_NAME_PAL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_OTHERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NOK2_DATE_OF_BIRTH" Type="DateTime" Precision="3" />
+          <Property Name="NOK2_RELATIONSHIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_MAIDENNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_STATECODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_COUNTRYCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_MOBILEPHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOK2_EMAILADDRESS" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SEND_SMS" Type="Boolean" Nullable="false" />
+          <Property Name="RESEND_PIN" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="SMS_STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FILE_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACCOUNT_OFFICERS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ER_ADDR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ACCT_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NOK_DOB" Type="DateTime" Precision="3" />
+          <Property Name="NOK_DOB2" Type="DateTime" Precision="3" />
+          <Property Name="EMAIL_ONLY" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BRANCHADDRESS_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SECTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACCOUNT_OFFICER_PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACCOUNT_OFFICER_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BVN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FUND_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="WebsiteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEE" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebsiteModelStoreContainer" CdmEntityContainer="WebsiteEntities">
+          <EntitySetMapping Name="EMPLOYEES">
+            <EntityTypeMapping TypeName="WebsiteModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEES">
+                <ScalarProperty Name="NIN" ColumnName="NIN" />
+                <ScalarProperty Name="FUND_ID" ColumnName="FUND_ID" />
+                <ScalarProperty Name="BVN" ColumnName="BVN" />
+                <ScalarProperty Name="ACCOUNT_OFFICER_EMAIL" ColumnName="ACCOUNT_OFFICER_EMAIL" />
+                <ScalarProperty Name="ACCOUNT_OFFICER_PHONE" ColumnName="ACCOUNT_OFFICER_PHONE" />
+                <ScalarProperty Name="SECTOR" ColumnName="SECTOR" />
+                <ScalarProperty Name="ADDRESS_CODE" ColumnName="ADDRESS_CODE" />
+                <ScalarProperty Name="BRANCHADDRESS_NAME" ColumnName="BRANCHADDRESS_NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="REGISTRATION_CODE" ColumnName="REGISTRATION_CODE" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="OTHERNAMES" ColumnName="OTHERNAMES" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+                <ScalarProperty Name="MARITAL_STATUS_CODE" ColumnName="MARITAL_STATUS_CODE" />
+                <ScalarProperty Name="PERMANENT_ADDRESS" ColumnName="PERMANENT_ADDRESS" />
+                <ScalarProperty Name="NATIONALITY_CODE" ColumnName="NATIONALITY_CODE" />
+                <ScalarProperty Name="STATE_OF_ORIGIN" ColumnName="STATE_OF_ORIGIN" />
+                <ScalarProperty Name="LGA_CODE" ColumnName="LGA_CODE" />
+                <ScalarProperty Name="QUALIFICATION_CODE" ColumnName="QUALIFICATION_CODE" />
+                <ScalarProperty Name="OCCUPATION_CODE" ColumnName="OCCUPATION_CODE" />
+                <ScalarProperty Name="INDUSTRY_CODE" ColumnName="INDUSTRY_CODE" />
+                <ScalarProperty Name="HOME_PHONE" ColumnName="HOME_PHONE" />
+                <ScalarProperty Name="MOBILE_PHONE" ColumnName="MOBILE_PHONE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NOK_NAME" ColumnName="NOK_NAME" />
+                <ScalarProperty Name="NOK_ADDRESS" ColumnName="NOK_ADDRESS" />
+                <ScalarProperty Name="NOK_RELATIONSHIP" ColumnName="NOK_RELATIONSHIP" />
+                <ScalarProperty Name="NOK_OFFICE_PHONE" ColumnName="NOK_OFFICE_PHONE" />
+                <ScalarProperty Name="NOK_MOBILE_PHONE" ColumnName="NOK_MOBILE_PHONE" />
+                <ScalarProperty Name="NOK_HOME_PHONE" ColumnName="NOK_HOME_PHONE" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="employer_name" ColumnName="employer_name" />
+                <ScalarProperty Name="EMPLOYER_RCNO" ColumnName="EMPLOYER_RCNO" />
+                <ScalarProperty Name="EMPLOYER_ADDRESS" ColumnName="EMPLOYER_ADDRESS" />
+                <ScalarProperty Name="EMPLOYER_PHONE" ColumnName="EMPLOYER_PHONE" />
+                <ScalarProperty Name="EMPLOYER_EMAIL" ColumnName="EMPLOYER_EMAIL" />
+                <ScalarProperty Name="EMPLOYER_WEBSITE" ColumnName="EMPLOYER_WEBSITE" />
+                <ScalarProperty Name="EMPLOYER_CONTACT" ColumnName="EMPLOYER_CONTACT" />
+                <ScalarProperty Name="EMPLOYER_BANK" ColumnName="EMPLOYER_BANK" />
+                <ScalarProperty Name="EMPLOYER_INDUSTRY" ColumnName="EMPLOYER_INDUSTRY" />
+                <ScalarProperty Name="EMPLOYER_BUSINESS" ColumnName="EMPLOYER_BUSINESS" />
+                <ScalarProperty Name="DATE_EMPLOYED" ColumnName="DATE_EMPLOYED" />
+                <ScalarProperty Name="MONTHLY_SALARY" ColumnName="MONTHLY_SALARY" />
+                <ScalarProperty Name="PICTURE_URL" ColumnName="PICTURE_URL" />
+                <ScalarProperty Name="SIGNATURE_URL" ColumnName="SIGNATURE_URL" />
+                <ScalarProperty Name="INVESTOR_ID" ColumnName="INVESTOR_ID" />
+                <ScalarProperty Name="PFA_CODE" ColumnName="PFA_CODE" />
+                <ScalarProperty Name="BRANCH_CODE" ColumnName="BRANCH_CODE" />
+                <ScalarProperty Name="UPLOAD" ColumnName="UPLOAD" />
+                <ScalarProperty Name="CORRESPONDENCE_ADDS" ColumnName="CORRESPONDENCE_ADDS" />
+                <ScalarProperty Name="EMPLOYEE_CONTRIBUTION" ColumnName="EMPLOYEE_CONTRIBUTION" />
+                <ScalarProperty Name="EMPLOYER_CONTRIBUTION" ColumnName="EMPLOYER_CONTRIBUTION" />
+                <ScalarProperty Name="OTHER_CONTRIBUTION" ColumnName="OTHER_CONTRIBUTION" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+                <ScalarProperty Name="PASSPORT" ColumnName="PASSPORT" />
+                <ScalarProperty Name="SIGNATURE" ColumnName="SIGNATURE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="AGENT_CODE" ColumnName="AGENT_CODE" />
+                <ScalarProperty Name="DATE_CONFIRMED" ColumnName="DATE_CONFIRMED" />
+                <ScalarProperty Name="SALARY_SCALE" ColumnName="SALARY_SCALE" />
+                <ScalarProperty Name="GRADE_LEVEL" ColumnName="GRADE_LEVEL" />
+                <ScalarProperty Name="STEP" ColumnName="STEP" />
+                <ScalarProperty Name="POSTING_LOCATION" ColumnName="POSTING_LOCATION" />
+                <ScalarProperty Name="BASIC_ALLOWANCE" ColumnName="BASIC_ALLOWANCE" />
+                <ScalarProperty Name="TRANSPORT_ALLOWANCE" ColumnName="TRANSPORT_ALLOWANCE" />
+                <ScalarProperty Name="HOUSING_ALLOWANCE" ColumnName="HOUSING_ALLOWANCE" />
+                <ScalarProperty Name="OTHER_ALLOWANCE" ColumnName="OTHER_ALLOWANCE" />
+                <ScalarProperty Name="EMPLOYEE_TYPE" ColumnName="EMPLOYEE_TYPE" />
+                <ScalarProperty Name="MAIDEN_NAME" ColumnName="MAIDEN_NAME" />
+                <ScalarProperty Name="SCHEME_ID" ColumnName="SCHEME_ID" />
+                <ScalarProperty Name="EMPLOYER_ADDRESS1" ColumnName="EMPLOYER_ADDRESS1" />
+                <ScalarProperty Name="EMPLOYER_CITY" ColumnName="EMPLOYER_CITY" />
+                <ScalarProperty Name="EMPLOYER_STATECODE" ColumnName="EMPLOYER_STATECODE" />
+                <ScalarProperty Name="CORRESPONDENCE_ADDS1" ColumnName="CORRESPONDENCE_ADDS1" />
+                <ScalarProperty Name="NOK_SURNAME" ColumnName="NOK_SURNAME" />
+                <ScalarProperty Name="NOK_OTHERNAME" ColumnName="NOK_OTHERNAME" />
+                <ScalarProperty Name="NOK_GENDER" ColumnName="NOK_GENDER" />
+                <ScalarProperty Name="NOK_STATECODE" ColumnName="NOK_STATECODE" />
+                <ScalarProperty Name="NOK_CORRADDRESS1" ColumnName="NOK_CORRADDRESS1" />
+                <ScalarProperty Name="NOK_CORRADDRESS2" ColumnName="NOK_CORRADDRESS2" />
+                <ScalarProperty Name="NOK_CITY" ColumnName="NOK_CITY" />
+                <ScalarProperty Name="NOK_EMAILADDRESS" ColumnName="NOK_EMAILADDRESS" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE_OF_POSTING" ColumnName="STATE_OF_POSTING" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="PFA_TRANS_IN" ColumnName="PFA_TRANS_IN" />
+                <ScalarProperty Name="RSA_NUMBER" ColumnName="RSA_NUMBER" />
+                <ScalarProperty Name="CLIENT_STATUS" ColumnName="CLIENT_STATUS" />
+                <ScalarProperty Name="FORM_IMAGE" ColumnName="FORM_IMAGE" />
+                <ScalarProperty Name="BIOMETRICS" ColumnName="BIOMETRICS" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="PIN_BATCH" ColumnName="PIN_BATCH" />
+                <ScalarProperty Name="BATCH_ID" ColumnName="BATCH_ID" />
+                <ScalarProperty Name="FORM_REFNO" ColumnName="FORM_REFNO" />
+                <ScalarProperty Name="NOK_GENDER1" ColumnName="NOK_GENDER1" />
+                <ScalarProperty Name="NOK_TITLE" ColumnName="NOK_TITLE" />
+                <ScalarProperty Name="NOK_COUNTRY" ColumnName="NOK_COUNTRY" />
+                <ScalarProperty Name="OLD_EMPLOYEEID" ColumnName="OLD_EMPLOYEEID" />
+                <ScalarProperty Name="EMPLOYEE_GROUP" ColumnName="EMPLOYEE_GROUP" />
+                <ScalarProperty Name="LOCATION_CODE" ColumnName="LOCATION_CODE" />
+                <ScalarProperty Name="STAFF_GRADE" ColumnName="STAFF_GRADE" />
+                <ScalarProperty Name="DATE_JOINED_FUND" ColumnName="DATE_JOINED_FUND" />
+                <ScalarProperty Name="LAST_PROMO_DATE" ColumnName="LAST_PROMO_DATE" />
+                <ScalarProperty Name="DATE_SENT" ColumnName="DATE_SENT" />
+                <ScalarProperty Name="UPLOAD_PIN" ColumnName="UPLOAD_PIN" />
+                <ScalarProperty Name="PICTURE_IMAGE" ColumnName="PICTURE_IMAGE" />
+                <ScalarProperty Name="SIGNATURE_IMAGE" ColumnName="SIGNATURE_IMAGE" />
+                <ScalarProperty Name="THUMBPRINT" ColumnName="THUMBPRINT" />
+                <ScalarProperty Name="THUMBPRINT1" ColumnName="THUMBPRINT1" />
+                <ScalarProperty Name="EXIT_DATE" ColumnName="EXIT_DATE" />
+                <ScalarProperty Name="EMPLOYEE_CATEGORY" ColumnName="EMPLOYEE_CATEGORY" />
+                <ScalarProperty Name="UPLOAD_DATE" ColumnName="UPLOAD_DATE" />
+                <ScalarProperty Name="PERM_STATE" ColumnName="PERM_STATE" />
+                <ScalarProperty Name="PERM_CITY" ColumnName="PERM_CITY" />
+                <ScalarProperty Name="OLDVALUE" ColumnName="OLDVALUE" />
+                <ScalarProperty Name="NEWVALUE" ColumnName="NEWVALUE" />
+                <ScalarProperty Name="NOK2_TITLE" ColumnName="NOK2_TITLE" />
+                <ScalarProperty Name="NOK2_SURNAME" ColumnName="NOK2_SURNAME" />
+                <ScalarProperty Name="NOK2_FIRSTNAME" ColumnName="NOK2_FIRSTNAME" />
+                <ScalarProperty Name="NOK2_OTHERNAME" ColumnName="NOK2_OTHERNAME" />
+                <ScalarProperty Name="NOK2_GENDER" ColumnName="NOK2_GENDER" />
+                <ScalarProperty Name="NOK2_DATE_OF_BIRTH" ColumnName="NOK2_DATE_OF_BIRTH" />
+                <ScalarProperty Name="NOK2_RELATIONSHIP" ColumnName="NOK2_RELATIONSHIP" />
+                <ScalarProperty Name="NOK2_MAIDENNAME" ColumnName="NOK2_MAIDENNAME" />
+                <ScalarProperty Name="NOK2_ADDRESS" ColumnName="NOK2_ADDRESS" />
+                <ScalarProperty Name="NOK2_CITY" ColumnName="NOK2_CITY" />
+                <ScalarProperty Name="NOK2_STATECODE" ColumnName="NOK2_STATECODE" />
+                <ScalarProperty Name="NOK2_COUNTRYCODE" ColumnName="NOK2_COUNTRYCODE" />
+                <ScalarProperty Name="NOK2_MOBILEPHONE" ColumnName="NOK2_MOBILEPHONE" />
+                <ScalarProperty Name="NOK2_EMAILADDRESS" ColumnName="NOK2_EMAILADDRESS" />
+                <ScalarProperty Name="FILE_NUM" ColumnName="FILE_NUM" />
+                <ScalarProperty Name="ACCOUNT_OFFICERS" ColumnName="ACCOUNT_OFFICERS" />
+                <ScalarProperty Name="ER_ADDR" ColumnName="ER_ADDR" />
+                <ScalarProperty Name="NOK_DOB" ColumnName="NOK_DOB" />
+                <ScalarProperty Name="NOK_DOB2" ColumnName="NOK_DOB2" />
+                <ScalarProperty Name="EMAIL_ONLY" ColumnName="EMAIL_ONLY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

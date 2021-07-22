@@ -1,0 +1,119 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+
+@font-face {
+    font-family: 'bauhausdemi';
+    src: url('../fonts/font-webfont.eot');
+    src: url('../fonts/font-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/font-webfont.woff2') format('woff2'),
+         url('../fonts/font-webfont.woff') format('woff'),
+         url('../fonts/font-webfont.ttf') format('truetype'),
+         url('../fonts/font-webfont.svg#bauhausdemi') format('svg');
+    font-weight: normal;
+}
+
+#bg img{position:fixed; width:100%; height:100%}
+
+.admin-header{height:100px;}
+
+.copy-right{ color:#0159a3; font-weight:bold; font-size:15px; position:absolute; bottom:0; margin-bottom:50px; padding-left:50px;}
+.cont-row{
+	width: 100%;
+    height: 300px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0; 
+
+    margin: auto; }
+.cont-drow{padding-right:0 !important}
+.cont-div{background:#0b4f8c; height:300px; padding-right:0 !important; margin-right:0 !important  }
+.cont-middle{  height:300px; border-radius:10px; background-color:#fefefe; }
+.cont-login{padding-top:30px; z-index:100; }
+.cont-text{ font-size:40px; padding-top:90px; padding-left:100px !important;font-family:"bauhausdemi",Arial, Helvetica, sans-serif !important;}
+.span-admin{color:#0159a1;  }
+.span-login{color:#03b2ad; }
+.client-login{background:#fefefe; color:#0159a1; transform: rotate(90deg);
+	transform-origin: 85%;  position:absolute; right:0; margin-top:170px; padding-left:10px; padding-right:10px; padding-bottom:10px; padding-top:5px;
+	border-bottom-left-radius:10px;border-bottom-right-radius:10px;}
+.client-login a{text-decoration:none !important;}	
+.cont-user-info{background:#03b2ad; padding:50px 0 50px 50px; margin:55px 50px 0 50px; border-radius:10px; }
+.cont-line{border-bottom:2px solid #fefefe; padding-top:20px;}
+input.user-name{background:#faffbd ; border:0; color:#000; }
+input.pass-word{background:#faffbd ; border:0; color:#000; margin-top:20px; }
+.cont-user-info img{margin-top:-76px; position:absolute; right:0;}
+.forgot-password{margin-top:25px;font-weight:bold; font-size:14px; margin-left:85px;}
+.forgot-pass{color:#0159a1; }
+.forgot-password span a{color:#03b2ad; }
+.RSA{padding-top:100px; margin-left:85px; font-size:14px; font-weight:bold;}
+.rsa-question{color:#03b2ad; }
+.open-rsa{background:#Fff; padding:10px 15px; color:#0159a1; border-radius:5px; margin-left:15px}
+
+.login-icon{width:125px; background:url(../images/login-bg.png) no-repeat; height:150px;margin-top: -120px; position: absolute; right: 0;}
+
+.validation-summary-errors{position:absolute; margin-top:-20px;}
+.validation-summary-errors ul li{color:red}
+
+
+.container {
+  margin-left: 0 !important;
+  margin-right:  0 !important;
+  padding-left:  0 !important;
+  padding-right:  0 !important;
+}
+.container-fluid
+{
+  margin-left: 0 !important;
+  margin-right:  0 !important;
+  padding-left:  0 !important;
+  padding-right:  0 !important;
+}
+
+	.but-login{margin-top: 51% !important; position: absolute !important; right: 32% !important; background:url(../images/button_bg.png) no-repeat !important; width:22px; height:28px; border:none !important;}
+
+
+
+@media screen and (max-width: 980px) {
+.cont-text{padding-top:0 !important; padding-left:0 !important;}
+.cont-login img{z-index:100; margin-left:-90px;}
+.cont-user-info{margin:60px 0 0 0}
+.cont-user-info img{right:-3%}
+.cont-middle{padding-top:1px;}
+input.user-name{background:#faffbd; border:0; color:#000000; padding-left:20px;}
+input.pass-word{background:#faffbd; border:0; color:#000000; margin-top:20px; padding-left:20px;}
+.RSA{padding-top:50px; margin-left:0; }
+}
+
+@media screen and (max-width: 768px)  {
+
+.cont-login {padding-top:0;}
+.copy-right{  margin-bottom:15px; position:fixed }
+.RSA{position:relative; z-index:100}
+.client-login{margin-top:0; }
+.cont-login img{display:none;}
+.cont-text{padding-top:90px !important; padding-left:0 !important;}
+
+
+
+
+
+
+}
+
+@media screen and (max-width: 640px)  {
+.cont-row{margin:inherit !important}
+.cont-div{height:100px}
+.RSA{margin-left:0;}
+}
+@media screen and (max-width: 480px)  {
+.cont-login {padding-top:0; float:none !important}
+.cont-middle{margin-left:0;}	
+.forgot-password{margin-left:0;}
+.rsa-question{float:left;}
+.open-rsa{float:left;}
+.cont-text{padding-left:0 !important;}
+.cont-user-info img{display:none;}
+.cont-row{position:relative; height:auto;}
+.RSA{margin-left:0;}
+}

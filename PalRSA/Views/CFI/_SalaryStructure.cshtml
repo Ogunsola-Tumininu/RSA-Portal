@@ -1,0 +1,189 @@
+﻿@model PalRSA.Core.Models.CFIUpdateViewModel
+
+<link href="~/Content/BiometricSite.css" rel="stylesheet" />
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Salary Structure <small>Public Sector (MDAs) only</small></h3>
+                </div>
+                <div class="box-body divBoxHeight">
+                    @*<div class="row">*@
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Harmonised Salary Structure as at 2004 : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("HarmonisedSalary", null, "Select salary structure", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.HarmonisedSalary, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.HarmonisedSalary, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Grade Level as at June 2004 : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("GL2004", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.GL2004, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.GL2004, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Step as at June 2004 : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Step2004", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.Step2004, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.Step2004, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    @*</div>*@
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Consolidated Salary Structure as at 2007 : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("ConsolidatedSalary2007", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.ConsolidatedSalary2007, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.ConsolidatedSalary2007, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Grade Level as at Jan 2007 : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("GL2007", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.GL2007, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.GL2007, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Step as at  Jan 2007 : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Step2007", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.Step2007, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.Step2007, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Consolidated Salary Structure as at 2010 : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("ConsolidatedSalary2010", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.ConsolidatedSalary2010, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.ConsolidatedSalary2010, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5"> Grade Level as at 2010 : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("GL2010", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.GL2010, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.GL2010, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Step as at 2010 : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("Step2010", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.Step2010, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.Step2010, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Current Salary Structure : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("CurrentSalary", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.CurrentSalary, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.CurrentSalary, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Current Grade Level : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("CurrentGL", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.CurrentGL, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.CurrentGL, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Current Step : </label>
+                                <div class="col-md-7">
+                                    @Html.DropDownList("CurrentStep", null, "Please select", htmlAttributes: new { @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.CurrentStep, new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(m => m.CurrentStep, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    @*</div>*@
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <button type="button" href="javascript:void(0)" onclick="$('#employmentRecord').click();" id="pretab" class="btn btn-block btn-primary ">Previous</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" href="javascript:void(0)" onclick="$('#nextOfKin').click();" id="nexttab" class="btn btn-block btn-primary ">Next</button>
+                    </div>
+                </div>
+
+            </div>
+</div>
+    </div>
+</section>
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+}
+

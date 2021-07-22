@@ -1,0 +1,64 @@
+﻿@model PalRSA.Core.Models.ChangeOfAddress
+@{
+    ViewBag.Title = "Change Address";
+}
+
+<script type="text/javascript" src="~/Scripts/new-profile-validator.js"></script>
+
+<div class="rightside  view-profile">
+    <div class="details">
+        <h3>Change of Address</h3>
+    </div>
+
+    @if ((string)TempData["Status"] == "success")
+    {
+        <div class="alert alert-success exceed">
+            <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Change of Address recieved. We will alert you once its approved</span>
+        </div>
+    }
+    else if ((string)TempData["Status"] == "invalid")
+    {
+        <div class="alert alert-warning col-md-12" id="warning">
+            <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"> Please check your entries</span>
+        </div>
+    }
+
+    <div class="">
+        @using (Html.BeginForm("ChangeAddress", "Customer", FormMethod.Post, new { @class = "form-horizontal", id = "change-of-Address", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4><span class="label label-default">Old Address</span></h4>
+                    @Html.TextAreaFor(model => model.OldAddress, new {@class = "form-control", @readonly = true})
+                    @Html.HiddenFor(model => model.Pin)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h4><span class="label label-default">New Address</span></h4>
+                    @Html.TextAreaFor(model => model.NewAddress, new { @class = "form-control", placeholder = "New Address" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Utility Bill</span></h4>
+                    @Html.TextBoxFor(model => model.UtilityBill, new { @class = "form-control", type = "file" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2 pull-right">
+                    <input type="submit" value="Save Changes" class="btn-primary btn-block" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

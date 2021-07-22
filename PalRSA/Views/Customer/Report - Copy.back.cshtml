@@ -1,0 +1,102 @@
+﻿@using PalRSA.Core.Models
+@using PalRSA.Helper
+@model IEnumerable<PalRSA.Core.DataAccess.Contribution>
+
+
+@{
+    ViewBag.Title = "Report";
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on("focus", ".datepicker", function () {
+
+        });
+		$('#report').DataTable();
+    });
+</script>
+
+<div class="view-profile">
+      <div class="details">
+            <h3>Generate Report</h3>
+     </div>
+@if ((string)TempData["PostBack"] == "Yes")
+{
+    var x = (SearchValues)ViewBag.SearchObj;
+    @Html.ActionLink("Export to Excel", "ExportAsExl", new { startDate = x.StartDate, endDate = x.EndDate }, new { @class = "btn-info btn btn-sm" })
+}
+
+
+
+<div class="container-fluid row">
+    <div class="">
+        @using (Html.BeginForm("Report", "Customer", FormMethod.Post, new { @class = "form-inline" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                <input type="text" class="form-control datepicker" placeholder="Start Date" name="startDate">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control datepicker" placeholder="End Date" name="endDate">
+            </div>
+            <button type="submit" class="btn-info btn btn-sm">Search</button>
+        }
+    </div>
+</div>
+
+<br>
+
+   
+    <div class="container-fluid row">
+        <div class="table-responsive">
+            <table class="table-transaction table-bordered table-hover table-striped dataTable no-footer" id=report>
+                <thead>
+                    <tr>
+                        <th>Employee Contribution</th>
+                        <th>Employer Contribution</th>
+                        <th>Contribution Date</th>
+                        <th>Other Contribution</th>
+                        <th>Employee Fee</th>
+                        <th>Employer Fee</th>
+                        <th>Other Fee</th>
+                        <th>Total Units</th>
+                        <th>Total Contribution</th>
+                        <th>Total Fee</th>
+                        <th>Payment Date</th>
+                        <th>Trans Date</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+                            foreach (var trans in Model)
+                            {
+                                <tr>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.EmployeeContribution, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.EmployerContribution, 4))</td>
+                                    <td>@trans.ContributionDate.ToString("MMM dd, yyyy")</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.OtherContribution, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.EmployeeFee, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.EmployerFee, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.OtherFee, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.TotalUnits, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.TotalContribution, 4))</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.TotalFee, 4))</td>
+                                    <td>@trans.PaymentDate.ToString("MMM dd, yyyy")</td>
+                                    <td>@trans.TransDate.ToString("MMM dd, yyyy")</td>
+                                    <td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)trans.Price, 4))</td>
+                                </tr>
+                            }
+                        }
+
+                    }
+                </tbody>
+            </table>
+            @*@Html.PagedListPager((IPagedList)ViewBag.OnePage, page => Url.Action("GenerateReport", new { page }))*@
+        </div>
+
+    </div>
+</div>

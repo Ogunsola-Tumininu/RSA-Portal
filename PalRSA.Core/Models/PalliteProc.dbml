@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PALSiteDB" Class="PalliteProcDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=PALSiteDB;User ID=sa;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="PalRSA.Core.Properties.Settings" SettingsPropertyName="PALSiteDBConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.GetFundId" Method="GetFundId" IsComposable="true">
+    <Parameter Name="pin" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.FnLastValueDate" Method="FnLastValueDate" IsComposable="true">
+    <Parameter Name="fund_id" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Return Type="System.DateTime" />
+  </Function>
+</Database>

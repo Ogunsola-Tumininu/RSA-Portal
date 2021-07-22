@@ -1,0 +1,284 @@
+﻿@model PalRSA.Models.EMPLOYEE
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Acknowledgement Form</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PIN)
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#emp_det">Personal Details</a></li>
+            <li><a data-toggle="tab" href="#er">Employement Details</a></li>
+            <li><a data-toggle="tab" href="#nok">Next of kin</a></li>
+            <li><a data-toggle="tab" href="#biometric">Biometrics</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="emp_det" class="tab-pane fade in active">
+                <br />
+                <h3>Personal Details</h3>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SURNAME, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.SURNAME, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SURNAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FIRSTNAME, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.FIRSTNAME, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FIRSTNAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.OTHERNAMES, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.OTHERNAMES, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.OTHERNAMES, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GENDER, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.GENDER, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DATE_OF_BIRTH, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.DATE_OF_BIRTH, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="MARITAL_STATUS_CODE" class="control-label col-md-3">MARITAL STATUS</label>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.MARITAL_STATUS_CODE, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PERMANENT_ADDRESS, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.PERMANENT_ADDRESS, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.STATE_OF_ORIGIN, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.STATE_OF_ORIGIN, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HOME_PHONE, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.HOME_PHONE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HOME_PHONE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MOBILE_PHONE, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.MOBILE_PHONE, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id="er" class="tab-pane fade">
+                <br />
+                <h3>Employer Information</h3>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.employer_name, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.employer_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.employer_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EMPLOYER_RCNO, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.EMPLOYER_RCNO, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EMPLOYER_RCNO, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EMPLOYER_ADDRESS, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.EMPLOYER_ADDRESS, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EMPLOYER_ADDRESS, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EMPLOYER_PHONE, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.EMPLOYER_PHONE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EMPLOYER_PHONE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EMPLOYER_EMAIL, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.EMPLOYER_EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EMPLOYER_EMAIL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EMPLOYER_WEBSITE, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.EMPLOYER_WEBSITE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EMPLOYER_WEBSITE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="nok" class="tab-pane fade">
+                <br />
+                <h3>Next of Kin Details</h3>
+                <div class="col-md-8">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-3" for="NAME">NAME</label>
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.NOK_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-3" for="NOK_ADDRESS">ADDRESS</label>
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.NOK_ADDRESS, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-3" for="NOK_RELATIONSHIP">RELATIONSHIP</label>
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.NOK_RELATIONSHIP, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-3" for="">MOBILE PHONE</label>
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.NOK_MOBILE_PHONE, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-3" for="NOK_HOME_PHONE">HOME PHONE</label>
+
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.NOK_HOME_PHONE, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="biometric" class="tab-pane fade">
+                <br />
+                <h3>Biometrics</h3>
+                <div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3 img-thumbnail">
+                            <img src="" class="" alt="Passport">
+                            <div class="caption">
+                                <h5>Passport</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3 img-thumbnail">
+                            <img src="" alt="Signature">
+                            <div class="caption">
+                                <h5>Signature</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3 img-thumbnail">
+                            <img src="" alt="Left Thumb">
+                            <div class="caption">
+                                <h5>Left Thumb</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3 img-thumbnail">
+                            <img src="" alt="Right Thumb">
+                            <div class="caption">
+                                <h5>Right Thumb</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                     By clicking <strong>accept</strong>, I agree that the information presented here are correct and valid.
+                    <input type="submit" value="Accept" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+}
+
+<div>
+
+</div>

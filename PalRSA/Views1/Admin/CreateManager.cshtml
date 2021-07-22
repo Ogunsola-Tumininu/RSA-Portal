@@ -1,0 +1,66 @@
+﻿@model PalRSA.Core.DataAccess.AccountManager
+
+@{
+    ViewBag.Title = "Create Manager";
+}
+
+<script type="text/javascript" src="~/Scripts/new-profile-validator.js"></script>
+
+
+
+<div class="rightside  view-profile">
+<div class="details">
+<h3>Create Manager</h3>
+</div>
+    @if ((string)TempData["Status"] == "success")
+    {
+        <div class="alert alert-success exceed">
+            <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Manager saved successfully</span>
+        </div>
+    }
+    else if ((string)TempData["Status"] == "exists")
+    {
+        <div class="alert alert-warning col-md-12" id="warning">
+            <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"> Sorry, This name already exists in the database. Change the Manager name and try again</span>
+        </div>
+    }
+
+    <div class="">
+        @using (Html.BeginForm("CreateManager", "Admin", FormMethod.Post, new { @class = "form-horizontal", id = "edit-manager" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Account Managers Name</span></h4>
+                    @Html.TextBoxFor(model => model.AccountManagers, new { @class = "form-control", placeholder = "Account Managers Name" })
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Phone Number</span></h4>
+                    @Html.TextBoxFor(model => model.Phonenumber, new { @class = "form-control", placeholder = "Phone Number" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Region</span></h4>
+                    @Html.TextBoxFor(model => model.Region, new { @class = "form-control", placeholder = "Region" })
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Email</span></h4>
+                    @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", placeholder = "Email", type = "email", @data_fv_emailaddress_message = "The value is not a valid email address", @data_fv_notempty = "true", @data_fv_notempty_message = "The Email Address cannot be empty" })
+                </div>
+
+            </div>
+<br/>
+            <div class="row">
+                <div class="col-md-2 pull-right">
+                    <input type="submit" value="Create Manager" class="btn-primary btn-block" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PalRSA.Core.DataAccess.AccountManager>
+@{
+    ViewBag.Title = "Managers";
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#managers').DataTable();
+    });
+</script>
+
+<div class="rightside retirement">
+<div class="details">
+<h3>View All Managers</h3>
+</div>
+    
+    <div class="right-details">
+        <div class="right-top-text">All Managers</div>
+        <div class="table-responsive main-transaction">
+            <table class="table table-condensed" id="managers">
+                <thead>
+                    <tr>
+                        <th>Manager Name</th>
+                        <th>Phone Number</th>
+                        <th>Region</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+
+                            foreach (var manager in Model)
+                            {
+                                <tr>
+                                    <td>@manager.AccountManagers</td>
+                                    <td>@manager.Phonenumber</td>
+                                    <td>@manager.Region</td>
+                                    <td>@manager.EMAIL</td>
+                                    <td>@Html.ActionLink("Edit", "EditManager", new {id = manager.ManagerId}, new {@class = "glyphicon glyphicon-edit"}) | @Html.ActionLink("Employees under Manager", "ViewAllEmployeesByManager", new { id = manager.ManagerId }, new { @class = "glyphicon glyphicon-edit" })</td>
+                                </tr>
+                            }
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

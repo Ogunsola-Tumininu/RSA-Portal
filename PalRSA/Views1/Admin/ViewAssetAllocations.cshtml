@@ -1,0 +1,79 @@
+﻿@model IEnumerable<PalRSA.Core.DataAccess.AssetAllocation>
+    @using PalRSA.Helpers
+
+@{
+    ViewBag.Title = "Asset Allocations";
+}
+
+<script type="text/javascript" src="~/Scripts/new-profile-validator.js"></script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#admin-dash').DataTable({
+            "ordering": false
+        });
+    });
+</script>
+<!--<div class="container-fluid rside"> -->
+
+
+
+<div class="rightside view-profile">
+
+<div class="details">
+<h3>View Asset Allocations</h3>
+</div>
+    <div class="right-details">
+        <div class="right-top-text">All Asset Allocations   &nbsp; &nbsp; | &nbsp; &nbsp;<a href="@Url.Action("UploadAssetAllocations")">Upload Asset Allocations</a> </div>
+        <div class="table-responsive main-transaction">
+            <table class="table table-condensed" id="admin-dash">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Equity</th>
+                        <th>Fixed Income</th>
+                        <th>Money Market</th>
+                        <th>Others</th>
+                        <th>Asset Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+            foreach (var asset in Model.OrderByDescending(x=>x.date_created))
+            {
+                            <tr>
+                                <td>
+                                @if (asset.date_created != null)
+                                {
+                    @asset.date_created.Value.ToString("MMM dd, yyyy")
+                                }
+                               </td>
+                                <td>
+                                    @asset.equity
+                                    @*@if (asset.equity != null)
+                                    {
+                                        string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal) asset.equity, 2));
+                                    }*@
+                                </td>
+                                <td>
+                                    @asset.fixed_income
+                                </td>
+                                <td>
+                                @asset.money_market
+                                </td>
+                                <td>
+                                    @asset.others
+                                </td>
+                                <td>@asset.AssetType.value</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

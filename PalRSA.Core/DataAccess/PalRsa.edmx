@@ -1,0 +1,1995 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PALSiteDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountManager">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="255" />
+          <Property Name="AccountManagers" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phonenumber" Type="float" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="AssetAllocation">
+          <Key>
+            <PropertyRef Name="asset_allocation_id" />
+          </Key>
+          <Property Name="asset_allocation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date_created" Type="datetime" />
+          <Property Name="equity" Type="float" />
+          <Property Name="fixed_income" Type="float" />
+          <Property Name="money_market" Type="float" />
+          <Property Name="others" Type="float" />
+          <Property Name="asset_allocation_type" Type="int" />
+        </EntityType>
+        <EntityType Name="AssetType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="value" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BenefitApplications">
+          <Key>
+            <PropertyRef Name="BenefitApplicationId" />
+          </Key>
+          <Property Name="Employee_Pin" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BenefitSubClassId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" />
+          <Property Name="DateApplied" Type="datetime" Nullable="false" />
+          <Property Name="BenefitApplicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateModified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BenefitClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BenefitName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BenefitDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BenefitSubClass">
+          <Key>
+            <PropertyRef Name="BenefitSubClassId" />
+          </Key>
+          <Property Name="BenefitSubClassId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BenefitClassId" Type="int" />
+          <Property Name="BenefitSubClassValue" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CaseSummary">
+          <Key>
+            <PropertyRef Name="CaseSummaryId" />
+          </Key>
+          <Property Name="CaseSummaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CurrentStatus" Type="nvarchar(max)" />
+          <Property Name="CaseNumber" Type="nvarchar(max)" />
+          <Property Name="PIN" Type="nvarchar(max)" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+          <Property Name="CaseType" Type="nvarchar(max)" />
+          <Property Name="CLosedBy" Type="nvarchar(max)" />
+          <Property Name="AssignedTo" Type="nvarchar(max)" />
+          <Property Name="IswebGenerated" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChangeOfAddressProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pin" Type="nvarchar" MaxLength="128" />
+          <Property Name="OldAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="NewAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="DateUploaded" Type="datetime" />
+          <Property Name="DocumentId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Doc" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ext" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ChangeOfNameProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pin" Type="nvarchar" MaxLength="128" />
+          <Property Name="OldName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NewName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Doc1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Doc2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ext1" Type="nchar" MaxLength="10" />
+          <Property Name="Ext2" Type="nchar" MaxLength="10" />
+          <Property Name="DocumentId" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateUploaded" Type="datetime" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="OldFirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NewFirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="OldMiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NewMiddleName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ClientUpdate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pin" Type="nvarchar(max)" />
+          <Property Name="OldValue" Type="nvarchar(max)" />
+          <Property Name="NewValue" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contributions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Recno" Type="nvarchar" MaxLength="128" />
+          <Property Name="Employee_Pin" Type="nvarchar" MaxLength="128" />
+          <Property Name="EmployeeContribution" Type="float" />
+          <Property Name="EmployerContribution" Type="float" />
+          <Property Name="ContributionDate" Type="datetime" />
+          <Property Name="OtherContribution" Type="float" />
+          <Property Name="EmployeeFee" Type="float" />
+          <Property Name="EmployerFee" Type="float" />
+          <Property Name="OtherFee" Type="float" />
+          <Property Name="TotalUnits" Type="float" />
+          <Property Name="TotalContribution" Type="float" />
+          <Property Name="TotalFee" Type="float" />
+          <Property Name="EmployeeBf" Type="float" />
+          <Property Name="EmployerBf" Type="float" />
+          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="TransDate" Type="datetime" />
+          <Property Name="SchemeId" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="TransUnitsR" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="TransUnitsV" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="ValueDate" Type="datetime" />
+          <Property Name="TransId" Type="nvarchar" MaxLength="50" />
+          <Property Name="VatFee" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="Flaguploaded" Type="tinyint" />
+          <Property Name="FundId" Type="int" />
+          <Property Name="ReconciliationTransid" Type="nvarchar" MaxLength="50" />
+          <Property Name="Withdrawal" Type="float" />
+          <Property Name="WithdrawalVc" Type="float" />
+        </EntityType>
+        <EntityType Name="EmployeeBenefitDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateUploaded" Type="datetime" />
+          <Property Name="BenefitApplicationId" Type="int" />
+          <Property Name="ext" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Pin" />
+          </Key>
+          <Property Name="Pin" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RegistrationCode" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="Surname" Type="nvarchar(max)" />
+          <Property Name="OtherNames" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="nvarchar(max)" />
+          <Property Name="MobileNumber" Type="nvarchar(max)" />
+          <Property Name="MobileNumber2" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Employer_Recno" Type="nvarchar" MaxLength="128" />
+          <Property Name="HomeAddress" Type="nvarchar(max)" />
+          <Property Name="PermanentAddress" Type="nvarchar(max)" />
+          <Property Name="ManagerId" Type="int" />
+          <Property Name="SchemeId" Type="float" />
+        </EntityType>
+        <EntityType Name="EmployerDetails">
+          <Key>
+            <PropertyRef Name="Recno" />
+          </Key>
+          <Property Name="Recno" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="EmployerName" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ExitProcessMaster">
+          <Key>
+            <PropertyRef Name="Pin" />
+          </Key>
+          <Property Name="Pin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginTrail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="LoginDate" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="NextOfKin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee_Pin" Type="nvarchar" MaxLength="128" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="Surname" Type="nvarchar(max)" />
+          <Property Name="OtherNames" Type="nvarchar(max)" />
+          <Property Name="Relation" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PriceHistory">
+          <Key>
+            <PropertyRef Name="price_history_id" />
+          </Key>
+          <Property Name="price_history_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="scheme_id" Type="float" />
+          <Property Name="valuation_date" Type="datetime" />
+          <Property Name="bid_price" Type="float" />
+          <Property Name="offer_price" Type="float" />
+        </EntityType>
+        <EntityType Name="Publications">
+          <Key>
+            <PropertyRef Name="PublicationsId" />
+          </Key>
+          <Property Name="PublicationsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UploadTypeId" Type="int" />
+          <Property Name="DateUploaded" Type="datetime" Nullable="false" />
+          <Property Name="PublicationName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Extension" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SecretQuestionsStore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Sheme">
+          <Key>
+            <PropertyRef Name="SCHEME_TABLE_ID" />
+          </Key>
+          <Property Name="SCHEME_ID" Type="float" />
+          <Property Name="SCHEME_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="REPORT_DATE" Type="datetime" />
+          <Property Name="OFFER_PRICE" Type="float" />
+          <Property Name="BID_PRICE" Type="float" />
+          <Property Name="OFFER_FOR" Type="nvarchar" MaxLength="255" />
+          <Property Name="BID_FOR" Type="nvarchar" MaxLength="255" />
+          <Property Name="TOTAL_UNITS" Type="float" />
+          <Property Name="TOTAL_RECEIVABLES" Type="nvarchar" MaxLength="255" />
+          <Property Name="NAV" Type="float" />
+          <Property Name="GAV" Type="float" />
+          <Property Name="PAY_COT" Type="nvarchar" MaxLength="255" />
+          <Property Name="COT_PERCENT" Type="nvarchar" MaxLength="255" />
+          <Property Name="CALC_INTEREST" Type="nvarchar" MaxLength="255" />
+          <Property Name="INTEREST_RATE" Type="nvarchar" MaxLength="255" />
+          <Property Name="SCHEME_LOGO" Type="nvarchar" MaxLength="255" />
+          <Property Name="START_DATE" Type="datetime" />
+          <Property Name="LAST_PROC_DATE" Type="datetime" />
+          <Property Name="UPDATE_SUCCESS" Type="nvarchar" MaxLength="255" />
+          <Property Name="ACCRUED_DIVIDEND" Type="float" />
+          <Property Name="ACCRUED_FEES" Type="nvarchar" MaxLength="255" />
+          <Property Name="PAID_FEES" Type="nvarchar" MaxLength="255" />
+          <Property Name="MANAGER_HEADER_PAGE" Type="nvarchar" MaxLength="255" />
+          <Property Name="MANAGER_FOOTER_PAGE" Type="nvarchar" MaxLength="255" />
+          <Property Name="PROMISE" Type="nvarchar" MaxLength="255" />
+          <Property Name="SCHEME_TYPE" Type="nvarchar" MaxLength="255" />
+          <Property Name="COMPANY_ID" Type="float" />
+          <Property Name="LAST_POSTED" Type="nvarchar" MaxLength="255" />
+          <Property Name="STAMP_DUTIES" Type="nvarchar" MaxLength="255" />
+          <Property Name="NSE_CSCS_FEES" Type="nvarchar" MaxLength="255" />
+          <Property Name="BROKERAGE_FEES" Type="nvarchar" MaxLength="255" />
+          <Property Name="SEC_FEES" Type="nvarchar" MaxLength="255" />
+          <Property Name="CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="MGMT_FEE_PAYABLE_PERC" Type="nvarchar" MaxLength="255" />
+          <Property Name="EXCESS_FEE_PAYABLE_PERC" Type="nvarchar" MaxLength="255" />
+          <Property Name="VAT_ON_EXCESS_FEE" Type="nvarchar" MaxLength="255" />
+          <Property Name="TRANS_FEE_PAYABLE_PERC" Type="nvarchar" MaxLength="255" />
+          <Property Name="PERCENTAGE_ABOVE" Type="nvarchar" MaxLength="255" />
+          <Property Name="FEE_TYPE" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRACT_BEGINS" Type="nvarchar" MaxLength="255" />
+          <Property Name="CONTRACT_ENDS" Type="nvarchar" MaxLength="255" />
+          <Property Name="ACCOUNT_STATUS" Type="nvarchar" MaxLength="255" />
+          <Property Name="CSCS_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="ACCOUNT_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="TROI_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="OPENING_NAV" Type="float" />
+          <Property Name="RATING_REQUIRMENT" Type="nvarchar" MaxLength="255" />
+          <Property Name="POINT_TO_NOTE" Type="nvarchar" MaxLength="255" />
+          <Property Name="INVEST_GUIDELINE" Type="nvarchar" MaxLength="255" />
+          <Property Name="STANDING_ORDERS" Type="nvarchar" MaxLength="255" />
+          <Property Name="REPORTING_FREQ" Type="nvarchar" MaxLength="255" />
+          <Property Name="AGREEMENT_EXPIRY" Type="nvarchar" MaxLength="255" />
+          <Property Name="SCHEME_TABLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar(max)" />
+          <Property Name="StateCode" Type="nvarchar(max)" />
+          <Property Name="ZoneCode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusValue" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SupportCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SupportLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pin" Type="nvarchar" MaxLength="128" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="128" />
+          <Property Name="Explanation" Type="nvarchar(max)" />
+          <Property Name="DateSubmitted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TempCustomerInformation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pin" Type="nvarchar" MaxLength="50" />
+          <Property Name="mobile-number" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="parmanent-address" Type="nvarchar" MaxLength="500" />
+          <Property Name="home-address" Type="nvarchar" MaxLength="500" />
+          <Property Name="mobile-number2" Type="nvarchar" MaxLength="50" />
+          <Property Name="date-created" Type="datetime" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UploadType">
+          <Key>
+            <PropertyRef Name="UploadTypeId" />
+          </Key>
+          <Property Name="UploadTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UploadTypeValue" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="SecretQuestionId" Type="int" />
+          <Property Name="SecretQuestionAnswer" Type="nvarchar(max)" />
+          <Property Name="VerificationCode" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="InvestorId" Type="int" />
+          <Property Name="Employee_Pin" Type="nvarchar" MaxLength="128" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="QuestionKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstSignOn" Type="bit" />
+          <Property Name="AdminName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="UserPublications">
+          <Key>
+            <PropertyRef Name="UserPublicationsId" />
+          </Key>
+          <Property Name="UserPublicationsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PublicationsId" Type="int" />
+          <Property Name="EmployeePin" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AssetAllocation_AssetType">
+          <End Role="AssetType" Type="Self.AssetType" Multiplicity="0..1" />
+          <End Role="AssetAllocation" Type="Self.AssetAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssetAllocation">
+              <PropertyRef Name="asset_allocation_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BenefitApplications_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="BenefitApplications" Type="Self.BenefitApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="BenefitApplications">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeOfAddressProfile_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="ChangeOfAddressProfile" Type="Self.ChangeOfAddressProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="ChangeOfAddressProfile">
+              <PropertyRef Name="Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChangeOfNameProfile_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="ChangeOfNameProfile" Type="Self.ChangeOfNameProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="ChangeOfNameProfile">
+              <PropertyRef Name="Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_BenefitApplications_dbo_Employees_Employee_Pin">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="BenefitApplications" Type="Self.BenefitApplications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="BenefitApplications">
+              <PropertyRef Name="Employee_Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Contributions_dbo_Employees_Employee_Pin">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Contributions" Type="Self.Contributions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="Contributions">
+              <PropertyRef Name="Employee_Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Employees_dbo_EmployerDetails_Employer_Recno">
+          <End Role="EmployerDetails" Type="Self.EmployerDetails" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployerDetails">
+              <PropertyRef Name="Recno" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Employer_Recno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NextOfKin_dbo_Employees_Employee_Pin">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="NextOfKin" Type="Self.NextOfKin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="NextOfKin">
+              <PropertyRef Name="Employee_Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeBenefitDocument_BenefitApplications">
+          <End Role="BenefitApplications" Type="Self.BenefitApplications" Multiplicity="0..1" />
+          <End Role="EmployeeBenefitDocument" Type="Self.EmployeeBenefitDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BenefitApplications">
+              <PropertyRef Name="BenefitApplicationId" />
+            </Principal>
+            <Dependent Role="EmployeeBenefitDocument">
+              <PropertyRef Name="BenefitApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_AccountManager">
+          <End Role="AccountManager" Type="Self.AccountManager" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountManager">
+              <PropertyRef Name="ManagerId" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Publications_Publications">
+          <End Role="UploadType" Type="Self.UploadType" Multiplicity="0..1" />
+          <End Role="Publications" Type="Self.Publications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UploadType">
+              <PropertyRef Name="UploadTypeId" />
+            </Principal>
+            <Dependent Role="Publications">
+              <PropertyRef Name="UploadTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleId">
+          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportLogs_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="SupportLogs" Type="Self.SupportLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="SupportLogs">
+              <PropertyRef Name="Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportLogs_SupportCategories">
+          <End Role="SupportCategories" Type="Self.SupportCategories" Multiplicity="0..1" />
+          <End Role="SupportLogs" Type="Self.SupportLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupportCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupportLogs">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserId">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_SecretQuestionsStore">
+          <End Role="SecretQuestionsStore" Type="Self.SecretQuestionsStore" Multiplicity="0..1" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecretQuestionsStore">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="SecretQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPublications_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="UserPublications" Type="Self.UserPublications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="UserPublications">
+              <PropertyRef Name="EmployeePin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPublications_Publications">
+          <End Role="Publications" Type="Self.Publications" Multiplicity="0..1" />
+          <End Role="UserPublications" Type="Self.UserPublications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publications">
+              <PropertyRef Name="PublicationsId" />
+            </Principal>
+            <Dependent Role="UserPublications">
+              <PropertyRef Name="PublicationsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PALSiteDBModelStoreContainer">
+          <EntitySet Name="AccountManager" EntityType="Self.AccountManager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssetAllocation" EntityType="Self.AssetAllocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssetType" EntityType="Self.AssetType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BenefitApplications" EntityType="Self.BenefitApplications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BenefitClass" EntityType="Self.BenefitClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BenefitDocument" EntityType="Self.BenefitDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BenefitSubClass" EntityType="Self.BenefitSubClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CaseSummary" EntityType="Self.CaseSummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChangeOfAddressProfile" EntityType="Self.ChangeOfAddressProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChangeOfNameProfile" EntityType="Self.ChangeOfNameProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientUpdate" EntityType="Self.ClientUpdate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contributions" EntityType="Self.Contributions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeBenefitDocument" EntityType="Self.EmployeeBenefitDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployerDetails" EntityType="Self.EmployerDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExitProcessMaster" EntityType="Self.ExitProcessMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginTrail" EntityType="Self.LoginTrail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NextOfKin" EntityType="Self.NextOfKin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceHistory" EntityType="Self.PriceHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publications" EntityType="Self.Publications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecretQuestionsStore" EntityType="Self.SecretQuestionsStore" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sheme" EntityType="Self.Sheme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupportCategories" EntityType="Self.SupportCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupportLogs" EntityType="Self.SupportLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TempCustomerInformation" EntityType="Self.TempCustomerInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UploadType" EntityType="Self.UploadType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPublications" EntityType="Self.UserPublications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AssetAllocation_AssetType" Association="Self.FK_AssetAllocation_AssetType">
+            <End Role="AssetType" EntitySet="AssetType" />
+            <End Role="AssetAllocation" EntitySet="AssetAllocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BenefitApplications_Status" Association="Self.FK_BenefitApplications_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="BenefitApplications" EntitySet="BenefitApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeOfAddressProfile_Employees" Association="Self.FK_ChangeOfAddressProfile_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="ChangeOfAddressProfile" EntitySet="ChangeOfAddressProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChangeOfNameProfile_Employees" Association="Self.FK_ChangeOfNameProfile_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="ChangeOfNameProfile" EntitySet="ChangeOfNameProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_BenefitApplications_dbo_Employees_Employee_Pin" Association="Self.FK_dbo_BenefitApplications_dbo_Employees_Employee_Pin">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="BenefitApplications" EntitySet="BenefitApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Contributions_dbo_Employees_Employee_Pin" Association="Self.FK_dbo_Contributions_dbo_Employees_Employee_Pin">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Contributions" EntitySet="Contributions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Employees_dbo_EmployerDetails_Employer_Recno" Association="Self.FK_dbo_Employees_dbo_EmployerDetails_Employer_Recno">
+            <End Role="EmployerDetails" EntitySet="EmployerDetails" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NextOfKin_dbo_Employees_Employee_Pin" Association="Self.FK_dbo_NextOfKin_dbo_Employees_Employee_Pin">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="NextOfKin" EntitySet="NextOfKin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeBenefitDocument_BenefitApplications" Association="Self.FK_EmployeeBenefitDocument_BenefitApplications">
+            <End Role="BenefitApplications" EntitySet="BenefitApplications" />
+            <End Role="EmployeeBenefitDocument" EntitySet="EmployeeBenefitDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_AccountManager" Association="Self.FK_Employees_AccountManager">
+            <End Role="AccountManager" EntitySet="AccountManager" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Publications_Publications" Association="Self.FK_Publications_Publications">
+            <End Role="UploadType" EntitySet="UploadType" />
+            <End Role="Publications" EntitySet="Publications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportLogs_Employees" Association="Self.FK_SupportLogs_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="SupportLogs" EntitySet="SupportLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportLogs_SupportCategories" Association="Self.FK_SupportLogs_SupportCategories">
+            <End Role="SupportCategories" EntitySet="SupportCategories" />
+            <End Role="SupportLogs" EntitySet="SupportLogs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserId" Association="Self.fk_UserId">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_SecretQuestionsStore" Association="Self.FK_UserProfile_SecretQuestionsStore">
+            <End Role="SecretQuestionsStore" EntitySet="SecretQuestionsStore" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPublications_Employees" Association="Self.FK_UserPublications_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="UserPublications" EntitySet="UserPublications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPublications_Publications" Association="Self.FK_UserPublications_Publications">
+            <End Role="Publications" EntitySet="Publications" />
+            <End Role="UserPublications" EntitySet="UserPublications" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PALSiteDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BenefitClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BenefitName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BenefitDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CaseSummary">
+          <Key>
+            <PropertyRef Name="CaseSummaryId" />
+          </Key>
+          <Property Name="CaseSummaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CaseNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CaseType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CLosedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IswebGenerated" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientUpdate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OldValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Pin" />
+          </Key>
+          <Property Name="Pin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegistrationCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OtherNames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Employer_Recno" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="HomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployerDetail" Relationship="Self.FK_dbo_Employees_dbo_EmployerDetails_Employer_Recno" FromRole="Employees" ToRole="EmployerDetails" />
+          <NavigationProperty Name="NextOfKins" Relationship="Self.FK_dbo_NextOfKin_dbo_Employees_Employee_Pin" FromRole="Employees" ToRole="NextOfKin" />
+          <NavigationProperty Name="BenefitApplications" Relationship="PALSiteDBModel.FK_dbo_BenefitApplications_dbo_Employees_Employee_Pin" FromRole="Employee" ToRole="BenefitApplication" />
+          <NavigationProperty Name="UserPublications" Relationship="PALSiteDBModel.FK_UserPublications_Employees" FromRole="Employee" ToRole="UserPublication" />
+          <Property Name="ManagerId" Type="Int32" />
+          <NavigationProperty Name="AccountManager" Relationship="PALSiteDBModel.FK_Employees_AccountManager" FromRole="Employee" ToRole="AccountManager" />
+          <NavigationProperty Name="ChangeOfNameProfiles" Relationship="PALSiteDBModel.FK_ChangeOfNameProfile_Employees" FromRole="Employee" ToRole="ChangeOfNameProfile" />
+          <NavigationProperty Name="ChangeOfAddressProfiles" Relationship="PALSiteDBModel.FK_ChangeOfAddressProfile_Employees" FromRole="Employee" ToRole="ChangeOfAddressProfile" />
+          <NavigationProperty Name="SupportLogs" Relationship="PALSiteDBModel.FK_SupportLogs_Employees" FromRole="Employee" ToRole="SupportLog" />
+          <NavigationProperty Name="Contributions" Relationship="PALSiteDBModel.FK_dbo_Contributions_dbo_Employees_Employee_Pin" FromRole="Employee" ToRole="Contribution" />
+          <Property Name="SchemeId" Type="Double" />
+        </EntityType>
+        <EntityType Name="EmployerDetail">
+          <Key>
+            <PropertyRef Name="Recno" />
+          </Key>
+          <Property Name="Recno" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_dbo_Employees_dbo_EmployerDetails_Employer_Recno" FromRole="EmployerDetails" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="ExitProcessMaster">
+          <Key>
+            <PropertyRef Name="Pin" />
+          </Key>
+          <Property Name="Pin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="LoginTrail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LoginDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NextOfKin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_Pin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OtherNames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Relation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_dbo_NextOfKin_dbo_Employees_Employee_Pin" FromRole="NextOfKin" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StateCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZoneCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_Employees_dbo_EmployerDetails_Employer_Recno">
+          <End Role="EmployerDetails" Type="Self.EmployerDetail" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployerDetails">
+              <PropertyRef Name="Recno" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Employer_Recno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NextOfKin_dbo_Employees_Employee_Pin">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="NextOfKin" Type="Self.NextOfKin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="NextOfKin">
+              <PropertyRef Name="Employee_Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PALSiteDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BenefitClasses" EntityType="Self.BenefitClass" />
+          <EntitySet Name="BenefitDocuments" EntityType="Self.BenefitDocument" />
+          <EntitySet Name="CaseSummaries" EntityType="Self.CaseSummary" />
+          <EntitySet Name="ClientUpdates" EntityType="Self.ClientUpdate" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployerDetails" EntityType="Self.EmployerDetail" />
+          <EntitySet Name="ExitProcessMasters" EntityType="Self.ExitProcessMaster" />
+          <EntitySet Name="LoginTrails" EntityType="Self.LoginTrail" />
+          <EntitySet Name="NextOfKins" EntityType="Self.NextOfKin" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <AssociationSet Name="FK_dbo_Employees_dbo_EmployerDetails_Employer_Recno" Association="Self.FK_dbo_Employees_dbo_EmployerDetails_Employer_Recno">
+            <End Role="EmployerDetails" EntitySet="EmployerDetails" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NextOfKin_dbo_Employees_Employee_Pin" Association="Self.FK_dbo_NextOfKin_dbo_Employees_Employee_Pin">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="NextOfKin" EntitySet="NextOfKins" />
+          </AssociationSet>
+          <EntitySet Name="BenefitSubClasses" EntityType="PALSiteDBModel.BenefitSubClass" />
+          <EntitySet Name="Status" EntityType="PALSiteDBModel.Status" />
+          <EntitySet Name="BenefitApplications" EntityType="PALSiteDBModel.BenefitApplication" />
+          <AssociationSet Name="FK_dbo_BenefitApplications_dbo_Employees_Employee_Pin" Association="PALSiteDBModel.FK_dbo_BenefitApplications_dbo_Employees_Employee_Pin">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="BenefitApplication" EntitySet="BenefitApplications" />
+          </AssociationSet>
+          <EntitySet Name="EmployeeBenefitDocuments" EntityType="PALSiteDBModel.EmployeeBenefitDocument" />
+          <AssociationSet Name="FK_EmployeeBenefitDocument_BenefitApplications" Association="PALSiteDBModel.FK_EmployeeBenefitDocument_BenefitApplications">
+            <End Role="BenefitApplication" EntitySet="BenefitApplications" />
+            <End Role="EmployeeBenefitDocument" EntitySet="EmployeeBenefitDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BenefitApplications_Status" Association="PALSiteDBModel.FK_BenefitApplications_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="BenefitApplication" EntitySet="BenefitApplications" />
+          </AssociationSet>
+          <EntitySet Name="UploadTypes" EntityType="PALSiteDBModel.UploadType" />
+          <EntitySet Name="UserPublications" EntityType="PALSiteDBModel.UserPublication" />
+          <AssociationSet Name="FK_UserPublications_Employees" Association="PALSiteDBModel.FK_UserPublications_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="UserPublication" EntitySet="UserPublications" />
+          </AssociationSet>
+          <EntitySet Name="Publications" EntityType="PALSiteDBModel.Publication" />
+          <AssociationSet Name="FK_Publications_Publications" Association="PALSiteDBModel.FK_Publications_Publications">
+            <End Role="UploadType" EntitySet="UploadTypes" />
+            <End Role="Publication" EntitySet="Publications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPublications_Publications" Association="PALSiteDBModel.FK_UserPublications_Publications">
+            <End Role="Publication" EntitySet="Publications" />
+            <End Role="UserPublication" EntitySet="UserPublications" />
+          </AssociationSet>
+          <EntitySet Name="AccountManagers" EntityType="PALSiteDBModel.AccountManager" />
+          <AssociationSet Name="FK_Employees_AccountManager" Association="PALSiteDBModel.FK_Employees_AccountManager">
+            <End Role="AccountManager" EntitySet="AccountManagers" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <EntitySet Name="PriceHistories" EntityType="PALSiteDBModel.PriceHistory" />
+          <EntitySet Name="Shemes" EntityType="PALSiteDBModel.Sheme" />
+          <EntitySet Name="AssetAllocations" EntityType="PALSiteDBModel.AssetAllocation" />
+          <EntitySet Name="AssetTypes" EntityType="PALSiteDBModel.AssetType" />
+          <AssociationSet Name="FK_AssetAllocation_AssetType" Association="PALSiteDBModel.FK_AssetAllocation_AssetType">
+            <End Role="AssetType" EntitySet="AssetTypes" />
+            <End Role="AssetAllocation" EntitySet="AssetAllocations" />
+          </AssociationSet>
+          <EntitySet Name="TempCustomerInformations" EntityType="PALSiteDBModel.TempCustomerInformation" />
+          <EntitySet Name="ChangeOfNameProfiles" EntityType="PALSiteDBModel.ChangeOfNameProfile" />
+          <AssociationSet Name="FK_ChangeOfNameProfile_Employees" Association="PALSiteDBModel.FK_ChangeOfNameProfile_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ChangeOfNameProfile" EntitySet="ChangeOfNameProfiles" />
+          </AssociationSet>
+          <EntitySet Name="ChangeOfAddressProfiles" EntityType="PALSiteDBModel.ChangeOfAddressProfile" />
+          <AssociationSet Name="FK_ChangeOfAddressProfile_Employees" Association="PALSiteDBModel.FK_ChangeOfAddressProfile_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ChangeOfAddressProfile" EntitySet="ChangeOfAddressProfiles" />
+          </AssociationSet>
+          <EntitySet Name="SupportCategories" EntityType="PALSiteDBModel.SupportCategory" />
+          <EntitySet Name="SupportLogs" EntityType="PALSiteDBModel.SupportLog" />
+          <AssociationSet Name="FK_SupportLogs_Employees" Association="PALSiteDBModel.FK_SupportLogs_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="SupportLog" EntitySet="SupportLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportLogs_SupportCategories" Association="PALSiteDBModel.FK_SupportLogs_SupportCategories">
+            <End Role="SupportCategory" EntitySet="SupportCategories" />
+            <End Role="SupportLog" EntitySet="SupportLogs" />
+          </AssociationSet>
+          <EntitySet Name="UserProfiles" EntityType="PALSiteDBModel.UserProfile" />
+          <EntitySet Name="SecretQuestionsStores" EntityType="PALSiteDBModel.SecretQuestionsStore" />
+          <AssociationSet Name="FK_UserProfile_SecretQuestionsStore" Association="PALSiteDBModel.FK_UserProfile_SecretQuestionsStore">
+            <End Role="SecretQuestionsStore" EntitySet="SecretQuestionsStores" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <EntitySet Name="Contributions" EntityType="PALSiteDBModel.Contribution" />
+          <AssociationSet Name="FK_dbo_Contributions_dbo_Employees_Employee_Pin" Association="PALSiteDBModel.FK_dbo_Contributions_dbo_Employees_Employee_Pin">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Contribution" EntitySet="Contributions" />
+          </AssociationSet>
+          <EntitySet Name="webpages_Membership" EntityType="PALSiteDBModel.webpages_Membership" />
+          <EntitySet Name="webpages_Roles" EntityType="PALSiteDBModel.webpages_Roles" />
+          <AssociationSet Name="webpages_UsersInRoles" Association="PALSiteDBModel.webpages_UsersInRoles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="BenefitSubClass">
+          <Key>
+            <PropertyRef Name="BenefitSubClassId" />
+          </Key>
+          <Property Name="BenefitSubClassId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BenefitClassId" Type="Int32" />
+          <Property Name="BenefitSubClassValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BenefitApplications" Relationship="PALSiteDBModel.FK_BenefitApplications_Status" FromRole="Status" ToRole="BenefitApplication" />
+        </EntityType>
+        <EntityType Name="BenefitApplication">
+          <Key>
+            <PropertyRef Name="BenefitApplicationId" />
+          </Key>
+          <Property Name="Employee_Pin" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BenefitSubClassId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="DateApplied" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BenefitApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="PALSiteDBModel.FK_dbo_BenefitApplications_dbo_Employees_Employee_Pin" FromRole="BenefitApplication" ToRole="Employee" />
+          <NavigationProperty Name="EmployeeBenefitDocuments" Relationship="PALSiteDBModel.FK_EmployeeBenefitDocument_BenefitApplications" FromRole="BenefitApplication" ToRole="EmployeeBenefitDocument" />
+          <NavigationProperty Name="Status1" Relationship="PALSiteDBModel.FK_BenefitApplications_Status" FromRole="BenefitApplication" ToRole="Status" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_dbo_BenefitApplications_dbo_Employees_Employee_Pin">
+          <End Type="PALSiteDBModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="PALSiteDBModel.BenefitApplication" Role="BenefitApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="BenefitApplication">
+              <PropertyRef Name="Employee_Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EmployeeBenefitDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateUploaded" Type="DateTime" Precision="3" />
+          <Property Name="BenefitApplicationId" Type="Int32" />
+          <Property Name="ext" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BenefitApplication" Relationship="PALSiteDBModel.FK_EmployeeBenefitDocument_BenefitApplications" FromRole="EmployeeBenefitDocument" ToRole="BenefitApplication" />
+        </EntityType>
+        <Association Name="FK_EmployeeBenefitDocument_BenefitApplications">
+          <End Type="PALSiteDBModel.BenefitApplication" Role="BenefitApplication" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.EmployeeBenefitDocument" Role="EmployeeBenefitDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BenefitApplication">
+              <PropertyRef Name="BenefitApplicationId" />
+            </Principal>
+            <Dependent Role="EmployeeBenefitDocument">
+              <PropertyRef Name="BenefitApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BenefitApplications_Status">
+          <End Type="PALSiteDBModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.BenefitApplication" Role="BenefitApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="BenefitApplication">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UploadType">
+          <Key>
+            <PropertyRef Name="UploadTypeId" />
+          </Key>
+          <Property Name="UploadTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UploadTypeValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Publications" Relationship="PALSiteDBModel.FK_Publications_Publications" FromRole="UploadType" ToRole="Publication" />
+        </EntityType>
+        <EntityType Name="UserPublication">
+          <Key>
+            <PropertyRef Name="UserPublicationsId" />
+          </Key>
+          <Property Name="UserPublicationsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PublicationsId" Type="Int32" />
+          <Property Name="EmployeePin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="PALSiteDBModel.FK_UserPublications_Employees" FromRole="UserPublication" ToRole="Employee" />
+          <NavigationProperty Name="Publication" Relationship="PALSiteDBModel.FK_UserPublications_Publications" FromRole="UserPublication" ToRole="Publication" />
+        </EntityType>
+        <Association Name="FK_UserPublications_Employees">
+          <End Type="PALSiteDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.UserPublication" Role="UserPublication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="UserPublication">
+              <PropertyRef Name="EmployeePin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Publication">
+          <Key>
+            <PropertyRef Name="PublicationsId" />
+          </Key>
+          <Property Name="PublicationsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UploadTypeId" Type="Int32" />
+          <Property Name="DateUploaded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PublicationName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Extension" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="UploadType" Relationship="PALSiteDBModel.FK_Publications_Publications" FromRole="Publication" ToRole="UploadType" />
+          <NavigationProperty Name="UserPublications" Relationship="PALSiteDBModel.FK_UserPublications_Publications" FromRole="Publication" ToRole="UserPublication" />
+        </EntityType>
+        <Association Name="FK_Publications_Publications">
+          <End Type="PALSiteDBModel.UploadType" Role="UploadType" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.Publication" Role="Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UploadType">
+              <PropertyRef Name="UploadTypeId" />
+            </Principal>
+            <Dependent Role="Publication">
+              <PropertyRef Name="UploadTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPublications_Publications">
+          <End Type="PALSiteDBModel.Publication" Role="Publication" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.UserPublication" Role="UserPublication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publication">
+              <PropertyRef Name="PublicationsId" />
+            </Principal>
+            <Dependent Role="UserPublication">
+              <PropertyRef Name="PublicationsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccountManager">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Region" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AccountManagers" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phonenumber" Type="Double" />
+          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="PALSiteDBModel.FK_Employees_AccountManager" FromRole="AccountManager" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Employees_AccountManager">
+          <End Type="PALSiteDBModel.AccountManager" Role="AccountManager" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountManager">
+              <PropertyRef Name="ManagerId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PriceHistory">
+          <Key>
+            <PropertyRef Name="price_history_id" />
+          </Key>
+          <Property Name="price_history_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="scheme_id" Type="Double" />
+          <Property Name="valuation_date" Type="DateTime" Precision="3" />
+          <Property Name="bid_price" Type="Double" />
+          <Property Name="offer_price" Type="Double" />
+        </EntityType>
+        <EntityType Name="Sheme">
+          <Key>
+            <PropertyRef Name="SCHEME_TABLE_ID" />
+          </Key>
+          <Property Name="SCHEME_ID" Type="Double" />
+          <Property Name="SCHEME_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="REPORT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="OFFER_PRICE" Type="Double" />
+          <Property Name="BID_PRICE" Type="Double" />
+          <Property Name="OFFER_FOR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BID_FOR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TOTAL_UNITS" Type="Double" />
+          <Property Name="TOTAL_RECEIVABLES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NAV" Type="Double" />
+          <Property Name="GAV" Type="Double" />
+          <Property Name="PAY_COT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="COT_PERCENT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CALC_INTEREST" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="INTEREST_RATE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SCHEME_LOGO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="START_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_PROC_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATE_SUCCESS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ACCRUED_DIVIDEND" Type="Double" />
+          <Property Name="ACCRUED_FEES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PAID_FEES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MANAGER_HEADER_PAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MANAGER_FOOTER_PAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PROMISE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SCHEME_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="COMPANY_ID" Type="Double" />
+          <Property Name="LAST_POSTED" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="STAMP_DUTIES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NSE_CSCS_FEES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BROKERAGE_FEES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SEC_FEES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MGMT_FEE_PAYABLE_PERC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EXCESS_FEE_PAYABLE_PERC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VAT_ON_EXCESS_FEE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TRANS_FEE_PAYABLE_PERC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PERCENTAGE_ABOVE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FEE_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CONTRACT_BEGINS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CONTRACT_ENDS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ACCOUNT_STATUS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CSCS_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ACCOUNT_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TROI_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OPENING_NAV" Type="Double" />
+          <Property Name="RATING_REQUIRMENT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="POINT_TO_NOTE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="INVEST_GUIDELINE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="STANDING_ORDERS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="REPORTING_FREQ" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AGREEMENT_EXPIRY" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SCHEME_TABLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="AssetAllocation">
+          <Key>
+            <PropertyRef Name="asset_allocation_id" />
+          </Key>
+          <Property Name="asset_allocation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="equity" Type="Double" />
+          <Property Name="fixed_income" Type="Double" />
+          <Property Name="money_market" Type="Double" />
+          <Property Name="others" Type="Double" />
+          <Property Name="asset_allocation_type" Type="Int32" />
+          <NavigationProperty Name="AssetType" Relationship="PALSiteDBModel.FK_AssetAllocation_AssetType" FromRole="AssetAllocation" ToRole="AssetType" />
+        </EntityType>
+        <EntityType Name="AssetType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AssetAllocations" Relationship="PALSiteDBModel.FK_AssetAllocation_AssetType" FromRole="AssetType" ToRole="AssetAllocation" />
+        </EntityType>
+        <Association Name="FK_AssetAllocation_AssetType">
+          <End Type="PALSiteDBModel.AssetType" Role="AssetType" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.AssetAllocation" Role="AssetAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AssetAllocation">
+              <PropertyRef Name="asset_allocation_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TempCustomerInformation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobile_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="parmanent_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="home_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="mobile_number2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_created" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ChangeOfNameProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OldName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NewName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Doc1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Doc2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ext1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Ext2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DocumentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateUploaded" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="PALSiteDBModel.FK_ChangeOfNameProfile_Employees" FromRole="ChangeOfNameProfile" ToRole="Employee" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OldFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NewFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OldMiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NewMiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ChangeOfNameProfile_Employees">
+          <End Type="PALSiteDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.ChangeOfNameProfile" Role="ChangeOfNameProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="ChangeOfNameProfile">
+              <PropertyRef Name="Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ChangeOfAddressProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OldAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NewAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DateUploaded" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="PALSiteDBModel.FK_ChangeOfAddressProfile_Employees" FromRole="ChangeOfAddressProfile" ToRole="Employee" />
+          <Property Name="DocumentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Doc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ext" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ChangeOfAddressProfile_Employees">
+          <End Type="PALSiteDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.ChangeOfAddressProfile" Role="ChangeOfAddressProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="ChangeOfAddressProfile">
+              <PropertyRef Name="Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SupportCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SupportLogs" Relationship="PALSiteDBModel.FK_SupportLogs_SupportCategories" FromRole="SupportCategory" ToRole="SupportLog" />
+        </EntityType>
+        <EntityType Name="SupportLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Summary" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateSubmitted" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="PALSiteDBModel.FK_SupportLogs_Employees" FromRole="SupportLog" ToRole="Employee" />
+          <NavigationProperty Name="SupportCategory" Relationship="PALSiteDBModel.FK_SupportLogs_SupportCategories" FromRole="SupportLog" ToRole="SupportCategory" />
+        </EntityType>
+        <Association Name="FK_SupportLogs_Employees">
+          <End Type="PALSiteDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.SupportLog" Role="SupportLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="SupportLog">
+              <PropertyRef Name="Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportLogs_SupportCategories">
+          <End Type="PALSiteDBModel.SupportCategory" Role="SupportCategory" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.SupportLog" Role="SupportLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SupportCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SupportLog">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="SecretQuestionId" Type="Int32" />
+          <Property Name="SecretQuestionAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VerificationCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InvestorId" Type="Int32" />
+          <Property Name="Employee_Pin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="QuestionKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstSignOn" Type="Boolean" />
+          <NavigationProperty Name="SecretQuestionsStore" Relationship="PALSiteDBModel.FK_UserProfile_SecretQuestionsStore" FromRole="UserProfile" ToRole="SecretQuestionsStore" />
+          <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="webpages_Roles" Relationship="PALSiteDBModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+        </EntityType>
+        <EntityType Name="SecretQuestionsStore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserProfiles" Relationship="PALSiteDBModel.FK_UserProfile_SecretQuestionsStore" FromRole="SecretQuestionsStore" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_UserProfile_SecretQuestionsStore">
+          <End Type="PALSiteDBModel.SecretQuestionsStore" Role="SecretQuestionsStore" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecretQuestionsStore">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="SecretQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Contribution">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Recno" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Pin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeContribution" Type="Double" />
+          <Property Name="EmployerContribution" Type="Double" />
+          <Property Name="ContributionDate" Type="DateTime" Precision="3" />
+          <Property Name="OtherContribution" Type="Double" />
+          <Property Name="EmployeeFee" Type="Double" />
+          <Property Name="EmployerFee" Type="Double" />
+          <Property Name="OtherFee" Type="Double" />
+          <Property Name="TotalUnits" Type="Double" />
+          <Property Name="TotalContribution" Type="Double" />
+          <Property Name="TotalFee" Type="Double" />
+          <Property Name="EmployeeBf" Type="Double" />
+          <Property Name="EmployerBf" Type="Double" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="TransDate" Type="DateTime" Precision="3" />
+          <Property Name="SchemeId" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="TransUnitsR" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="TransUnitsV" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="ValueDate" Type="DateTime" Precision="3" />
+          <Property Name="TransId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VatFee" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="Flaguploaded" Type="Byte" />
+          <Property Name="FundId" Type="Int32" />
+          <Property Name="ReconciliationTransid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Withdrawal" Type="Double" />
+          <Property Name="WithdrawalVc" Type="Double" />
+          <NavigationProperty Name="Employee" Relationship="PALSiteDBModel.FK_dbo_Contributions_dbo_Employees_Employee_Pin" FromRole="Contribution" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_dbo_Contributions_dbo_Employees_Employee_Pin">
+          <End Type="PALSiteDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="PALSiteDBModel.Contribution" Role="Contribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Pin" />
+            </Principal>
+            <Dependent Role="Contribution">
+              <PropertyRef Name="Employee_Pin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsConfirmed" Type="Boolean" />
+          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserProfiles" Relationship="PALSiteDBModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="webpages_UsersInRoles">
+          <End Type="PALSiteDBModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+          <End Type="PALSiteDBModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PALSiteDBModelStoreContainer" CdmEntityContainer="PALSiteDBEntities">
+          <EntitySetMapping Name="BenefitClasses">
+            <EntityTypeMapping TypeName="PALSiteDBModel.BenefitClass">
+              <MappingFragment StoreEntitySet="BenefitClass">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BenefitName" ColumnName="BenefitName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BenefitDocuments">
+            <EntityTypeMapping TypeName="PALSiteDBModel.BenefitDocument">
+              <MappingFragment StoreEntitySet="BenefitDocument">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseSummaries">
+            <EntityTypeMapping TypeName="PALSiteDBModel.CaseSummary">
+              <MappingFragment StoreEntitySet="CaseSummary">
+                <ScalarProperty Name="CaseSummaryId" ColumnName="CaseSummaryId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CurrentStatus" ColumnName="CurrentStatus" />
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CaseType" ColumnName="CaseType" />
+                <ScalarProperty Name="CLosedBy" ColumnName="CLosedBy" />
+                <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+                <ScalarProperty Name="IswebGenerated" ColumnName="IswebGenerated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientUpdates">
+            <EntityTypeMapping TypeName="PALSiteDBModel.ClientUpdate">
+              <MappingFragment StoreEntitySet="ClientUpdate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="PALSiteDBModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="SchemeId" ColumnName="SchemeId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="RegistrationCode" ColumnName="RegistrationCode" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="MobileNumber2" ColumnName="MobileNumber2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Employer_Recno" ColumnName="Employer_Recno" />
+                <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployerDetails">
+            <EntityTypeMapping TypeName="PALSiteDBModel.EmployerDetail">
+              <MappingFragment StoreEntitySet="EmployerDetails">
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+                <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExitProcessMasters">
+            <EntityTypeMapping TypeName="PALSiteDBModel.ExitProcessMaster">
+              <MappingFragment StoreEntitySet="ExitProcessMaster">
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginTrails">
+            <EntityTypeMapping TypeName="PALSiteDBModel.LoginTrail">
+              <MappingFragment StoreEntitySet="LoginTrail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NextOfKins">
+            <EntityTypeMapping TypeName="PALSiteDBModel.NextOfKin">
+              <MappingFragment StoreEntitySet="NextOfKin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Employee_Pin" ColumnName="Employee_Pin" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+                <ScalarProperty Name="Relation" ColumnName="Relation" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="PALSiteDBModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="ZoneCode" ColumnName="ZoneCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BenefitSubClasses">
+            <EntityTypeMapping TypeName="PALSiteDBModel.BenefitSubClass">
+              <MappingFragment StoreEntitySet="BenefitSubClass">
+                <ScalarProperty Name="BenefitSubClassValue" ColumnName="BenefitSubClassValue" />
+                <ScalarProperty Name="BenefitClassId" ColumnName="BenefitClassId" />
+                <ScalarProperty Name="BenefitSubClassId" ColumnName="BenefitSubClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="PALSiteDBModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="StatusValue" ColumnName="StatusValue" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BenefitApplications">
+            <EntityTypeMapping TypeName="PALSiteDBModel.BenefitApplication">
+              <MappingFragment StoreEntitySet="BenefitApplications">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="BenefitApplicationId" ColumnName="BenefitApplicationId" />
+                <ScalarProperty Name="DateApplied" ColumnName="DateApplied" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BenefitSubClassId" ColumnName="BenefitSubClassId" />
+                <ScalarProperty Name="Employee_Pin" ColumnName="Employee_Pin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeBenefitDocuments">
+            <EntityTypeMapping TypeName="PALSiteDBModel.EmployeeBenefitDocument">
+              <MappingFragment StoreEntitySet="EmployeeBenefitDocument">
+                <ScalarProperty Name="ext" ColumnName="ext" />
+                <ScalarProperty Name="BenefitApplicationId" ColumnName="BenefitApplicationId" />
+                <ScalarProperty Name="DateUploaded" ColumnName="DateUploaded" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UploadTypes">
+            <EntityTypeMapping TypeName="PALSiteDBModel.UploadType">
+              <MappingFragment StoreEntitySet="UploadType">
+                <ScalarProperty Name="UploadTypeValue" ColumnName="UploadTypeValue" />
+                <ScalarProperty Name="UploadTypeId" ColumnName="UploadTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPublications">
+            <EntityTypeMapping TypeName="PALSiteDBModel.UserPublication">
+              <MappingFragment StoreEntitySet="UserPublications">
+                <ScalarProperty Name="EmployeePin" ColumnName="EmployeePin" />
+                <ScalarProperty Name="PublicationsId" ColumnName="PublicationsId" />
+                <ScalarProperty Name="UserPublicationsId" ColumnName="UserPublicationsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publications">
+            <EntityTypeMapping TypeName="PALSiteDBModel.Publication">
+              <MappingFragment StoreEntitySet="Publications">
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="PublicationName" ColumnName="PublicationName" />
+                <ScalarProperty Name="DateUploaded" ColumnName="DateUploaded" />
+                <ScalarProperty Name="UploadTypeId" ColumnName="UploadTypeId" />
+                <ScalarProperty Name="PublicationsId" ColumnName="PublicationsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountManagers">
+            <EntityTypeMapping TypeName="PALSiteDBModel.AccountManager">
+              <MappingFragment StoreEntitySet="AccountManager">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="Phonenumber" ColumnName="Phonenumber" />
+                <ScalarProperty Name="AccountManagers" ColumnName="AccountManagers" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceHistories">
+            <EntityTypeMapping TypeName="PALSiteDBModel.PriceHistory">
+              <MappingFragment StoreEntitySet="PriceHistory">
+                <ScalarProperty Name="offer_price" ColumnName="offer_price" />
+                <ScalarProperty Name="bid_price" ColumnName="bid_price" />
+                <ScalarProperty Name="valuation_date" ColumnName="valuation_date" />
+                <ScalarProperty Name="scheme_id" ColumnName="scheme_id" />
+                <ScalarProperty Name="price_history_id" ColumnName="price_history_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shemes">
+            <EntityTypeMapping TypeName="PALSiteDBModel.Sheme">
+              <MappingFragment StoreEntitySet="Sheme">
+                <ScalarProperty Name="SCHEME_TABLE_ID" ColumnName="SCHEME_TABLE_ID" />
+                <ScalarProperty Name="AGREEMENT_EXPIRY" ColumnName="AGREEMENT_EXPIRY" />
+                <ScalarProperty Name="REPORTING_FREQ" ColumnName="REPORTING_FREQ" />
+                <ScalarProperty Name="STANDING_ORDERS" ColumnName="STANDING_ORDERS" />
+                <ScalarProperty Name="INVEST_GUIDELINE" ColumnName="INVEST_GUIDELINE" />
+                <ScalarProperty Name="POINT_TO_NOTE" ColumnName="POINT_TO_NOTE" />
+                <ScalarProperty Name="RATING_REQUIRMENT" ColumnName="RATING_REQUIRMENT" />
+                <ScalarProperty Name="OPENING_NAV" ColumnName="OPENING_NAV" />
+                <ScalarProperty Name="TROI_CODE" ColumnName="TROI_CODE" />
+                <ScalarProperty Name="ACCOUNT_CODE" ColumnName="ACCOUNT_CODE" />
+                <ScalarProperty Name="CSCS_CODE" ColumnName="CSCS_CODE" />
+                <ScalarProperty Name="ACCOUNT_STATUS" ColumnName="ACCOUNT_STATUS" />
+                <ScalarProperty Name="CONTRACT_ENDS" ColumnName="CONTRACT_ENDS" />
+                <ScalarProperty Name="CONTRACT_BEGINS" ColumnName="CONTRACT_BEGINS" />
+                <ScalarProperty Name="FEE_TYPE" ColumnName="FEE_TYPE" />
+                <ScalarProperty Name="PERCENTAGE_ABOVE" ColumnName="PERCENTAGE_ABOVE" />
+                <ScalarProperty Name="TRANS_FEE_PAYABLE_PERC" ColumnName="TRANS_FEE_PAYABLE_PERC" />
+                <ScalarProperty Name="VAT_ON_EXCESS_FEE" ColumnName="VAT_ON_EXCESS_FEE" />
+                <ScalarProperty Name="EXCESS_FEE_PAYABLE_PERC" ColumnName="EXCESS_FEE_PAYABLE_PERC" />
+                <ScalarProperty Name="MGMT_FEE_PAYABLE_PERC" ColumnName="MGMT_FEE_PAYABLE_PERC" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="SEC_FEES" ColumnName="SEC_FEES" />
+                <ScalarProperty Name="BROKERAGE_FEES" ColumnName="BROKERAGE_FEES" />
+                <ScalarProperty Name="NSE_CSCS_FEES" ColumnName="NSE_CSCS_FEES" />
+                <ScalarProperty Name="STAMP_DUTIES" ColumnName="STAMP_DUTIES" />
+                <ScalarProperty Name="LAST_POSTED" ColumnName="LAST_POSTED" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="SCHEME_TYPE" ColumnName="SCHEME_TYPE" />
+                <ScalarProperty Name="PROMISE" ColumnName="PROMISE" />
+                <ScalarProperty Name="MANAGER_FOOTER_PAGE" ColumnName="MANAGER_FOOTER_PAGE" />
+                <ScalarProperty Name="MANAGER_HEADER_PAGE" ColumnName="MANAGER_HEADER_PAGE" />
+                <ScalarProperty Name="PAID_FEES" ColumnName="PAID_FEES" />
+                <ScalarProperty Name="ACCRUED_FEES" ColumnName="ACCRUED_FEES" />
+                <ScalarProperty Name="ACCRUED_DIVIDEND" ColumnName="ACCRUED_DIVIDEND" />
+                <ScalarProperty Name="UPDATE_SUCCESS" ColumnName="UPDATE_SUCCESS" />
+                <ScalarProperty Name="LAST_PROC_DATE" ColumnName="LAST_PROC_DATE" />
+                <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                <ScalarProperty Name="SCHEME_LOGO" ColumnName="SCHEME_LOGO" />
+                <ScalarProperty Name="INTEREST_RATE" ColumnName="INTEREST_RATE" />
+                <ScalarProperty Name="CALC_INTEREST" ColumnName="CALC_INTEREST" />
+                <ScalarProperty Name="COT_PERCENT" ColumnName="COT_PERCENT" />
+                <ScalarProperty Name="PAY_COT" ColumnName="PAY_COT" />
+                <ScalarProperty Name="GAV" ColumnName="GAV" />
+                <ScalarProperty Name="NAV" ColumnName="NAV" />
+                <ScalarProperty Name="TOTAL_RECEIVABLES" ColumnName="TOTAL_RECEIVABLES" />
+                <ScalarProperty Name="TOTAL_UNITS" ColumnName="TOTAL_UNITS" />
+                <ScalarProperty Name="BID_FOR" ColumnName="BID_FOR" />
+                <ScalarProperty Name="OFFER_FOR" ColumnName="OFFER_FOR" />
+                <ScalarProperty Name="BID_PRICE" ColumnName="BID_PRICE" />
+                <ScalarProperty Name="OFFER_PRICE" ColumnName="OFFER_PRICE" />
+                <ScalarProperty Name="REPORT_DATE" ColumnName="REPORT_DATE" />
+                <ScalarProperty Name="SCHEME_NAME" ColumnName="SCHEME_NAME" />
+                <ScalarProperty Name="SCHEME_ID" ColumnName="SCHEME_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssetAllocations">
+            <EntityTypeMapping TypeName="PALSiteDBModel.AssetAllocation">
+              <MappingFragment StoreEntitySet="AssetAllocation">
+                <ScalarProperty Name="asset_allocation_type" ColumnName="asset_allocation_type" />
+                <ScalarProperty Name="others" ColumnName="others" />
+                <ScalarProperty Name="money_market" ColumnName="money_market" />
+                <ScalarProperty Name="fixed_income" ColumnName="fixed_income" />
+                <ScalarProperty Name="equity" ColumnName="equity" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="asset_allocation_id" ColumnName="asset_allocation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssetTypes">
+            <EntityTypeMapping TypeName="PALSiteDBModel.AssetType">
+              <MappingFragment StoreEntitySet="AssetType">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempCustomerInformations">
+            <EntityTypeMapping TypeName="PALSiteDBModel.TempCustomerInformation">
+              <MappingFragment StoreEntitySet="TempCustomerInformation">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date_created" ColumnName="date-created" />
+                <ScalarProperty Name="mobile_number2" ColumnName="mobile-number2" />
+                <ScalarProperty Name="home_address" ColumnName="home-address" />
+                <ScalarProperty Name="parmanent_address" ColumnName="parmanent-address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobile_number" ColumnName="mobile-number" />
+                <ScalarProperty Name="pin" ColumnName="pin" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChangeOfNameProfiles">
+            <EntityTypeMapping TypeName="PALSiteDBModel.ChangeOfNameProfile">
+              <MappingFragment StoreEntitySet="ChangeOfNameProfile">
+                <ScalarProperty Name="NewMiddleName" ColumnName="NewMiddleName" />
+                <ScalarProperty Name="OldMiddleName" ColumnName="OldMiddleName" />
+                <ScalarProperty Name="NewFirstName" ColumnName="NewFirstName" />
+                <ScalarProperty Name="OldFirstName" ColumnName="OldFirstName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateUploaded" ColumnName="DateUploaded" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="Ext2" ColumnName="Ext2" />
+                <ScalarProperty Name="Ext1" ColumnName="Ext1" />
+                <ScalarProperty Name="Doc2" ColumnName="Doc2" />
+                <ScalarProperty Name="Doc1" ColumnName="Doc1" />
+                <ScalarProperty Name="NewName" ColumnName="NewName" />
+                <ScalarProperty Name="OldName" ColumnName="OldName" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChangeOfAddressProfiles">
+            <EntityTypeMapping TypeName="PALSiteDBModel.ChangeOfAddressProfile">
+              <MappingFragment StoreEntitySet="ChangeOfAddressProfile">
+                <ScalarProperty Name="Ext" ColumnName="Ext" />
+                <ScalarProperty Name="Doc" ColumnName="Doc" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="DateUploaded" ColumnName="DateUploaded" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NewAddress" ColumnName="NewAddress" />
+                <ScalarProperty Name="OldAddress" ColumnName="OldAddress" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupportCategories">
+            <EntityTypeMapping TypeName="PALSiteDBModel.SupportCategory">
+              <MappingFragment StoreEntitySet="SupportCategories">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupportLogs">
+            <EntityTypeMapping TypeName="PALSiteDBModel.SupportLog">
+              <MappingFragment StoreEntitySet="SupportLogs">
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="PALSiteDBModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="FirstSignOn" ColumnName="FirstSignOn" />
+                <ScalarProperty Name="QuestionKey" ColumnName="QuestionKey" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="Employee_Pin" ColumnName="Employee_Pin" />
+                <ScalarProperty Name="InvestorId" ColumnName="InvestorId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
+                <ScalarProperty Name="SecretQuestionAnswer" ColumnName="SecretQuestionAnswer" />
+                <ScalarProperty Name="SecretQuestionId" ColumnName="SecretQuestionId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecretQuestionsStores">
+            <EntityTypeMapping TypeName="PALSiteDBModel.SecretQuestionsStore">
+              <MappingFragment StoreEntitySet="SecretQuestionsStore">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contributions">
+            <EntityTypeMapping TypeName="PALSiteDBModel.Contribution">
+              <MappingFragment StoreEntitySet="Contributions">
+                <ScalarProperty Name="WithdrawalVc" ColumnName="WithdrawalVc" />
+                <ScalarProperty Name="Withdrawal" ColumnName="Withdrawal" />
+                <ScalarProperty Name="ReconciliationTransid" ColumnName="ReconciliationTransid" />
+                <ScalarProperty Name="FundId" ColumnName="FundId" />
+                <ScalarProperty Name="Flaguploaded" ColumnName="Flaguploaded" />
+                <ScalarProperty Name="VatFee" ColumnName="VatFee" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+                <ScalarProperty Name="TransUnitsV" ColumnName="TransUnitsV" />
+                <ScalarProperty Name="TransUnitsR" ColumnName="TransUnitsR" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="SchemeId" ColumnName="SchemeId" />
+                <ScalarProperty Name="TransDate" ColumnName="TransDate" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="EmployerBf" ColumnName="EmployerBf" />
+                <ScalarProperty Name="EmployeeBf" ColumnName="EmployeeBf" />
+                <ScalarProperty Name="TotalFee" ColumnName="TotalFee" />
+                <ScalarProperty Name="TotalContribution" ColumnName="TotalContribution" />
+                <ScalarProperty Name="TotalUnits" ColumnName="TotalUnits" />
+                <ScalarProperty Name="OtherFee" ColumnName="OtherFee" />
+                <ScalarProperty Name="EmployerFee" ColumnName="EmployerFee" />
+                <ScalarProperty Name="EmployeeFee" ColumnName="EmployeeFee" />
+                <ScalarProperty Name="OtherContribution" ColumnName="OtherContribution" />
+                <ScalarProperty Name="ContributionDate" ColumnName="ContributionDate" />
+                <ScalarProperty Name="EmployerContribution" ColumnName="EmployerContribution" />
+                <ScalarProperty Name="EmployeeContribution" ColumnName="EmployeeContribution" />
+                <ScalarProperty Name="Employee_Pin" ColumnName="Employee_Pin" />
+                <ScalarProperty Name="Recno" ColumnName="Recno" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="PALSiteDBModel.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="PALSiteDBModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="PALSiteDBModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

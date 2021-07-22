@@ -1,0 +1,85 @@
+﻿@model PalRSA.Core.Models.AdminProfile
+
+
+@{
+    ViewBag.Title = "Create Admin";
+}
+
+<script src="~/Scripts/new-profile-validator.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#roles option[value='Customer']").remove();
+    });
+</script>
+
+<div class="rightside  view-profile">
+    <div class="details">
+        <h3>Create Admin</h3>
+    </div>
+
+    @if ((string)TempData["Status"] == "success")
+    {
+        <div class="alert alert-success exceed">
+            <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Admin Updated</span>
+        </div>
+    }
+    else if ((string)TempData["Status"] == "exists")
+    {
+        <div class="alert alert-warning col-md-12" id="warning">
+            <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"> Username already exists.</span>
+        </div>
+    }
+
+    <div class="">
+        @using (Html.BeginForm("CreateAdmin", "Admin", FormMethod.Post, new { @class = "form-horizontal", id = "edit-admin" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <h4><span class="label label-default">User Name</span></h4>
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Username)
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h4><span class="label label-default">Admin Name</span></h4>
+                    @Html.TextBoxFor(model => model.AdminName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AdminName)
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h4><span class="label label-default">Email Address</span></h4>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <h4><span class="label label-default">New Password</span></h4>
+                    @Html.PasswordFor(model => model.NewPassword, new { @class = "form-control" })
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h4><span class="label label-default">Confirm Password</span></h4>
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h4><span class="label label-default">Role</span></h4>
+                    @Html.DropDownListFor(model => model.RoleId, ViewData["Roles"] as SelectList, "--Select Role--", new { @class = "form-control status", id="roles" })
+                </div>
+            </div>
+
+            <div class="row"></div>
+            <br />
+                <div class="row">
+                    <div class="col-md-2 pull-right">
+                        <input type="submit" value="Create Admin" class="btn-primary btn-block" />
+                    </div>
+                </div>
+        }
+    </div>
+</div>
+
+

@@ -1,0 +1,344 @@
+﻿
+@using PalRSA.Core.DataAccess
+
+@{
+    PALSiteDBEntities db = new PALSiteDBEntities();
+    int id = ViewBag.Id;
+    var BenefitProcess = db.BenefitProcesses.Where(d => d.Id==id && d.PIN == User.Identity.Name).FirstOrDefault();
+    ViewBag.Title = "Benefit Upload";
+}
+
+<style>
+    #success_alert {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99999
+    }
+</style>
+
+@*@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+<div class="col-md-offset-1 col-md-9">
+    <span class="alert alert-success" id="success_alert" style="display: none"></span>
+    <!-- general form elements -->
+    <div>
+        <div class="box box-default" style="padding-left:40px; padding-right:40px;">
+            <div class="box-header with-border">
+
+            </div>
+            <h2>Benefit Upload</h2> <hr />
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="form-group">
+                    <label class="control-label  col-md-2">Client Name</label>
+                    <div class="col-md-10">
+                        <input id="ClientName" name="ClientName" type="text" readonly="readonly" class="form-control" value="@BenefitProcess.EmployeeName" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="form-group">
+                    <label class="control-label  col-md-2">PIN</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PIN" name="PIN" readonly="readonly" class="form-control" value="@BenefitProcess.PIN" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="form-group">
+                    <label class="control-label  col-md-2">Benefit Class</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PaymentTypeId" name="PaymentTypeId" readonly="readonly" class="form-control" value="@BenefitProcess.BenefitClass.BenefitName" />
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Document/File </label>
+
+                    <div class="col-md-4">
+                        @Html.DropDownList("BenefitDocument", ViewBag.BenefitDocument as IEnumerable<SelectListItem>, new { @class = "form-control dropdown col-md-3" })                        
+                    </div>
+                    <div class="col-md-4">
+                        <input type="file" name="file" id="file" class="form-control" />
+                        <input type="text" name="fileName" id="fileName" class="hidden" />
+                        <input type="hidden" name="BenProcessId" id="BenProcessId" value="@ViewBag.Id" class="hidden" />
+                    </div>
+                    <div class="col-md-1"><input type="submit" value="Upload"  name="submitDoc" id="submitDoc" class="btn" /></div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <ul class="list-group">
+                    <li class="list-group-item" style="background-color: #15b2ad ; color:white"> List of Documents to be Uploaded</li>
+                    <li class="list-group-item" style="color: #15b2ad">* Passport Photograph </li>
+                    <li class="list-group-item" style="color: #15b2ad">* Proof of Age </li>
+                    <li class="list-group-item" style="color: #15b2ad">* Bank Account Details </li>
+                    <li class="list-group-item" style="color: #15b2ad">* Exit Letter from Employer </li>
+                    <li class="list-group-item" style="color: #15b2ad">* Employer Confirmation Letter</li>
+                    <li class="list-group-item" style="color: #15b2ad">* Request Letter </li>
+                    <li class="list-group-item" style="color: #15b2ad">* Means of Identification</li>
+
+                </ul>
+            </div>
+
+
+            @*--------*@
+            <div>
+                <h3>Uploaded document(s)</h3>
+                <table class="table" id="tableUploads">
+                    <thead>
+                        <tr><td>Document ID</td><td>Document File</td><td>Document</td></tr>
+                    </thead>
+                    <tbody>
+
+                        @{
+
+                            //Response.Write(id);
+                            //return ;
+                            var docs = db.BenefitFiles.Where(x => x.BenefitProcessId == BenefitProcess.Id);
+                            foreach (var doc in docs.ToList())
+                            {
+
+                                <tr>
+                                    <td>@doc.FileId </td>
+                                    <td>@doc.FileName </td>
+                                    <td>
+                                        <a href="@Url.Action("ShowSupportFile",new { id=doc.FileId })">
+                                            &nbsp;
+                                            <i class="fa fa-paperclip fa-3x" aria-hidden="true"></i>@doc.FileName &nbsp;
+                                            <img id="signature" width="100" height="100" src="@Url.Action("ShowSupportFile", new { id=doc.FileId })" alt="@doc.FileName" title="@doc.FileName" />
+                                        </a>
+                                    </td>
+                                    <td><button class="btn btn-danger" onclick="DeleteImage(@doc.FileId);"><span>Remove Image</span></button></td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+           
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @*<input type="submit" value="Submit" id="finish" name="submit" class="btn btn-default" />*@
+                    <a id="finish" name="finish" href="@Url.Action("SubmitBenefitApplication", "Customer")" class="btn btn-primary">Submit Application</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+    function removeRow(Id) {
+        debugger
+        $("#table>tbody>tr").each(function () {
+            /*alert (Id)*/
+            var id = $(this).children("td").eq(0).html();//Name
+            if (Id == id) {
+                $(this).children("td").remove();
+
+                $("#success_alert").html("File Deleted Successfully").show();
+                //alert("Please Check Your Form");
+
+                setTimeout(function () {
+                    $("#success_alert").fadeOut('fast');
+                }, 5000);
+            }
+
+
+
+        });
+    }
+    function DeleteImage(id) {
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: "/Customer/DeleteBenefitFile/" + id,
+            success: function (data) {
+                if (data.success) {
+                    /* alert(data.message)*/
+                    window.location.reload();
+                    removeRow(id)
+                }
+                else {
+                    alert(data.message)
+                }
+            },
+            error: function (a, jqXHR, exception) {
+            }
+        });
+    }
+
+    $("#submitDoc").click(function (e) {
+       // alert("click")
+
+        if ($('#file').get(0).files.length === 0) {
+            e.preventDefault();
+            $("#err_alert").html("Please select a file.").show();
+            //alert("Please Check Your Form");
+
+            setTimeout(function () {
+                $('#err_alert').fadeOut('fast');
+            }, 5000);
+            return false;
+        }
+
+        var documentName = [];
+        $("#tableUploads>tbody>tr").each(function () {
+            var name = $(this).children("td").eq(1).html();//Name
+            documentName.push($.trim(name))
+        });
+
+        var BenDocument = $("#BenefitDocument option:selected").text()
+
+
+
+        if (documentName.includes(BenDocument )) {
+            e.preventDefault();
+            $("#err_alert").html(BenDocument + " has been uploaded before. Please delete the previous file to make new upload").show();
+            //alert("Please Check Your Form");
+
+            setTimeout(function () {
+                $('#err_alert').fadeOut('fast');
+            }, 10000);
+            return false;
+        }
+
+
+        var fd = new FormData();
+        var files = $('#file')[0].files[0];
+        var benDoc = $('#BenefitDocument').val();
+        var benProcessId = $('#BenProcessId').val();
+        fd.append('file', files);
+        fd.append('BenefitDocument', benDoc);
+        fd.append('BenefitProcessId', benProcessId);
+
+        $.ajax({
+            url: '/Customer/UploadAPI',
+            type: 'post',
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                //debugger
+                if (response.success == true) {
+                    markup = "<tr>" +
+                        "<td>" + response.benefit.FileId + "</td>" +
+                        "<td>" + benDoc + "</td>" +
+                        "<td> <a href='/Customer/ShowSupportFile/" + response.filepath + "'>&nbsp;" +
+                        "<i class='fa fa-paperclip fa-3x' aria-hidden='true'></i>" + benDoc
+                        + "<img id='signature' width='100' height='100' src='/Customer/ShowSupportFile/" + response.fileId + "' alt='" + benDoc + "' title='" + benDoc + "' /></a> </td>" +
+                        "<td><button class='btn btn-danger' onclick='DeleteImage(" + response.benefit.FileId + ")'><span>Remove Image</span></button></td>" + "</tr>";
+                    tableBody = $("table tbody");
+                    tableBody.append(markup);
+
+                    $("#success_alert").html("File Uploaded Successfully").show();
+                    //alert("Please Check Your Form");
+
+                    setTimeout(function () {
+                        $("#success_alert").fadeOut('fast');
+                    }, 5000);
+                    //alert('file uploaded');
+                }
+                else {
+                    alert('file not uploaded');
+                }
+            },
+        });
+
+
+    })
+
+
+    $("#finish").click(function (e) {
+        var documentName = [];
+
+        //e.preventDefault();
+        $("#tableUploads>tbody>tr").each(function () {
+            var name = $(this).children("td").eq(1).html();
+            documentName.push($.trim(name))
+            //var department = $(this).children("td").eq(2).html();//Department
+            //var jobTitle = $(this).children("td").eq(2).html();//Job Title
+
+
+        });
+
+        //alert(documentName);
+
+        var err_mgs = "";
+        //&& (documentName.includes(" Means of ID National Driver's License") || documentName.includes("Means of ID Permanent Voter's card") ||
+        //    documentName.includes("Means of ID International Passport")&& documentName.includes("Letter of Employment or Letter of Appointment (mandatory)") && documentName.includes("Birth certificate or declaration of age (mandatory)") &&)
+
+        if (!documentName.includes("Passport Photograph") || !documentName.includes("Proof of Age") || !documentName.includes("Bank Account Details")
+            || !documentName.includes("Exit Letter from Employer") || !documentName.includes("Employer Confirmation Letter") || !documentName.includes("Request Letter")
+            || !documentName.includes("Means of Identification")) {
+
+            e.preventDefault();
+            if (!documentName.includes("Passport Photograph")) {
+                err_mgs += "Passport Photograph, \n";
+            }
+
+            if (!documentName.includes("Proof of Age")) {
+                err_mgs += "Proof of Age, \n";
+            }
+
+            if (!documentName.includes("Bank Account Details")) {
+                err_mgs += "Bank Account Details, \n";
+            }
+
+            if (!documentName.includes("Exit Letter from Employer")) {
+                err_mgs += "Exit Letter from Employer, \n";
+            }
+
+            if (!documentName.includes("Employer Confirmation Letter")) {
+                err_mgs += "Employer Confirmation Letter, \n";
+            }
+
+            if (!documentName.includes("Request Letter")) {
+                err_mgs += "Request Letter, \n";
+            }
+
+            if (!documentName.includes("Means of Identification")) {
+                err_mgs += "Means of Identification, \n";
+            }
+
+
+           
+
+            $("#err_alert").html("Please upload  \r\n" + err_mgs).show();
+            //alert("Please Check Your Form");
+
+            setTimeout(function () {
+                $('#err_alert').fadeOut('fast');
+            }, 15000);
+            return false
+        }
+
+
+    });
+
+
+
+</script>
+
+
+

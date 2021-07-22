@@ -1,0 +1,108 @@
+﻿@model PalRSA.Core.DataAccess.BenefitProcess
+@using PalRSA.Core.DataAccess
+
+@{
+    PALSiteDBEntities _db = new PALSiteDBEntities();
+    var UserDetail = _db.Employees.Where(a => a.Pin == User.Identity.Name).FirstOrDefault();
+    var employeeName = UserDetail.Surname + " " + UserDetail.FirstName + " " + UserDetail.OtherNames;
+    ViewBag.Title = "Benefit Request";
+}
+
+
+@using (Html.BeginForm("CreateBenefitRequest", "Customer", FormMethod.Post, new { @class = "", id = "create" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-md-offset-3 col-md-6">
+
+        <!-- general form elements -->
+        <div>
+            <div class="box box-default" style="padding-left:40px; padding-right:40px;">
+                <div class="box-header with-border">
+
+                </div>
+                <h2>@ViewBag.Title</h2> <hr />
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12">PIN </label>
+                            <div class="col-md-12">
+                                <input id="PIN" class="form-control" name="PIN" value="@UserDetail.Pin" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12">Title </label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("TitleId", null, "Select Title", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12">Benefit Type </label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("PaymentTypeId", null, "Select Benefit Type", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Employee Name </label>
+                            <div class="col-md-12">
+                                <input id="EmployeeName" class="form-control" name="EmployeeName" value="@employeeName" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Mobile </label>
+                            <div class="col-md-12">
+                                <input id="MobilePhone" class="form-control" name="MobilePhone" value="@UserDetail.MobileNumber" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-12"> Email </label>
+                            <div class="col-md-12">
+                                <input id="Email" class="form-control" name="Email" value="@UserDetail.Email" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-2 ">
+                                <input type="submit" value="Submit Request" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                </div>
+
+        </div>
+    </div>
+
+
+}

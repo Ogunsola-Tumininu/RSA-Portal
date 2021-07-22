@@ -1,0 +1,422 @@
+﻿@model PalRSA.Core.Models.CFIUpdateViewModel
+
+@{
+    ViewBag.Title = "RSA Holder Recapturing Form";
+}
+
+<section class="content">
+
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@ViewBag.Title</h3>
+                </div>
+                <div class="box-header with-border" @*style="padding-top: 15px;padding-bottom: 15px;"*@>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <b>NOTES:</b>
+                        </div>
+                        <div class="col-md-1">
+                            <span style="color: red;float:right">*</span>
+                        </div>
+                        <div class="col-md-9">
+                            Indicates Mandatory Fields
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-1">
+                            <span style="color: red;float:right">**</span>
+                        </div>
+                        <div class="col-md-9">
+                            Indicates Conditional Mandatory Fields for Non-Nigerian Citizen
+                        </div>
+                    </div>
+                </div>
+
+
+                @using (Html.BeginForm("edit", "CFI", FormMethod.Post, new { id = "form", enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(d=>d.UserId) // ,EmploymentDetailId,NextOfKinId
+                    @Html.HiddenFor(d => d.EmploymentDetailId)
+                    @Html.HiddenFor(d => d.NextOfKinId)
+                    @Html.HiddenFor(d => d.SalaryId)
+
+                    <<ul class="nav nav-tabs">
+
+                        <li class="active"><a href="#tab1" id="rsaHolder" data-toggle="tab">RSA Holder's Details</a></li>
+                        @*<li><a href="#tab1" id="personalData" data-toggle="tab" >Personal Data</a></li>*@
+                        <li><a href="#tab3" id="employmentRecord" data-toggle="tab">Employment Record</a></li>
+                        <li><a href="#tab4" id="salary" data-toggle="tab">Salary Structure</a></li>
+                        <li><a href="#tab5" id="nextOfKin" data-toggle="tab">Next Of Kin</a></li>
+                        <li><a href="#tab6" id="contributorCertification" data-toggle="tab">Contributor's Certificatiion</a></li>
+                        @*<li><a href="#tab7" id="officeUseOnly" data-toggle="tab">For Office Use Only</a></li>*@
+                        @*<li><a href="#tab8" id="PFACertification" data-toggle="tab">PFA Certification</a></li>*@
+                        <li><a href="#tab9" id="images" data-toggle="tab">Images</a></li>
+
+                    </ul>
+
+
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            @{ Html.RenderPartial("_PersonalInfo", Model); }
+                            @*@{ Html.RenderPartial("_RsaHolder", Model); }*@
+                        </div>
+                        @*<div class="tab-pane" id="tab2">
+                            @{ Html.RenderPartial("_PersonalInfo", Model); }
+                        </div>*@
+                        <div class="tab-pane" id="tab3">
+                            @{ Html.RenderPartial("_EmploymentDetails", Model); }
+                        </div>
+                        <div class="tab-pane" id="tab4">
+                            @{ Html.RenderPartial("_SalaryStructure", Model); }
+                        </div>
+                        <div class="tab-pane" id="tab5">
+                            @{ Html.RenderPartial("_NextOfKin", Model); }
+                        </div>
+                        <div class="tab-pane" id="tab6">
+                            @{ Html.RenderPartial("_ContributorCertification", Model); }
+                        </div>
+                        @*<div class="tab-pane" id="tab7">
+                            @{ Html.RenderPartial("_OfficeUseOnly", Model); }
+                        </div>*@
+                        @*<div class="tab-pane" id="tab8">
+                            @{ Html.RenderPartial("_PFACertification", Model); }
+                        </div>*@
+                        <div class="tab-pane" id="tab9">
+                            @{ Html.RenderPartial("_EditImage", Model); }
+                        </div>
+
+                    </div>
+                                }
+
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+@section scripts{
+    <script>
+        $('#submit').click(function (e) {
+            debugger;
+            //For Personal Data Tab
+           // if ($('#NationalityId option:selected').text() != 'Nigerian' && $('#NationalityId option:selected').text() != '-- Select Nationality --') {
+                //if ($('#IPN').val() == '') {
+                //    e.preventDefault();
+                //    alert("IPN is required in Personal Data.");
+                //    $('#personalData').click();
+                //    $('#IPN').focus();
+          //  }
+             if ($('#NIN').val() == '' && $('#BVN').val() == '') {
+                e.preventDefault();
+                alert("BVN or NIN is required in Personal Data.");
+                $('#personalData').click();
+                $('#bvn').focus();
+            }
+            else if ($('#PersonalStateOfOriginId option:selected').val() == '') {
+                e.preventDefault();
+                alert("Personal State Of Origin is required in Personal Data.");
+                $('#personalData').click();
+                $('#PersonalStateOfOriginId').focus();
+            }
+            else if ($('#LGAId option:selected').val() == '') {
+                e.preventDefault();
+                alert("LGA is required in Personal Data.");
+                $('#personalData').click();
+                $('#LGAId').focus();
+            }
+            else if ($('#City').val() == '') {
+                e.preventDefault();
+                alert("City is required in Personal Data.");
+                $('#personalData').click();
+                $('#City').focus();
+            }
+            else if ($('#LGACode').val() == '') {
+                e.preventDefault();
+                alert("LGA Code is required in Personal Data.");
+                $('#personalData').click();
+                $('#LGACode').focus();
+            }
+            else if ($('#StateCode').val() == '') {
+                e.preventDefault();
+                alert("State of Residence Code is required in Personal Data.");
+                $('#personalData').click();
+                $('#StateCode').focus();
+            }
+            else if ($('#CountryCode').val() == '') {
+                e.preventDefault();
+                alert("Country Residence Code is required in Personal Data.");
+                $('#personalData').click();
+                $('#CountryCode').focus();
+            }
+                //else if ($('#ZIP').val() == '') {
+                //    e.preventDefault();
+                //    alert("Zip is required in Personal Data");
+                //    $('#personalData').click();
+                //    $('#ZIP').focus();
+                //}
+                //For Employement Record Tab
+                //else if (!($("#IsEmployerIPPIS").is(":checked"))) {
+                //    e.preventDefault();
+                //    alert("Employer Under IPPIS is required in Employement Record.");
+                //    $('#employmentRecord').click();
+                //    $('#IsEmployerIPPIS').focus();
+                //}
+            else if ($('#EmployerName').val() == '') {
+                e.preventDefault();
+                alert("Employer Name is required in Employement Record.");
+                $('#employmentRecord').click();
+                $('#EmployerName').focus();
+            }
+            else if ($('#EmployerCity').val() == '') {
+                e.preventDefault();
+                alert("Employer City is required in Employement Record.");
+                $('#employmentRecord').click();
+                $('#EmployerCity').focus();
+            }
+            else if ($('#LocalGovernmentCode').val() == '') {
+                e.preventDefault();
+                alert("Employer LGA Code is required in Employement Record.");
+                $('#employmentRecord').click();
+                $('#LocalGovernmentCode').focus();
+            }
+            else if ($('#EmployerStateCode').val() == '') {
+                e.preventDefault();
+                alert("Employer State Code is required in Employement Record.");
+                $('#employmentRecord').click();
+                $('#EmployerStateCode').focus();
+            }
+            else if ($('#EmployerCountryCode').val() == '') {
+                e.preventDefault();
+                alert("Employer Country Code is required in Employement Record.");
+                $('#employmentRecord').click();
+                $('#EmployerCountryCode').focus();
+            }
+                //else if ($('#EmployerZIP').val() == '') {
+                //    e.preventDefault();
+                //    alert("Employer ZIP is required in Employement Record.");
+                //    $('#employmentRecord').click();
+                //    $('#EmployerZIP').focus();
+                //}
+                //else if ($('#ServiceIdNo').val() == '') {
+                //    e.preventDefault();
+                //    alert("Service / ID No is required in Employement Record.");
+                //    $('#employmentRecord').click();
+                //    $('#ServiceIdNo').focus();
+                //}
+                //else if ($('#DateOfFirstAppointment').val() == '') {
+                //    e.preventDefault();
+                //    alert("Date Of First Appointment is required in Employement Record.");
+                //    $('#employmentRecord').click();
+                //    $('#DateOfFirstAppointment').focus();
+                //}
+                //else if ($('#DateOfCurrentAppointment').val() == '') {
+                //    e.preventDefault();
+                //    alert("Date Of Current Appointment is required in Employement Record.");
+                //    $('#employmentRecord').click();
+                //    $('#DateOfCurrentAppointment').focus();
+                //}
+            else if ($('#DateOfEmployment').val() == '') {
+                e.preventDefault();
+                alert("Date Of Employment is required in Employement Record.");
+                $('#employmentRecord').click();
+                $('#DateOfEmployment').focus();
+            }
+                //For Next Of Kin Tab
+            else if ($('#KinCity').val() == '') {
+                e.preventDefault();
+                alert("Kin City is required in Next Of Kin");
+                $('#nextOfKin').click();
+                $('#KinCity').focus();
+            }
+            else if ($('#KinLGAId1 option:selected').val() == '') {
+                e.preventDefault();
+                alert("Kin LGA is required in Next Of Kin");
+                $('#nextOfKin').click();
+                $('#KinLGAId1').focus();
+            }
+            else if ($('#KinStateId option:selected').val() == '') {
+                e.preventDefault();
+                alert("State of Residence Code is required in Next Of Kin.");
+                $('#nextOfKin').click();
+                $('#KinStateId').focus();
+            }
+            else if ($('#KinCountryId option:selected').val() == '') {
+                e.preventDefault();
+                alert("Kin Country is required in Next Of Kin.");
+                $('#nextOfKin').click();
+                $('#KinCountryId').focus();
+            }
+                //else if ($('#KinZip').val() == '') {
+                //    e.preventDefault();
+                //    alert("Kin Zip is required in Next Of Kin.");
+                //    $('#nextOfKin').click();
+                //    $('#KinZip').focus();
+                //}
+            
+
+            if (!ValidateDateFormat($("#DateOfBirth").val()) && $("#DateOfBirth").val().trim() != '') {
+                e.preventDefault();
+                alert("Please Enter a Valid Date Of Birth.");
+                $('#personalData').click();
+                $("#DateOfBirth").focus();
+            }
+            else if (!ValidateDateFormat($("#DateOfFirstAppointment").val()) && $("#DateOfFirstAppointment").val().trim() != '') {
+                e.preventDefault();
+                alert("Please Enter a Valid Date Of Fist Appointment.");
+                $('#employmentRecord').click();
+                $("#DateOfFirstAppointment").focus();
+            }
+            else if (!ValidateDateFormat($("#DateOfCurrentAppointment").val()) && $("#DateOfCurrentAppointment").val().trim() != '') {
+                e.preventDefault();
+                alert("Please Enter a Valid Date Of Current Appointment.");
+                $('#employmentRecord').click();
+                $("#DateOfCurrentAppointment").focus();
+            }
+            else if (!ValidateDateFormat($("#DateOfEmployment").val()) && $("#DateOfEmployment").val().trim() != '') {
+                e.preventDefault();
+                alert("Please Enter a Valid Date Of Employment.");
+                $('#employmentRecord').click();
+                $("#DateOfEmployment").focus();
+            }
+            else if (!ValidateDateFormat($("#ContributorDate").val()) && $("#ContributorDate").val().trim() != '') {
+                e.preventDefault();
+                alert("Please Enter a Valid Date.");
+                $('#contributorCertification').click();
+                $("#ContributorDate").focus();
+            }
+            else if (!ValidateDateFormat($("#PFADate").val()) && $("#PFADate").val().trim() != '') {
+                e.preventDefault();
+                alert("Please Enter a Valid Date.");
+                $('#PFACertification').click();
+                $("#PFADate").focus();
+            }
+
+
+        });
+
+        $(function () {
+
+            $('.datePicker').datepicker({
+                defaultViewDate: null,
+                dateFormat: 'dd-M-yy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '-100:+100',
+                buttonImage: "../../Content/images/calender-icon.png",
+                showOn: "both",
+                buttonImageOnly: true,
+                autoclose: true,
+                buttonImageText: "Calendar",
+                format: 'dd-M-yy',
+                todayHighlight: true
+
+            }).on('changeDate', function (selected) {
+                if (callBack != undefined) {
+                    callBack(this, selected);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+
+            enableButtons();
+
+            $('#PersonalStateOfOriginId').change(function () {
+
+                var selected = $("#PersonalStateOfOriginId").find(':selected').val();
+
+
+                $("#LGAId").html("<option value='Loading...'>Loading... </option>");
+                if (selected == "") {
+                    $("#LGAId").html("<option value='Please select state'>Please select state</option>");
+                }
+
+                var jqxhr = $.get("/CFI/GetLGA?StateId=" + selected, function (response, status, xhr) {
+                    $("#LGAId").html(response);
+
+                }).fail(function (jqxhr, textStatus, error) {
+                    var err = textStatus + ", " + error;
+                    alert("Request Failed: " + err);
+                });
+
+            });            $('#KinStateId').change(function () {
+
+                var selected = $("#KinStateId").find(':selected').val();
+
+                $("#KinLGAId1").html("<option value='Loading...'>Loading... </option>");
+                if (selected == "") {
+                    $("#KinLGAId1").html("<option value='Please select NOK state'>Please select NOK state</option>");
+                }
+
+                var jqxhr = $.get("/CFI/GetLGA?StateId=" + selected, function (response, status, xhr) {
+                    $("#KinLGAId1").html(response);
+
+                }).fail(function (jqxhr, textStatus, error) {
+                    var err = textStatus + ", " + error;
+                    alert("Request Failed: " + err);
+                });
+
+            });
+
+            $('#StateCode').change(function () {
+
+                var selected = $("#StateCode").find(':selected').val();
+
+                $("#LGACode").html("<option value='Loading...'>Loading... </option>");
+                if (selected == "") {
+                    $("#LGACode").html("<option value='Please select state'>Please select state</option>");
+                }
+
+                var jqxhr = $.get("/CFI/GetLGACode?StateCode=" + selected, function (response, status, xhr) {
+                    $("#LGACode").html(response);
+
+                }).fail(function (jqxhr, textStatus, error) {
+                    var err = textStatus + ", " + error;
+                    alert("Request Failed: " + err);
+                });
+
+            });
+
+
+
+            //enableUSBControl();
+            //disableButtons();
+
+            //$('input[type=radio][name=SelectDeviceConnectivityType]').change(function () {
+            //  alert('called');
+            //    if (this.value === 'USB') {
+            //        enableUSBControl();
+            //    } else if (this.value === 'Bluetooth') {
+            //        enableBluetoothControl();
+            //    }
+            //});
+        });
+
+        function disableButtons() {
+
+            $('.biometric-disabled').prop('disabled', true);
+
+        }
+
+        function enableButtons() {
+            $('.biometric-disabled').prop('disabled', false);
+        }
+
+
+
+
+
+
+    </script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+}

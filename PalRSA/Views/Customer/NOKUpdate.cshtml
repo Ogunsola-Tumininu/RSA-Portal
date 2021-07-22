@@ -1,0 +1,564 @@
+﻿@model PalRSA.Core.DataAccess.TempNOKInformation
+@using PalRSA.Core.DataAccess
+
+@{
+    PALSiteDBEntities _db = new PALSiteDBEntities();
+    var clientPin = _db.NextOfKins.Where(d => d.Employee_Pin == User.Identity.Name).FirstOrDefault();
+    var empDetail = _db.Employees.Where(d => d.Pin == User.Identity.Name).FirstOrDefault();
+    ViewBag.Title = "Next Of Kin Update";
+}
+
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+
+        <div class="col-md-12">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+
+
+        <!-- left column -->
+        <div class="col-md-offset-3 col-md-6">
+
+            <!-- general form elements -->
+            <div>
+                <div class="box box-default" style="padding-left:40px; padding-right:40px;">
+
+
+                    <div class="box-body divBoxHeight">
+                        <h2>@ViewBag.Title</h2>
+                        <hr />
+
+                        @if (TempData["Success"] != null)
+                        {
+                            <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+                        }
+
+                        @if (TempData["err"] != null)
+                        {
+                            <p class="alert alert-danger" id="successMessage">
+                                @TempData["err"]
+                        </p>
+                    }
+
+                        <div class="row" style="margin-bottom: 10px;">
+
+                            <input id="ClientMobile" type="hidden" value="@empDetail.MobileNumber" readonly />
+                            <input id="EmailAddress" type="hidden" value="@empDetail.Email" readonly />
+
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label class="control-label col-md-12">Client Pin </label>
+                                    <div class="col-md-12">
+                                        <input id="Pin" class="form-control" name="Pin" value="@clientPin.Employee_Pin" readonly />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label class="control-label col-md-12">Surname </label>
+                                    <div class="col-md-12">
+                                        <input id="Surname" class="form-control" name="Surname" value="@clientPin.Surname" />
+                                        @Html.ValidationMessageFor(m => m.Surname, "", new { @class = "text-red" })
+                                        <span class="text-danger" id="mobile_err"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label class="control-label col-md-12">First Name </label>
+                                    <div class="col-md-12">
+                                        @*@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })*@
+                                        <input id="FirstName" class="form-control" name="FirstName" value="@clientPin.FirstName" />
+                                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-red" })
+                                        <span class="text-danger" id="mobile_err"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Other Name </label>
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(m => m.OtherNames, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.OtherNames, "", new { @class = "text-red" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label class="control-label col-md-12">Gender  </label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("Gender", null, "-- Select Gender --", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-red" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label class="control-label col-md-12">Relationship </label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("Relation", null, "-- Select Relationship --", htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label class="control-label col-md-12">Title </label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("KinTitle", null, "-- Select Title --", htmlAttributes: new { @class = "form-control" })
+                                        <span class="text-danger" id="title_err"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Country </label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("CountryCode", null, "Select country", htmlAttributes: new { @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(m => m.CountryOfResidanceId, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">House No./Name </label>
+                                    <div class="col-md-12">
+                                        @*@Html.TextBoxFor(m => m.HouseNo, new { @class = "form-control" })*@
+                                        <input id="HouseNo" class="form-control" name="HouseNo" value="@clientPin.HouseNo" />
+                                        @Html.ValidationMessageFor(m => m.HouseNo, "", new { @class = "text-red" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group doubleRequired">
+                                    <label class="control-label col-md-12">Street Name : </label>
+                                    <div class="col-md-12">
+                                        @*@Html.TextBoxFor(m => m.StreetName, new { @class = "form-control" })*@
+                                        <input id="StreetName" class="form-control" name="StreetName" value="@clientPin.StreetName" />
+                                        @Html.ValidationMessageFor(m => m.StreetName, "", new { @class = "text-red" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group doubleRequired">
+                                    <label class="control-label col-md-12">Village/Town/City : </label>
+                                    <div class="col-md-12">
+                                        @*@Html.TextBoxFor(m => m.City, new { @class = "form-control" })*@
+                                        <input id="City" class="form-control" name="City" value="@clientPin.City" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group doubleRequired">
+                                    <label class="control-label col-md-12">State of Residence : </label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("StateCode", null, "Select state", htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group doubleRequired">
+                                    <label class="control-label col-md-12">Local Government Area </label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("LGACode", null, "Select LGA", htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Email </label>
+                                    <div class="col-md-12">
+                                        @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })*@
+                                        <input id="Email" class="form-control" name="Email" value="@clientPin.Email" />
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-red" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label class="control-label col-md-12">Mobile Number </label>
+                                    <div class="col-md-12">
+                                        @*@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })*@
+                                        <input id="PhoneNumber" class="form-control" name="PhoneNumber" value="@clientPin.PhoneNumber" />
+                                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-red" })
+                                        <span class="text-danger" id="mobile_err"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label class="control-label col-md-12">Address </label>
+                                    <div class="col-md-12">
+                                        <input id="Address" class="form-control" name="Address" value="@clientPin.Address" />
+                                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-red" })
+                                        <span class="text-danger" id="mobile_err"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    @*<input type="submit" value="Save Changes" class="btn btn-primary" />*@
+                                    <button type="button" on class="btn btn-primary btn-block big reg" id="reg" data-toggle="modal" data-target="#myModal">Save Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <!-- Modal for verification of token -->
+    <div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Enter Token</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="col-md-12">
+                        <p>Please enter the token sent to your registered mobile no/Email.</p>
+                        <label class="control-label" for="token">Token: </label>
+
+                        <input id="token" name="token" class="form-control" maxlength="6" type="text" required />
+                        <span class="text-danger" id="token_err"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button value="Save Changes" name="submit" id="submitNOKDetails" type="submit" class="btn btn-primary big reg ">
+                        Submit
+                    </button>
+                    <button type="button" class="btn btn-default" id="close_btn" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+  
+    <script>
+        $('input[type=submit]').click(function (e) {
+            debugger;
+            var selected = $("input[type='radio'][name='IsNigerian']:checked");
+            var isNig = selected.val();
+
+            var nationality = $('#NationalityId option:selected').text();
+            var countryCode = $('#CountryCode  option:selected').text();
+
+            if (countryCode === 'Nigeria') {
+                // Check for residence
+                if ($('#StateCode').val() == '') {
+                    e.preventDefault();
+                    alert("State of Residence is required.");
+                    $('#StateCode').focus();
+                    return;
+                }
+                else if ($('#LocalGovernmentCode').val() == '') {
+                    e.preventDefault();
+                    alert("LGA is required.");
+                    $('#LocalGovernmentCode').focus();
+                    return;
+                }
+                else if ($('#Building').val() == '') {
+                    e.preventDefault();
+                    alert("House No is required.");
+                    $('#Building').focus();
+                    return;
+                }
+                else if ($('#Street').val() == '') {
+                    e.preventDefault();
+                    alert("Street is required.");
+                    $('#Street').focus();
+                    return;
+                }
+
+            }
+        });
+
+        $(document).ready(function () {
+
+             $('#btnEr').click(function () {
+                // alert('');
+                $.get('@Url.Action("Autocomplete", "Customer")',
+                    { term: $('searchValue') })
+            .done(function (response) {
+             alert("success");
+             $("#EmployerCode").val(response.Recno);
+         });
+            });
+
+
+             $("#searchValue").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("Autocomplete", "Customer")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    label: val.EmployerName,
+                                    value: val.Recno,
+                                    customerId: val.Recno
+                                }
+                            }))
+                        }
+                    })
+                },
+                select: function (event, ui) {
+                    $("#EmployerCode").val(ui.item.customerId);
+                    $("#fullname").val(ui.item.label);
+                }
+             });
+
+
+            $('#StateCode').change(function () {
+
+                var selected = $("#StateCode").find(':selected').val();
+
+                $("#LGACode").html("<option value='Loading...'>Loading... </option>");
+                if (selected == "") {
+                    $("#LGACode").html("<option value='Please select state'>Please select state</option>");
+                }
+
+                var jqxhr = $.get("/Customer/GetLGACode?StateCode=" + selected, function (response, status, xhr) {
+                    $("#LGACode").html(response);
+
+                }).fail(function (jqxhr, textStatus, error) {
+                    var err = textStatus + ", " + error;
+                    alert("Request Failed: " + err);
+                });
+            });
+
+
+        });
+    </script>
+    <script>
+         var validateMobile = true
+            $("#MobileNumber").focusout(function () {
+                let isnum = /^\d+$/.test($("#MobileNumber").val());
+                if (!isnum) {
+                    $("#mobile_err").html("Please enter only numeric value.");
+                    validateMobile = false;
+                }
+                else {
+                    $("#mobile_err").html("");
+                    validateMobile = true;
+                }
+            })
+
+            $("#reg").click(function (e) {
+                debugger;
+               // alert('I am called')
+                var pin = $("#Pin").val();
+                var surname = $("#Surname").val();
+                var firstname = $("#FirstName").val();
+                var mobile = $("#PhoneNumber").val();
+                var email = $("#Email").val();               
+                var title = $("#TitleName").val();
+                //var nin = $("#NIN").val();
+                // var msg = checkNIN(mobile, e);
+
+                if (validateMobile == false) {
+                    e.preventDefault();
+                    return;
+                }
+
+
+                if (mobile == "") {
+                    e.preventDefault();
+                    $("#PhoneNumber").focus();
+                    $("#err_alert").html("Mobile number is required").show();
+                    setTimeout(function () {
+                        $('#err_alert').fadeOut('fast');
+                    }, 10000);
+                    return false;
+                }
+
+                if (mobile.length < 11) {
+                    e.preventDefault();
+                    $("#PhoneNumber").focus();
+                    $("#err_alert").html("Please check your mobile number.").show();
+                    setTimeout(function () {
+                        $('#err_alert').fadeOut('fast');
+                    }, 10000);
+                    return false;
+                }
+
+                if (firstname == "") {
+                    e.preventDefault();
+                    $("#FirstName").focus();
+                    $("#err_alert").html("First name is required").show();
+                    setTimeout(function () {
+                        $('#err_alert').fadeOut('fast');
+                    }, 10000);
+                    return false;
+                }
+
+                if (surname == "") {
+                    e.preventDefault();
+                    $("#Surname").focus();
+                    $("#err_alert").html("Surname is required").show();
+                    setTimeout(function () {
+                        $('#err_alert').fadeOut('fast');
+                    }, 10000);
+                    return false;
+                } 
+
+                if (title == "") {
+                    e.preventDefault();
+                    $("#TitleName").focus();
+                    $("#err_alert").html("Title is required").show();
+                    setTimeout(function () {
+                        $('#err_alert').fadeOut('fast');
+                    }, 10000);
+                    return false;
+                }
+               
+                sendToken($("#ClientMobile").val(), $("#EmailAddress").val())
+
+            })
+
+            $("#submitNOKDetails").on("click", function (e) {
+                $("#token_err").html("")
+                var token = $("#token").val();
+                var check = checkToken(token)
+                if (check.exist == false) {
+                    e.preventDefault();
+                    $("#err_alert").html("Token does not exist").show();
+                    $("#token_err").html("Token does not exist")
+                    setTimeout(function () {
+                        $('#err_alert').fadeOut('fast');
+                    }, 10000);
+                    return false;
+                }
+
+                if (check.message == "Expired") {
+                    e.preventDefault();
+                    $("#err_alert").html("Token has expired").show();
+                    $("#token_err").html("Token has expired.")
+                    setTimeout(function () {
+                        $('#err_alert').fadeOut('fast');
+                    }, 10000);
+                    return false;
+                }
+            })
+
+            function sendToken(mobile, email) {
+                //debugger
+             $.ajax({
+                   url: '@Url.Action("SendToken", "Customer")',
+                   type: 'POST',
+                   dataType: 'json',
+                   data: {mobile: mobile, email: email},
+                   cache: false,
+                   success: function (results) {
+                     /*  alert(results.message);*/
+                       $("#err_success").html(results.message).show();
+                       setTimeout(function () {
+                           $('#err_success').fadeOut('fast');
+                       }, 10000);
+                   },
+                   error: function (err) {
+                       alert('Error occured while generating token');
+                       console.log(err)
+                   }
+            });
+
+            }
+
+
+            function checkToken(token) {
+                //debugger
+
+               return $.ajax({
+                       url: '@Url.Action("ValidateToken", "Customer")',
+                        type: 'POST',
+                        async: false,
+                       dataType: 'json',
+                       data: {token: token},
+                       cache: false,
+                       success: function (results) {
+
+                       },
+                       error: function (err) {
+                           alert('Error occured while checking token');
+                           console.log(err)
+                   }
+               }).responseJSON;
+
+            }
+    </script>
+}

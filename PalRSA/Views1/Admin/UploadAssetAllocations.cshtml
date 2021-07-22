@@ -1,0 +1,66 @@
+﻿@model PalRSA.Core.Models.AssetAllocationsUpload
+
+@{
+    ViewBag.Title = "Upload Asset Allocations";
+}
+
+<script type="text/javascript" src="~/Scripts/new-profile-validator.js"></script>
+
+
+
+<div class="rightside view-profile">
+
+    <div class="details">
+        <h3>Upload Asset Allocations</h3>
+    </div>
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success exceed">
+            <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Asset Allocation uploaded to Database successfully</span>
+        </div>
+    }
+    else if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger exceed">
+            <span class="glyphicon glyphicon-ok"></span> <span class="stat"> @TempData["error"] </span>
+        </div>
+    }
+
+    <div class="">
+        @using (Html.BeginForm("UploadAssetAllocation", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "upload-asset" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Select Excel File</span></h4>
+                    <input id="inputFile" name="inputFile" type="file" class="file" data-show-preview="false" data-show-upload="false" data-allowed-file-extensions='["csv", "xlsx", "xls"]'>
+                    @*@Html.TextBoxFor(model => model.AssetAllocation, new
+                        {
+                            @class = "form-control", type = "file", data_fv_file = "true",
+                            data_fv_file_extension = "xls",
+                            data_fv_file_type = "application/vnd.ms-excel",
+                            data_fv_file_maxsize = "2097152",
+                            data_fv_file_message = "The selected file is not valid. Only Exel files allowed",
+                            @data_fv_notempty = "true"
+                        })*@
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Asset Type</span></h4>
+                    @Html.DropDownListFor(model => model.AssetType, ViewData["Type"] as SelectList, "--Select Upload Type--", new { @class = "form-control" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2 pull-right">
+                    <input type="submit" value="Upload Document" class="btn-primary btn-block" />
+                </div>
+            </div>
+        }
+
+        <div class="row"><a href="@Url.Action("ViewAssetAllocations")">View Asset Allocations</a></div>
+    </div>
+</div>
+

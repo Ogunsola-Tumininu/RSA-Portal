@@ -1,0 +1,56 @@
+﻿@model PalRSA.Core.Models.CFIUpdateViewModel
+
+<link href="~/Content/BiometricSite.css" rel="stylesheet" />
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Retirement Saving Account (RSA) Holder's Details</h3>
+                </div>
+                <div class="box-body divBoxHeight">
+                    @*<div class="row">*@
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">RSA PIN : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(m => m.Pin, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(m => m.Pin, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group required">
+                                <label class="control-label col-md-5">PFA Name : </label>
+                                <div class="col-md-7">
+                                    @Html.TextBox("PFAName", "Pensions Alliance Limited", new { @class = "form-control", @readonly="readonly" })
+                                    @Html.ValidationMessageFor(m => m.PFAName, "", new { @class = "text-red" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <button type="button" href="javascript:void(0)" onclick="$('#personalData').click();" id="nexttab" class="btn btn-block btn-primary ">Next</button>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+}

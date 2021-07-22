@@ -1,0 +1,71 @@
+﻿@model PalRSA.Core.Models.CFIUpdateViewModel
+
+<link href="~/Content/BiometricSite.css" rel="stylesheet" />
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Certification by Employee<span style="color: red">*</span></h3>
+                </div>
+                <div class="box-body divBoxHeight">
+                    @*<div class="row">*@
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">I </label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">hereby certify that the  information provided by me in this form is true and correct. </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Date : </label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.ContributorDate, new { @class = "datePicker", @style = "height: 34px;margin-right: 7px;" })
+                                    @Html.ValidationMessageFor(m => m.ContributorDate, "", new { @class = "text-red", @style = "display:block;" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <button type="button" href="javascript:void(0)" onclick="$('#nextOfKin').click();" id="pretab" class="btn btn-block btn-primary ">Previous</button>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" href="javascript:void(0)" onclick="$('#images').click();" id="nexttab" class="btn btn-block btn-primary ">Next</button>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+}
+
+

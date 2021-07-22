@@ -1,0 +1,291 @@
+﻿@model PalRSA.Core.DataAccess.CFIRegisterUser
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CFIRegisterUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PFAName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PFAName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BVN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BVN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IPN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IPN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeStatusId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeStatusId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LGAId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LGAId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+           Maiden or Former Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotherMaidenName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlaceOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlaceOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsNigerian)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsNigerian)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HouseNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HouseNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LGACode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LGACode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StateCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StateCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZIP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZIP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POBox)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POBox)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatetimeCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatetimeCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatetimeUpdated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatetimeUpdated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MartialStatu.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MartialStatu.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StateOfOrigin.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StateOfOrigin.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,71 @@
+﻿@*@model IEnumerable<PalRSA.Core.DataAccess.DigitalSubscription>*@
+@model PalRSA.Core.DataAccess.DigitalSubscription
+
+@{
+    ViewBag.Title = "My Preferences";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="details"><h3>@ViewBag.Title</h3></div>*@
+
+ 
+    
+    @if ( Model==null)
+    {
+        Html.RenderPartial("Create");
+        <p>
+            @*@Html.ActionLink("Create New", "Create")*@
+        </p>
+    }
+    else
+    {
+        Html.RenderPartial("edit");
+    }
+@*
+    <table class="table">
+        <tr>
+            <th>
+                Hardcopy quarterly statements
+            </th>
+            <th>
+                No statements or alerts except on request
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.EventNofication)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NewsLetters)
+            </th>
+
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HardCopyStatement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoStatementNoAlert)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.EventNofication)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewsLetters)
+            </td>
+            <td>
+                @Html.HiddenFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.HiddenFor(modelItem => item.DateUpdated)
+            </td>
+            <td>
+                @Html.ActionLink("Modify", "Edit", new { id=item.Pin })
+
+            </td>
+        </tr>
+    }
+
+    </table>
+*@

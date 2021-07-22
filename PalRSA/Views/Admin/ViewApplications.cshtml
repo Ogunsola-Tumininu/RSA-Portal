@@ -1,0 +1,64 @@
+﻿@using PalRSA.Helpers
+@model IEnumerable<PalRSA.Core.DataAccess.BenefitApplication>
+
+@{
+    ViewBag.Title = "ViewApplications";
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#view-applications').DataTable();
+    });
+</script>
+
+<div class="rightside ">
+<div class="details">
+    <h3>Benefits</h3>
+</div>
+    <div class="right-details">
+        <div class="right-top-text">All Benefit Applications</div>
+        <div class="table-responsive main-transaction">
+            <div class="table-responsive">
+                <table class="table table-condensed" id="view-applications">
+                    <thead>
+                        <tr>
+                            <th>Pin</th>
+                            <th>Client Name</th>
+                            <th>Mobile Number</th>
+                            <th>Application Type</th>
+                            <th>Status</th>
+                            <th>Date of Application</th>
+                            <th>Date Modified</th>
+                            <th>Explore</th>
+                            <th>Past Applications</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var app in Model)
+                            {
+                                <tr>
+                                    <td>@app.Employee_Pin</td>
+                                    <td>@app.Employee.FirstName @app.Employee.Surname</td>
+                                    <th>@app.Employee.MobileNumber</th>
+                                    <td>@Helper.GetApplicationTypeName(@app.BenefitSubClassId)</td>
+                                    <td>@Helper.GetStatusValue(@app.Status)</td>
+                                    <td>@app.DateApplied.ToString("MMM dd, yyyy")</td>
+                                    <td>
+                                        @if (app.DateModified != null)
+                                        {
+                                            @app.DateModified.Value.ToString("MMM dd, yyyy")
+                                        }
+                                    </td>
+                                    <td>@Html.ActionLink("View", "ViewBenefitApplication", new {id = app.BenefitApplicationId}, new {@class = "glyphicon glyphicon-globe"})</td>
+                                    <td>@Html.ActionLink("View", "ViewBenefitApplication", new { id = app.BenefitApplicationId }, new { @class = "glyphicon glyphicon-globe" })</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

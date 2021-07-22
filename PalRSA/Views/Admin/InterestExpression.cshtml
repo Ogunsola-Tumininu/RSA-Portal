@@ -1,0 +1,85 @@
+﻿@using PalRSA.Helpers
+@model IEnumerable<PalRSA.Core.DataAccess.ExpressionOfInterest>
+
+@{
+    ViewBag.Title = "Expressoin of Interest";
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#expression-of-interest').DataTable();
+
+        $(".view-interest").click(function () {
+            var id = $(this).data("id");
+            $(".modal-body").empty();
+
+            $.ajax({
+                url: "/Admin/ViewExpression",
+                data: { "id": id },
+                cache: false,
+                success: function (html) {
+                    $(".modal-body").append(html);
+                    $("#launch").click();
+                }
+            });
+        });
+    });
+</script>
+
+<div class="rightside ">
+    <div class="details">
+        <h3>Expression of Interest</h3>
+    </div>
+    <div class="right-details">
+        <div class="right-top-text">Interests</div>
+        <div class="table-responsive main-transaction">
+            <div class="table-responsive">
+                <table class="table table-condensed" id="expression-of-interest">
+                    <thead>
+                    <tr>
+                        <th>Pin</th>
+                        <th>Client Name</th>
+                        <th>Email</th>
+                        <th>Current PFA</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @{
+                        foreach (var app in Model)
+                        {
+                            <tr>
+                                <td>@app.RsaPin</td>
+                                <td>@app.Firstname @app.Surname</td>
+                                <th>@app.Email</th>
+                                <td>@app.CurrentPfa</td>
+                                <td><a href="#" class="glyphicon glyphicon-globe view-interest" data-id="@app.id">View</a></td>
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" data-toggle="modal" data-target="#myModal" style="display: none" id="launch"></button>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Expression of Interest Details</h4>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

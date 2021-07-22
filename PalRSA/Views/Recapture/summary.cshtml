@@ -1,0 +1,214 @@
+﻿@model PalRSA.Core.DataAccess.CFIRegisterUser
+
+@{
+    ViewBag.Title = "Data Recapture Summary ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int id = Convert.ToInt32(this.ViewContext.RouteData.Values["id"]);
+}
+
+
+
+<div>
+
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <div class="col-md-12">
+        @Html.Partial("_Response")
+    </div>
+
+    <form action="@Url.Action("","", new { id=id})" method="post">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-2">
+                        <h3 class="box-title">Personal Information</h3>
+                        <label>RSA PIN :</label>
+                        <p>@Model.Pin</p>
+                        <label>PFAName :</label>
+                        <p>@Model.PFAName</p>
+                        <label>RSA Status :</label>
+                        <p>@Model.EmployeeStatusId</p>
+                        <label>Title :</label>
+                        <p>@Model.Title.Name </p>
+                        <label>Surname :</label>
+                        <p>@Model.Surname </p>
+                        <label>First Name :</label>
+                        <p>@Model.FirstName</p>
+                        <label>Middle Name :</label>
+                        <p>@Model.MiddleName</p>
+                        <label>Maiden or Former Name :</label>
+                        <p>@Model.MotherMaidenName</p>
+                        <label>Gender :</label>
+                        <p>@Model.Sex.Name</p>
+                        <label>Maritial Status:</label>
+                        <p>@Model.MartialStatu.Name</p>
+                        <label>NIN :</label>
+                        <p>@Model.NIN</p>
+                        <label>BVN :</label>
+                        <p>@Model.BVN</p>
+                        <label>IPN</label>
+                        <p>@Model.IPN</p>
+                        <label>Date Of Birth:</label>
+                        <p>@Model.DateOfBirth</p>
+                        <label>Nationality</label>
+                        <p>@Model.Country1.Name</p>
+                        <label>Place of Birth :</label>
+                        <p>@Model.PlaceOfBirth</p>
+                        <label>State Of Origin :</label>
+                        @*<p>@Model.StateOfOrigin.Name</p>
+                            <label>Local Government Area :</label>
+                            <p>@Model.LGAId</p>*@
+                    </div>
+                    <div class="col-md-2">
+                        <h3 class="box-title">Residential Address</h3>
+                        <label>IsNigerian :</label>
+                        <p>@Model.IsNigerian</p>
+                        <label>House No./Name : </label>
+                        <p>@Model.HouseNo</p>
+                        <label>Street Name :</label>
+                        <p>@Model.StreetName</p>
+                        <label>Village/Town/City :</label>
+                        <p>@Model.City</p>
+                        <label>Country Residence Name :</label>
+                        <p>@Model.Country1.Name</p>
+                        <label>State of Residence Code :</label>
+                        <p>@Model.StateCode</p>
+                        <label>LGA Code :</label>
+                        <p>@Model.LGACode</p>
+                        <label>ZIP Code :</label>
+                        <p>@Model.ZIP</p>
+                        <label>P.O.Box</label>
+                        <p>@Model.POBox</p>
+                        <label>Personal Email Address:</label>
+                        <p>@Model.Email</p>
+                        <label>Phone No.:</label>
+                        <p>@Model.Phone</p>
+                        <label>Mobile Phone:</label>
+                        <p>@Model.Mobile</p>
+                    </div>
+                    <div class="col-md-2">
+                        <h3 class="box-title">Employment Details</h3>
+                        <label>Sector</label>
+                        @Model.CFIEmploymentDetail.Sector.Name
+                        <label>Employer Under IPPIS</label>
+                        @Model.CFIEmploymentDetail.IsEmployerIPPIS
+                        <label>Employer Code:</label>
+                        @Model.CFIEmploymentDetail.EmployerCode
+                        <label>Employer Name:</label>
+                        @Model.CFIEmploymentDetail.EmployerName
+                        <label>Current Business Address:</label>
+                        @Model.CFIEmploymentDetail.IsNigerian
+                        <label>Building No./Name :</label>
+                        @Model.CFIEmploymentDetail.Building
+                        <label>Street Name :</label>
+                        @Model.CFIEmploymentDetail.Street
+                        <label>Village/Town/City :</label>
+                        @Model.CFIEmploymentDetail.City
+                        <label>Country Code :</label>
+                        @Model.CFIEmploymentDetail.CountryCode
+                        <label>State Code :</label>
+                        @Model.CFIEmploymentDetail.StateCode
+                        <label>Local Government Code :</label>
+                        @Model.CFIEmploymentDetail.LocalGovernmentCode
+                        <label>Zip Code : </label>
+                        @Model.CFIEmploymentDetail.ZIP
+                        <label>P.O.Box : </label>
+                        @Model.CFIEmploymentDetail.POBox
+                        <label>Phone No. :</label>
+                        @Model.CFIEmploymentDetail.PhoneNo
+                        <label>Mobile Number :</label>
+                        @Model.CFIEmploymentDetail.MobileNo
+                        <label>Employee Id:</label>
+                        @Model.CFIEmploymentDetail.EmployeeId
+                        <label>Service / ID Number</label>
+                        @Model.CFIEmploymentDetail.ServiceIdNo
+                        <label>Designation/Rank :</label>
+                        @Model.CFIEmploymentDetail.Designation
+                        <label>Date of First Appointment with Public Sector:</label>
+                        @Model.CFIEmploymentDetail.DateOfFirstAppointment
+                        <label>Date of Current Apppointment</label>
+                        @Model.CFIEmploymentDetail.DateOfCurrentAppointment
+                        <label>Date of Employment</label>
+                        @Model.CFIEmploymentDetail.DateOfEmployment
+                        <label>Office State Code :</label>
+                        @Model.CFIEmploymentDetail.OfficeStateCode
+                        <label>Office LGA Code :</label>
+                        @Model.CFIEmploymentDetail.OfficeLGACode
+                        <label>Office Name :</label>
+                        @Model.CFIEmploymentDetail.OfficeName
+                        <label>Office Street Name :</label>
+                        @Model.CFIEmploymentDetail.OfficeStreetName
+                    </div>
+                    <div class="col-md-2">
+                        <h3 class="box-title">Next of Kin Details</h3>
+                        <label>Surname</label>
+                        @Model.CFINextOfKin.Surname
+                        <label>First Name :</label>
+                        @Model.CFINextOfKin.FirstName
+                        <label>Middle Name :</label>
+                        @Model.CFINextOfKin.MiddleName
+                        <label>Sex :</label>
+                        @Model.CFINextOfKin.Sex.Name
+                        <label>Title :</label>
+                        @Model.CFINextOfKin.Title.Name
+                        <label>Relationship  :</label>
+                        @Model.CFINextOfKin.Relationship.Name
+                        <label>Correspondence Address :</label>
+                        @Model.CFINextOfKin.IsNigerian
+                        <label>House No./Name  :</label>
+                        @Model.CFINextOfKin.HouseNo
+                        <label>Street Name :</label>
+                        @Model.CFINextOfKin.Street
+                        <label>Village/Town/City  :</label>
+                        @Model.CFINextOfKin.City
+                        <label>Country If based abroad:</label>
+                        @Model.CFINextOfKin.Country.Name
+                        <label>State of Residence : </label>
+                        @Model.CFINextOfKin.StateId
+                        <label>Local Government Area : </label>
+                        @Model.CFINextOfKin.LGAId
+                        <label>Zip Code/Postal Code</label>
+                        @Model.CFINextOfKin.ZIP
+                        <label>P.O.Box :</label>
+                        @Model.CFINextOfKin.POBox
+                        <label>Email :</label>
+                        @Model.CFINextOfKin.Email
+                        <label>Phone :</label>
+                        @Model.CFINextOfKin.PhoneNo
+                        <label>Mobile Number :</label>
+                        @Model.CFINextOfKin.MobileNo
+                    </div>
+                    <div class="col-md-2">
+                        <h3 class="box-title">Biometrics</h3>
+                        <label>Passport</label>
+                        <div class="gallery">
+                            <img id="output" width="100" height="100" src="@Url.Action("ShowPassport",new { id=id })" alt="@Model.CFIBiometric.Passport" /><br>
+                        </div>
+                        <label>Contributor Signature</label>
+                        <div class="gallery">
+                            <img id="output" width="100" height="100" src="@Url.Action("ShowSignature",new { id=id })" alt="@Model.CFIBiometric.ContributorSignature" /><br>
+                        </div>
+                        <label>Consent Form</label>
+                        <div class="gallery">
+                            <img id="output" width="100" height="100" src="@Url.Action("ShowCongentForm",new { id=id })" alt="@Model.CFIBiometric.CongentForm" /><br>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label>ModifiedBy</label>
+                        <p> @Model.ModifiedBy </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+<p>
+    @Html.ActionLink("Modify", "Edit", new { id = Model.UserId })
+
+</p>

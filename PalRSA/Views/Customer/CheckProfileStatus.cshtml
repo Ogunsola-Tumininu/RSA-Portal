@@ -1,0 +1,88 @@
+﻿@using PalRSA.Core.DataAccess
+
+@{
+    ViewBag.Title = "CheckStatus";
+    var address = (List<ChangeOfAddressProfile>) TempData["AddressChange"];
+    var name = (List<ChangeOfNameProfile>)TempData["NameChange"];
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#change-of-address').DataTable();
+        $('#change-of-name').DataTable();
+    });
+</script>
+
+<div class="rightside  retirement">
+    <div class="details">
+    </div>
+    <h3>Change Status</h3>
+    <div class="right-details">
+        <div class="right-top-text">Changes of Address</div>
+        <div class="table-responsive main-transaction">
+            <table class="table table-condensed" id="change-of-address">
+                <thead>
+                <tr>
+                    <th>Pin</th>
+                    <th>Status</th>
+                    <th>Date Uploaded</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @{
+                    if (address != null)
+                    {
+                        foreach (var update in address)
+                        {
+                            <tr>
+                                <td>@update.Pin</td>
+                                <td>@update.Status</td>
+                                <td>@update.DateUploaded.Value.ToString("MMM dd, yyyy")</td>
+                                <td>@Html.ActionLink("View Address Change", "ViewAddressChange", new { id = update.Id }, new { @class = "glyphicon glyphicon-globe" })</td>
+                            </tr>
+                        }
+                    }
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row"></div>
+<div class="right-details">
+    <div class="right-top-text">Change of Name</div>
+    <div class="table-responsive main-transaction">
+        <table class="table table-condensed" id="change-of-name">
+            <thead>
+                <tr>
+                    <th>Pin</th>
+                    <th>Old Name</th>
+                    <th>New Name</th>
+                    <th>Date Uploaded</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (name != null)
+                    {
+                        foreach (var update in name)
+                        {
+                            <tr>
+                                <td>@update.Pin</td>
+                                <td>@update.OldName</td>
+                                <td>@update.NewName</td>
+                                <td>@update.DateUploaded.Value.ToString("MMM dd, yyyy")</td>
+                                <td>@update.Status</td>
+                                <td>@Html.ActionLink("View Name Change", "ViewNameChange", new { id = update.Id }, new { @class = "glyphicon glyphicon-globe" })</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48a75cf2cd5a4ef38a6cc70b5c1d519f" Name="Diagram1" ZoomLevel="57">
+        <EntityTypeShape EntityType="PALSiteDBModel.AccountManager" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.AssetAllocation" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.AssetType" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitApplication" Width="1.5" PointX="8.125" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitClass" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitDocument" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitSubClass" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CaseSummary" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ChangeOfAddressProfile" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ChangeOfNameProfile" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ClientUpdate" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Contribution" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmployeeBenefitDocument" Width="1.5" PointX="10.5" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmployerDetail" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Publication" Width="1.5" PointX="6" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.SecretQuestionsStore" Width="1.5" PointX="8.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Sheme" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Status" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.SupportCategory" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.SupportLog" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.UploadType" Width="1.5" PointX="3.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.UserProfile" Width="1.5" PointX="11" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.UserPublication" Width="1.5" PointX="8.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.webpages_Membership" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.webpages_OAuthMembership" Width="1.5" PointX="14.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PALSiteDBModel.webpages_Roles" Width="1.5" PointX="8.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="PALSiteDBModel.FK_AssetAllocation_AssetType" ManuallyRouted="false" />
+        <AssociationConnector Association="PALSiteDBModel.FK_BenefitApplications_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="PALSiteDBModel.FK_EmployeeBenefitDocument_BenefitApplications" ManuallyRouted="false" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Publications_Publications" ManuallyRouted="false" />
+        <AssociationConnector Association="PALSiteDBModel.FK_UserPublications_Publications" ManuallyRouted="false" />
+        <AssociationConnector Association="PALSiteDBModel.FK_UserProfile_SecretQuestionsStore" ManuallyRouted="false" />
+        <AssociationConnector Association="PALSiteDBModel.FK_SupportLogs_SupportCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="PALSiteDBModel.webpages_UsersInRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PALSiteDBModel.PriceHistory" Width="1.5" PointX="15.375" PointY="14.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ExitProcessMaster" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Employee" Width="1.75" PointX="3" PointY="11.375" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Employees_AccountManager" />
+        <AssociationConnector Association="PALSiteDBModel.FK_dbo_BenefitApplications_dbo_Employees_Employee_Pin" />
+        <AssociationConnector Association="PALSiteDBModel.FK_ChangeOfAddressProfile_Employees" />
+        <AssociationConnector Association="PALSiteDBModel.FK_ChangeOfNameProfile_Employees" />
+        <AssociationConnector Association="PALSiteDBModel.FK_dbo_Contributions_dbo_Employees_Employee_Pin" />
+        <AssociationConnector Association="PALSiteDBModel.FK_dbo_Employees_dbo_EmployerDetails_Employer_Recno" />
+        <AssociationConnector Association="PALSiteDBModel.FK_SupportLogs_Employees" />
+        <AssociationConnector Association="PALSiteDBModel.FK_UserPublications_Employees" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ExpressionOfInterest" Width="1.5" PointX="10.5" PointY="18.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.NewExpressionOfInterest" Width="1.5" PointX="17.375" PointY="16.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BVNdata" Width="1.5" PointX="19.375" PointY="8.75" />
+        <AssociationConnector Association="PALSiteDBModel.FK_BVNdata_Emp" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Country" Width="1.5" PointX="19.375" PointY="25.5" />
+        <EntityTypeShape EntityType="PALSiteDBModel.GradeLevel" Width="1.5" PointX="19.375" PointY="12.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.LGArea" Width="1.5" PointX="19.375" PointY="15.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.MartialStatu" Width="1.5" PointX="22.375" PointY="31.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Relationship" Width="1.5" PointX="19.375" PointY="29.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.SalaryStructure" Width="1.5" PointX="13.375" PointY="20.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Sector" Width="1.5" PointX="27.625" PointY="25.875" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Sex" Width="1.5" PointX="19.375" PointY="20.625" />
+        <EntityTypeShape EntityType="PALSiteDBModel.StateOfOrigin" Width="1.5" PointX="22.375" PointY="20.625" />
+        <EntityTypeShape EntityType="PALSiteDBModel.StateOfPosting" Width="1.5" PointX="15.375" PointY="20.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Step" Width="1.5" PointX="21.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Title" Width="1.5" PointX="22.375" PointY="34.875" />
+        <EntityTypeShape EntityType="PALSiteDBModel.State" Width="1.5" PointX="0.75" PointY="21.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmployeeStatu" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ImageAdministration" Width="1.5" PointX="21.375" PointY="3.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Other" Width="1.5" PointX="21.375" PointY="8.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.AgentType" Width="1.5" PointX="21.375" PointY="15.25" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitFile" Width="1.5" PointX="7.375" PointY="22.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitProcess" Width="1.5" PointX="26.625" PointY="14.25" />
+        <AssociationConnector Association="PALSiteDBModel.FK_BenefitProcess_BenefitClass" />
+        <AssociationConnector Association="PALSiteDBModel.FK_BenefitProcess_State" />
+        <AssociationConnector Association="PALSiteDBModel.FK_BenefitProcess_Title" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Feedback" Width="1.5" PointX="9.375" PointY="23.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Agent" Width="1.5" PointX="23.625" PointY="12.875" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Agent_AgentType" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Agent_State" />
+        <EntityTypeShape EntityType="PALSiteDBModel.C__MigrationHistory" Width="1.5" PointX="29.75" PointY="11.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.AspNetRole" Width="1.5" PointX="25.75" PointY="7.5" />
+        <EntityTypeShape EntityType="PALSiteDBModel.AspNetUserClaim" Width="1.5" PointX="30.25" PointY="8.625" />
+        <EntityTypeShape EntityType="PALSiteDBModel.AspNetUserLogin" Width="1.5" PointX="30.25" PointY="6" />
+        <EntityTypeShape EntityType="PALSiteDBModel.AspNetUser" Width="1.5" PointX="28" PointY="6.375" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitChecklist" Width="1.5" PointX="26.75" PointY="11.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitChecklistMap" Width="1.5" PointX="29.75" PointY="19.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitDifferential" Width="1.5" PointX="31.75" PointY="11.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitRequirement" Width="1.5" PointX="31.75" PointY="15.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitStatu" Width="1.5" PointX="24.75" PointY="39.625" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BenefitStatusLog" Width="1.5" PointX="29.25" PointY="16.125" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BirthDayLog" Width="1.5" PointX="32.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Branding" Width="1.5" PointX="13.75" PointY="32.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.BusinessAssociate" Width="1.5" PointX="31.75" PointY="18.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Campaign" Width="1.5" PointX="15.75" PointY="32.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Case" Width="1.5" PointX="14.875" PointY="24.5" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CaseAttachment" Width="1.5" PointX="17.125" PointY="27.125" />
+        <EntityTypeShape EntityType="PALSiteDBModel.cnssl" Width="1.5" PointX="33.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.cnssl2" Width="1.5" PointX="33.75" PointY="13.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Contact" Width="1.5" PointX="17.75" PointY="33.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CONTRIBUTION_BATCH" Width="1.5" PointX="19.75" PointY="33.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ContributionBatch" Width="1.5" PointX="2.75" PointY="34.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ContributionNotification" Width="1.5" PointX="34.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Department" Width="1.5" PointX="11.75" PointY="27.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ECRSResponse" Width="1.5" PointX="4.75" PointY="35.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmailBatch" Width="1.5" PointX="35.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmailLog" Width="1.5" PointX="35.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Emenite" Width="1.5" PointX="33.75" PointY="19.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmployeeBiometric" Width="1.5" PointX="10.75" PointY="35.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmployeeChildren" Width="1.5" PointX="35.75" PointY="13.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmployeeClean" Width="1.5" PointX="35.75" PointY="16.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmployeeProfileUpdate" Width="1.5" PointX="6.75" PointY="36.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EMP" Width="1.5" PointX="36.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EnquiryLog" Width="1.5" PointX="29.75" PointY="36.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.FAQ" Width="1.5" PointX="37.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Gender" Width="1.5" PointX="37.75" PointY="8.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.GUIN" Width="1.5" PointX="37.75" PointY="11.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.HRCase" Width="1.5" PointX="3.375" PointY="21.875" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Institution" Width="1.5" PointX="37.75" PointY="15.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.IssueCategory" Width="1.5" PointX="1.125" PointY="28.5" />
+        <EntityTypeShape EntityType="PALSiteDBModel.IssueOrigin" Width="1.5" PointX="1.125" PointY="31" />
+        <EntityTypeShape EntityType="PALSiteDBModel.IssueType" Width="1.5" PointX="1.125" PointY="26" />
+        <EntityTypeShape EntityType="PALSiteDBModel.LGA" Width="1.5" PointX="37.75" PointY="18.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.LGA2" Width="1.5" PointX="37.75" PointY="21.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.MCPPayment" Width="1.5" PointX="31.75" PointY="37.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.MobileShortCode" Width="1.5" PointX="37.75" PointY="33.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.NewEmployee" Width="1.5" PointX="37.75" PointY="36.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.NUPENG" Width="1.5" PointX="38.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Payment" Width="1.5" PointX="8.75" PointY="29.125" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Pfa" Width="1.5" PointX="15.75" PointY="38.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.RegDocument" Width="1.5" PointX="39.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Region" Width="1.5" PointX="39.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.RegOther" Width="1.5" PointX="35.25" PointY="26.125" />
+        <EntityTypeShape EntityType="PALSiteDBModel.RegType" Width="1.5" PointX="30.75" PointY="33.25" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Role" Width="1.5" PointX="28.75" PointY="1.25" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ScheduleUpload" Width="1.5" PointX="11" PointY="30.125" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ScheduleUploadTemp" Width="1.5" PointX="10.75" PointY="39.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.StaffIdUpdate" Width="1.5" PointX="12.75" PointY="39.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.State2" Width="1.5" PointX="39.75" PointY="15.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.sysdiagram" Width="1.5" PointX="39.75" PointY="18.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.TestUser" Width="1.5" PointX="21.75" PointY="39.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.UnProcessed" Width="1.5" PointX="39.75" PointY="33.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.UserParameter" Width="1.5" PointX="39.75" PointY="21.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.User" Width="1.5" PointX="31" PointY="0.875" />
+        <EntityTypeShape EntityType="PALSiteDBModel.YouthLead" Width="1.5" PointX="33.75" PointY="39.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CONTRI" Width="1.5" PointX="17.75" PointY="40.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CONTRIBUTION1" Width="1.5" PointX="28.75" PointY="40.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ECRSContributor" Width="1.5" PointX="41.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Feedback_DEL" Width="1.5" PointX="40.75" PointY="25.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Merchant" Width="1.5" PointX="40.75" PointY="28.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.SCHEDULE" Width="1.5" PointX="0.75" PointY="41.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.testTable" Width="1.5" PointX="2.75" PointY="41.75" />
+        <AssociationConnector Association="PALSiteDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="PALSiteDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="PALSiteDBModel.FK_BenefitProcess_BenefitStatus" />
+        <AssociationConnector Association="PALSiteDBModel.FK_BenefitStatusLog_BenefitProcess" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Case_Employee" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Case_IssueCategory" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Case_IssueOrigin" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Case_IssueType" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Case_State" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CaseAttachment_Case" />
+        <AssociationConnector Association="PALSiteDBModel.FK_HRCase_IssueCategory" />
+        <AssociationConnector Association="PALSiteDBModel.FK_HRCase_IssueOrigin" />
+        <AssociationConnector Association="PALSiteDBModel.FK_HRCase_IssueType" />
+        <AssociationConnector Association="PALSiteDBModel.FK_HRCase_State" />
+        <AssociationConnector Association="PALSiteDBModel.FK_ScheduleUpload_Payments" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Users_Role" />
+        <AssociationConnector Association="PALSiteDBModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="PALSiteDBModel.ECRSPrivatePublicSector" Width="1.5" PointX="23.75" PointY="49" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CFIBiometric" Width="1.5" PointX="44.875" PointY="44.875" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CFINextOfKin" Width="1.5" PointX="24.625" PointY="25.625" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CFIPublicPrivateSector" Width="1.5" PointX="23.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CFIRegisterUser" Width="1.5" PointX="42.625" PointY="33.125" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CFISalaryStructure" Width="1.5" PointX="44.875" PointY="49.375" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CFISupportDocument" Width="1.5" PointX="47.625" PointY="32.875" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFIBiometric_CFIRegisterUser" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFINextOfKin_CFINextOfKin" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFINextOfKin_CFIRegisterUser" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFINextOfKin_Country" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFINextOfKin_Relationship" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFINextOfKin_Title" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFIRegisterUser_Country" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFIRegisterUser_MartialStatus" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFIRegisterUser_Nationality" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFIRegisterUser_Sex" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFIRegisterUser_StateOfOrigin" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFIRegisterUser_Title" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFISalaryStructure_CFIRegisterUser" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFISupportDocument_ECRSPrivatePublicSector" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CFIOther" Width="1.5" PointX="11.375" PointY="23.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CFIDocument" Width="1.5" PointX="45.375" PointY="27.875" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFISupportDocument_CFIRegisterUser" />
+        <EntityTypeShape EntityType="PALSiteDBModel.DigitalSubscription" Width="1.5" PointX="23.375" PointY="3.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.CFIEmploymentDetail" Width="1.5" PointX="44.875" PointY="32.375" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFIEmploymentDetail_CFIRegisterUser" />
+        <AssociationConnector Association="PALSiteDBModel.FK_CFIEmploymentDetail_Sector" />
+        <EntityTypeShape EntityType="PALSiteDBModel.EmailRepository" Width="1.5" PointX="21.375" PointY="23.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.PrivacySetting" Width="1.5" PointX="25.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.NextOfKin" Width="1.5" PointX="30.375" PointY="23.75" />
+        <AssociationConnector Association="PALSiteDBModel.FK_dbo_NextOfKin_dbo_Employees_Employee_Pin1" />
+        <EntityTypeShape EntityType="PALSiteDBModel.SupportType" Width="1.5" PointX="27.375" PointY="3.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Registration" Width="1.5" PointX="43" PointY="17.25" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Reg_Country" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Reg_Nationality" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Reg_MartialStatus" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Reg_Sex" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Reg_StateOfOrigin" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Reg_Title" />
+        <AssociationConnector Association="PALSiteDBModel.FK_Registration_RegType" />
+        <AssociationConnector Association="PALSiteDBModel.FK_RegOther_Reg" />
+        <EntityTypeShape EntityType="PALSiteDBModel.RegBiometric" Width="1.5" PointX="45.25" PointY="22.875" />
+        <AssociationConnector Association="PALSiteDBModel.FK_RegBiometric_Reg" />
+        <EntityTypeShape EntityType="PALSiteDBModel.Token" Width="1.5" PointX="21.375" PointY="27.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.LoginTrail" Width="1.5" PointX="5.375" PointY="28.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.TempCustomerInformation" Width="1.5" PointX="32.375" PointY="22.75" />
+        <EntityTypeShape EntityType="PALSiteDBModel.TempNOKInformation" Width="3.125" PointX="34.375" PointY="30.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

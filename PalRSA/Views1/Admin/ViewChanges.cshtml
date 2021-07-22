@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PalRSA.Core.DataAccess.TempCustomerInformation>
+@{
+    ViewBag.Title = "View Changes";
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#news-letters').DataTable();
+    });
+</script>
+
+<div class="rightside  retirement">
+<div class="details">
+</div>
+    <h3>View Changes</h3>
+    <div class="right-details">
+        <div class="right-top-text">All Transactions</div>
+        <div class="table-responsive main-transaction">
+            <table class="table table-condensed" id="news-letters">
+                <thead>
+                    <tr>
+                        <th>Pin</th>
+                        <th>Name</th>
+                        <th>Date Updated</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+
+                            foreach (var update in Model)
+                            {
+                                <tr>
+                                    <td>@update.pin</td>
+                                    <td>@update.name</td>
+                                    <td>@update.date_created.Value.ToString("MMM dd, yyyy")</td>
+                                    <td>@update.status</td>
+                                    <td>@Html.ActionLink("Approve", "Approve", new { id = update.id }, new { @class = "glyphicon glyphicon-plus" })</td>
+                                </tr>
+                            }
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

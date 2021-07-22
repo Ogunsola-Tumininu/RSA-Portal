@@ -1,0 +1,59 @@
+﻿@model PalRSA.Core.Models.UploadPublications
+
+@{
+    ViewBag.Title = "UploadPublications";
+}
+
+<script type="text/javascript" src="~/Scripts/new-profile-validator.js"></script>
+
+
+
+<div class="rightside view-profile">
+
+<div class="details">
+<h3>Upload Publications</h3>
+</div>
+    @if ((string) TempData["Status"] == "success")
+    {
+        <div class="alert alert-success exceed">
+            <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Your publication has been saved successfully</span>
+        </div>
+    }
+    else if ((string)TempData["Status"] == "exists")
+    {
+        <div class="alert alert-warning col-md-12" id="warning">
+            <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"> Sorry, This name already exists in the database. Change the document name and try again</span>
+        </div>
+    }
+
+    <div class="">
+        @using (Html.BeginForm("UploadPublications", "Admin", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form-horizontal", id = "upload-publication" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <h4><span class="label label-default">Pin</span></h4>
+                    @Html.DropDownListFor(model => model.UploadType, ViewData["UploadType"] as SelectList, "--Select Upload Type--", new {@class = "form-control"})
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <h4><span class="label label-default">Publication Name</span></h4>
+                    @Html.TextBoxFor(model => model.DocName, new {@class = "form-control", placeholder = "Publication Name"})
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <h4><span class="label label-default">Document</span></h4>
+                    @Html.TextBoxFor(model => model.Doc, new {@class = "form-control", type = "file"})
+                </div>
+
+            </div>
+<br/>
+            <div class="row">
+                <div class="col-md-2 pull-right">
+                    <input type="submit" value="Upload Document" class="btn-primary btn-block"/>
+                </div>
+            </div>
+        }
+    </div>
+</div>

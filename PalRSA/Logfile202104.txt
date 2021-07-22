@@ -1,0 +1,160 @@
+01/04/2021 11:43:23: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 11:46:51: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 11:57:30: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 12:15:18: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 12:41:32: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 12:49:23: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 12:52:01: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 13:30:11: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 13:34:09: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 14:18:23: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 14:59:49: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+01/04/2021 15:09:41: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+06/04/2021 09:25:52: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+06/04/2021 09:36:29: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+06/04/2021 09:54:05: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+06/04/2021 10:28:41: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+06/04/2021 10:38:23: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+06/04/2021 12:00:11: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+06/04/2021 12:34:12: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 08:54:00: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 09:20:40: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 09:39:54: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 10:17:43: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 10:23:36: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 10:39:47: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 10:45:59: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 13:06:55: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 13:12:17: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 13:22:05: Home: PEN100908662016:: EntityFramework; System.Data.Entity.Core.MappingException: 
+DataAccess.PALSiteDBEntities.msl(2606,10) : error 3004: Problem in mapping fragments starting at line 2606:No mapping specified for properties TempNOKInformation.KinTitleId in Set TempNOKInformations.
+An Entity with Key (PK) will not round-trip when:
+  Entity is type [PALSiteDBModel.TempNOKInformation]
+
+   at System.Data.Entity.Core.Mapping.StorageMappingItemCollection.ViewDictionary.SerializedGenerateViews(EntityContainerMapping entityContainerMap, Dictionary`2 resultDictionary)
+   at System.Data.Entity.Core.Mapping.StorageMappingItemCollection.ViewDictionary.SerializedGetGeneratedViews(EntityContainer container)
+   at System.Data.Entity.Core.Common.Utils.Memoizer`2.<>c__DisplayClass2.<Evaluate>b__0()
+   at System.Data.Entity.Core.Common.Utils.Memoizer`2.Result.GetValue()
+   at System.Data.Entity.Core.Common.Utils.Memoizer`2.Evaluate(TArg arg)
+   at System.Data.Entity.Core.Mapping.StorageMappingItemCollection.ViewDictionary.GetGeneratedView(EntitySetBase extent, MetadataWorkspace workspace, StorageMappingItemCollection storageMappingItemCollection)
+   at System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.GetGeneratedView(EntitySetBase extent)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.ExpandView(ScanTableOp scanTableOp, IsOfOp& typeFilter)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.ProcessScanTable(Node scanTableNode, ScanTableOp scanTableOp, IsOfOp& typeFilter)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.Visit(ScanTableOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.ScanTableOp.Accept[TResultType](BasicOpVisitorOfT`1 v, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitNode(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitChildren(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitRelOpDefault(RelOp op, Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.Visit(FilterOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.FilterOp.Accept[TResultType](BasicOpVisitorOfT`1 v, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitNode(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitChildren(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitRelOpDefault(RelOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitSortOp(SortBaseOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.Visit(ConstrainedSortOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.ConstrainedSortOp.Accept[TResultType](BasicOpVisitorOfT`1 v, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitNode(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitChildren(Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfNode.VisitDefault(Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfNode.VisitPhysicalOpDefault(PhysicalOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.Visit(PhysicalProjectOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.PhysicalProjectOp.Accept[TResultType](BasicOpVisitorOfT`1 v, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitNode(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.Process(Dictionary`2& tvfResultKeys)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.Process(PlanCompiler planCompilerState, StructuredTypeInfo& typeInfo, Dictionary`2& tvfResultKeys)
+   at System.Data.Entity.Core.Query.PlanCompiler.PlanCompiler.Compile(List`1& providerCommands, ColumnMap& resultColumnMap, Int32& columnCount, Set`1& entitySets)
+   at System.Data.Entity.Core.Query.PlanCompiler.PlanCompiler.Compile(DbCommandTree ctree, List`1& providerCommands, ColumnMap& resultColumnMap, Int32& columnCount, Set`1& entitySets)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition..ctor(DbProviderFactory storeProviderFactory, DbCommandTree commandTree, DbInterceptionContext interceptionContext, IDbDependencyResolver resolver, BridgeDataReaderFactory bridgeDataReaderFactory, ColumnMapFactory columnMapFactory)
+07/04/2021 13:28:45: Home: PEN100908662016:: EntityFramework; System.Data.Entity.Core.MappingException: 
+DataAccess.PALSiteDBEntities.msl(2606,10) : error 3004: Problem in mapping fragments starting at line 2606:No mapping specified for properties TempNOKInformation.KinTitleId in Set TempNOKInformations.
+An Entity with Key (PK) will not round-trip when:
+  Entity is type [PALSiteDBModel.TempNOKInformation]
+
+   at System.Data.Entity.Core.Mapping.StorageMappingItemCollection.ViewDictionary.SerializedGenerateViews(EntityContainerMapping entityContainerMap, Dictionary`2 resultDictionary)
+   at System.Data.Entity.Core.Mapping.StorageMappingItemCollection.ViewDictionary.SerializedGetGeneratedViews(EntityContainer container)
+   at System.Data.Entity.Core.Common.Utils.Memoizer`2.<>c__DisplayClass2.<Evaluate>b__0()
+   at System.Data.Entity.Core.Common.Utils.Memoizer`2.Result.GetValue()
+   at System.Data.Entity.Core.Common.Utils.Memoizer`2.Evaluate(TArg arg)
+   at System.Data.Entity.Core.Mapping.StorageMappingItemCollection.ViewDictionary.GetGeneratedView(EntitySetBase extent, MetadataWorkspace workspace, StorageMappingItemCollection storageMappingItemCollection)
+   at System.Data.Entity.Core.Metadata.Edm.MetadataWorkspace.GetGeneratedView(EntitySetBase extent)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.ExpandView(ScanTableOp scanTableOp, IsOfOp& typeFilter)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.ProcessScanTable(Node scanTableNode, ScanTableOp scanTableOp, IsOfOp& typeFilter)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.Visit(ScanTableOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.ScanTableOp.Accept[TResultType](BasicOpVisitorOfT`1 v, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitNode(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitChildren(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitRelOpDefault(RelOp op, Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.Visit(FilterOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.FilterOp.Accept[TResultType](BasicOpVisitorOfT`1 v, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitNode(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitChildren(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitRelOpDefault(RelOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitSortOp(SortBaseOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.Visit(ConstrainedSortOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.ConstrainedSortOp.Accept[TResultType](BasicOpVisitorOfT`1 v, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitNode(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.SubqueryTrackingVisitor.VisitChildren(Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfNode.VisitDefault(Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfNode.VisitPhysicalOpDefault(PhysicalOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.Visit(PhysicalProjectOp op, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.PhysicalProjectOp.Accept[TResultType](BasicOpVisitorOfT`1 v, Node n)
+   at System.Data.Entity.Core.Query.InternalTrees.BasicOpVisitorOfT`1.VisitNode(Node n)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.Process(Dictionary`2& tvfResultKeys)
+   at System.Data.Entity.Core.Query.PlanCompiler.PreProcessor.Process(PlanCompiler planCompilerState, StructuredTypeInfo& typeInfo, Dictionary`2& tvfResultKeys)
+   at System.Data.Entity.Core.Query.PlanCompiler.PlanCompiler.Compile(List`1& providerCommands, ColumnMap& resultColumnMap, Int32& columnCount, Set`1& entitySets)
+   at System.Data.Entity.Core.Query.PlanCompiler.PlanCompiler.Compile(DbCommandTree ctree, List`1& providerCommands, ColumnMap& resultColumnMap, Int32& columnCount, Set`1& entitySets)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition..ctor(DbProviderFactory storeProviderFactory, DbCommandTree commandTree, DbInterceptionContext interceptionContext, IDbDependencyResolver resolver, BridgeDataReaderFactory bridgeDataReaderFactory, ColumnMapFactory columnMapFactory)
+07/04/2021 13:39:20: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 13:42:42: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 13:44:05: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 13:45:46: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 13:48:00: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+07/04/2021 13:53:14: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 08:58:01: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 09:14:24: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 11:19:57: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 11:25:37: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 11:55:37: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 11:59:27: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 12:02:09: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 12:21:27: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 13:13:48: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+08/04/2021 13:23:16: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 09:47:27: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 09:55:07: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 09:56:36: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 11:39:12: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 11:44:30: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 11:59:28: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 12:19:49: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 12:25:24: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 12:43:50: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 13:33:53: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 13:40:48: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 14:28:00: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 14:41:57: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+09/04/2021 15:10:20: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 09:17:22: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:10:55: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:10:55: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:14:59: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:16:50: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:18:12: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:18:59: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:20:25: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:23:56: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:32:28: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:33:32: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:34:21: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:35:10: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:35:10: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:38:42: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:39:19: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:41:27: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:42:48: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:47:02: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:47:50: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 12:49:34: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+12/04/2021 13:12:12: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+13/04/2021 11:02:30: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+13/04/2021 11:03:19: Home: PEN100908662016:: .Net SqlClient Data Provider; System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified

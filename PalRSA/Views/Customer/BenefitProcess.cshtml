@@ -1,0 +1,78 @@
+﻿@model IEnumerable<PalRSA.Core.DataAccess.BenefitProcess>
+@using PalRSA.Core.DataAccess
+
+@{
+    ViewBag.Title = "BenefitProcess";
+    PALSiteDBEntities _db = new PALSiteDBEntities();
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 id="header-tag" style="margin-top: 1em">My Benefit Applications</h2> <hr />
+
+        @if (TempData["Success"] != null)
+        {
+            <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>}
+
+        @if (TempData["err"] != null)
+        {
+            <p class="alert alert-danger" id="successMessage">@TempData["err"]</p>}
+
+
+        <table class="table-transaction retirement-table table-bordered table" id="benProcesstable">
+            <thead>
+                <tr>
+
+                    <th>
+                        <p>Title</p>
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var paymentType = _db.BenefitClasses.FirstOrDefault(b => b.Id == item.PaymentTypeId).BenefitName; //(item.PaymentTypeId == 2) ? "Voluntary Countribution" : "Temporary Access";
+
+                    var title = "Benefit Process for " + paymentType + " created on " + item.CreatedOn;
+                    <tr>
+
+                        <td>
+                            @title
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Upload Document", "Upload", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#benProcesstable').DataTable({
+            order: [[1, 'desc'], [0, 'asc']],
+            "pageLength": 50
+        });
+    })
+</script>

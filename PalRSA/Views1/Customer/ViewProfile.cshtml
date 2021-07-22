@@ -1,0 +1,289 @@
+﻿@model PalRSA.Core.Models.EmployeeViewModel
+@using PalRSA.Core.DataAccess
+@{ PALSiteDBEntities _db = new PALSiteDBEntities();
+    var id = _db.CFIRegisterUsers.Where(d => d.Pin == User.Identity.Name).FirstOrDefault().UserId;
+    var biometricId = _db.CFIBiometrics.Where(d => d.UserId == id).FirstOrDefault().UserId;
+    ViewBag.Title = "ViewProfile"; }
+
+
+<div class="view-profile">
+
+    @using (Html.BeginForm("ViewProfile", "Customer", FormMethod.Post, new { Id = "profile-form" }))
+    {
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+
+                    <div class="box box-default" style="padding-left:40px; padding-right:40px;">
+                        <div class="box-header with-border">
+
+                        </div>
+
+                        <div class="details">
+                            <h3>Personal Details</h3>
+                        </div>
+
+                        @if (TempData["Status"] != null && (bool)TempData["Status"] == true)
+                        {
+                    <div class="alert alert-success exceed">
+                        <span class="glyphicon glyphicon-ok"></span> <strong>Success!</strong><span class="stat"> Your changes have been saved. We will notify you once your updates have been approved.</span>
+                    </div>}
+
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                                <h4><span class="label label-default">Pin</span></h4>
+                                @Html.TextBoxFor(model => model.Pin, new { @class = "form-control", @readonly = true })
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <h4><span class="label label-default">Registration Code</span></h4>
+                                @Html.TextBoxFor(model => model.RegistrationCode, new { @class = "form-control", @readonly = true })
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <h4><span class="label label-default">Surname</span></h4>
+                                @Html.TextBoxFor(model => model.Surname, new { @class = "form-control", @readonly = true })
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                                <h4><span class="label label-default">Other Names</span></h4>
+                                @Html.TextBoxFor(model => model.OtherNames, new { @class = "form-control", @readonly = true })
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <h4><span class="label label-default">First Name</span></h4>
+                                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @readonly = true })
+                            </div>
+                            <div class="col-md-1 col-sm-1">
+                                <h4><span class="label label-default">Gender</span></h4>
+                                @Html.TextBoxFor(model => model.Gender, new { @class = "form-control", @readonly = true })
+                            </div>
+                            <div class="col-md-3 col-sm3">
+                                <h4><span class="label label-default">Date Of Birth</span></h4>
+                                @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control datepicker", @readonly = true })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <h4><span class="label label-default">Mobile Number</span></h4>
+                                @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control", type = "tel" })
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <h4><span class="label label-default">Mobile Number 2</span></h4>
+                                @Html.TextBoxFor(model => model.MobileNumber2, new { @class = "form-control", type = "tel" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <h4><span class="label label-default">Email</span></h4>
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", @data_fv_emailaddress_message = "The value is not a valid email address", @data_fv_notempty = "true", @data_fv_notempty_message = "The Email Address cannot be empty" })
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <h4><span class="label label-default">Permanent Address</span></h4>
+                                @Html.TextBoxFor(model => model.PermanentAddress, new { @class = "form-control", @readonly = true })
+                            </div>
+                        </div>
+                        @*<div class="row">
+            <div class="col-md-12 col-sm-12">
+                <h4><span class="label label-default">Home Address</span></h4>
+                @Html.TextAreaFor(model => model.HomeAddress, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>*@
+
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">
+                                <h4><span class="label label-default">House No</span></h4>
+                                @Html.TextBoxFor(model => model.HouseNo, new { @class = "form-control", @readonly = true })
+
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <h4><span class="label label-default">Street Name</span></h4>
+                                @Html.TextBoxFor(model => model.StreetName, new { @class = "form-control", @readonly = true })
+
+                            </div>
+                            <div class="col-md-6 col-sm-4">
+                                <h4><span class="label label-default">State</span></h4>
+                                @Html.TextBoxFor(model => model.StateCode, new { @class = "form-control", @readonly = true })
+
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="details">
+                            <h3>Account Officer Detail</h3>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">
+                                <h4><span class="label label-default">Account Officer Name</span></h4>
+                                @Html.TextBoxFor(model => model.Account_Officer, new { @class = "form-control", @readonly = true })
+
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <h4><span class="label label-default">Account Officer Mobile</span></h4>
+                                @Html.TextBoxFor(model => model.Account_Officer_Mobile, new { @class = "form-control", @readonly = true })
+
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <h4><span class="label label-default">Account Officer Email</span></h4>
+                                @Html.TextBoxFor(model => model.Account_Officer_Email, new { @class = "form-control", @readonly = true })
+
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="details">
+                            <h3>Next of Kin Details</h3>
+                        </div>
+
+                        @for (var index = 0; index < Model.NextOfKins.Count(); index++)
+                        {
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4">
+                            <h4><span class="label label-default">First Name</span></h4>
+                            @Html.TextBoxFor(model => model.NextOfKins[index].FirstName, new { @class = "form-control", @readonly = true })
+                            @Html.HiddenFor(model => model.NextOfKins[index].Id, new { @class = "form-control" })
+                            @Html.HiddenFor(model => model.NextOfKins[index].Employee_Pin, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <h4><span class="label label-default">Surname</span></h4>
+                            @Html.TextBoxFor(model => model.NextOfKins[index].Surname, new { @class = "form-control", @readonly = true })
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <h4><span class="label label-default">Other Names</span></h4>
+                            @Html.TextBoxFor(model => model.NextOfKins[index].OtherNames, new { @class = "form-control", @readonly = true })
+                        </div>
+
+                    </div>
+                                        <div class="row">
+                                            <div class="col-md-1 col-sm-1">
+                                                <h4><span class="label label-default">Gender</span></h4>
+                                                @Html.TextBoxFor(model => model.NextOfKins[index].Gender, new { @class = "form-control", @readonly = true })
+                                            </div>
+                                            <div class="col-md-9 col-sm-9">
+                                                <h4><span class="label label-default">Relation</span></h4>
+                                                @Html.TextBoxFor(model => model.NextOfKins[index].Relation, new { @class = "form-control", @readonly = true })
+                                            </div>
+                                        </div>
+                                                            <div class="row">
+
+                                                                <div class="col-md-6 col-sm-6">
+                                                                    <h4><span class="label label-default">Address</span></h4>
+                                                                    @Html.TextBoxFor(model => model.NextOfKins[index].Address, new { @class = "form-control", @readonly = true })
+                                                                </div>
+                                                                <div class="col-md-3 col-sm-3">
+                                                                    <h4><span class="label label-default">Email</span></h4>
+                                                                    @Html.TextBoxFor(model => model.NextOfKins[index].Email, new { @class = "form-control", @readonly = true })
+                                                                </div>
+                                                                <div class="col-md-3 col-sm-3">
+                                                                    <h4><span class="label label-default">Phone Number</span></h4>
+                                                                    @Html.TextBoxFor(model => model.NextOfKins[index].PhoneNumber, new { @class = "form-control", @readonly = true })
+                                                                </div>
+                                                            </div>}
+
+
+                        <br>
+                        <div class="details">
+                            <h3>Employer Details</h3>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-2 col-sm-2">
+                                <h4><span class="label label-default">Record Number</span></h4>
+                                @Html.TextBoxFor(model => model.EmployerDetail.Recno, new { @class = "form-control", @readonly = true })
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <h4><span class="label label-default">Employer Name</span></h4>
+                                @Html.TextBoxFor(model => model.EmployerDetail.EmployerName, new { @class = "form-control", @readonly = true })
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <h4><span class="label label-default">Address</span></h4>
+                                @Html.TextBoxFor(model => model.EmployerDetail.Address, new { @class = "form-control", @readonly = true })
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="details">
+                            <h3>Biometrics</h3>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-2 col-sm-2">
+                                    <h4><span class="label label-default">Passport</span></h4>
+                                    <img id="output" width="100" height="100" src="@Url.Action("ShowPassport",new { id=biometricId })" alt="Passport Photograpg" /><br>
+                                </div>
+
+                                <div class="col-md-2 col-sm-2">
+                                    <h4><span class="label label-default">Contributor Signature</span></h4>
+                                    <img id="output" width="100" height="100" src="@Url.Action("ShowSignature",new { id=biometricId })" alt="Signature" /><br>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <br>
+
+                        @*<div class="row">
+            <div class="col-md-2 pull-right">
+                <input type="submit" value="Save Changes" class="btn-primary btn-block" />
+            </div>
+        </div>*@
+                    </div>
+                </div>}
+</div>
+
+<script src="/Scripts/vendor/intlTelInput.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#profile-form')
+            .find('[name="MobileNumber"]')
+            .intlTelInput({
+                utilsScript: '/Scripts/vendor/utils.js',
+                autoPlaceholder: true,
+                preferredCountries: ['ng']
+            });
+
+        $('#profile-form')
+            .formValidation({
+                framework: 'bootstrap',
+                icon: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    MobileNumber: {
+                        validators: {
+                            callback: {
+                                message: 'The phone number is not valid',
+                                callback: function (value, validator, $field) {
+                                    return value === '' || $field.intlTelInput('isValidNumber');
+                                }
+                            }
+                        }
+                    },
+                    MobileNumber2: {
+                        validators: {
+                            callback: {
+                                message: 'The phone number is not valid',
+                                callback: function (value, validator, $field) {
+                                    return value === '' || $field.intlTelInput('isValidNumber');
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+            // Revalidate the number when changing the country
+            .on('click', '.country-list', function () {
+                $('#contactForm').formValidation('revalidateField', 'phoneNumber');
+            });
+    });
+</script>

@@ -1,0 +1,25 @@
+﻿@model PalRSA.Core.Models.EmployeeReportSummation
+
+<div class="right-top-text">Statement Summary</div>
+<div class="table-responsive main-transaction">
+    <table class="table-transaction retirement-table table-bordered table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>RSA (₦)</th>
+                <th>Voluntary (₦)</th>
+                <th>Total (₦)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Contributions from Inception</td><td>@Model.NetContributionRsa.ToString("N2")</td><td>@Model.SumAvc.ToString("N2")</td><td>@Model.NetContributionRsa.ToString("N2")</td></tr>
+            <tr><td>Total Income On Contribution</td><td>@Model.RsaIncome.ToString("N2")</td><td>@Model.VcIncome.ToString("N2")</td><td>@Model.TotalIncome.ToString("N2")</td></tr>
+            <tr><td>Balance Before Withdrawal</td><td>@Model.rsaBeforeWithdrawal.ToString("N2")</td><td>@Model.vcBeforeWithdrawal.ToString("N2")</td><td>@Model.totalBeforeWithdrawal.ToString("N2")</td></tr>
+            <tr><td>Withdrawal</td><td>@Model.RsaWithdrawal.ToString("N2")</td><td>@Model.VcWithdrawal.ToString("N2")</td><td>@Model.TotalWithdrawal.ToString("N2")</td></tr>
+            <tr class="info"><td>Current Balance</td><td>@Model.rsaBalance.ToString("N2")</td><td>@Model.vcBalance.ToString("N2")</td><td>@Model.totalBalance.ToString("N2")</td></tr>
+            <tr><td>Units Held</td><td>@Model.SumUnitsRsa.ToString("N4")</td><td>@Model.SumUnitsVc.ToString("N2")</td><td>@Model.TotalUnits.ToString("N4")</td></tr>
+            @*     <tr><td class="text-left">No. of Units Held</td><td class="text-right">@sum.Rsa.NumOfUnitsHeld.ToString("N2")</td><td class="text-right">@sum.Voluntary.NumOfUnitsHeld.ToString("N2")</td><td>11</td></tr>*@
+            <tr><td>Unit Price</td><td>@Model.CurrentUnitPrice.ToString("N4")</td><td>@Model.CurrentUnitPrice.ToString("N4")</td><td></td></tr>
+        </tbody>
+    </table>
+</div>

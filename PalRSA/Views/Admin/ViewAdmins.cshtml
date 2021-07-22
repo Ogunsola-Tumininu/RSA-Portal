@@ -1,0 +1,91 @@
+﻿@using PalRSA.Helpers
+@{
+    ViewBag.Title = "View Admins";
+    var admins = (string[]) TempData["admins"];
+    var superAdmins = (string[])TempData["super-admins"];
+}
+
+<div class="details">
+    <h3>Admins</h3>
+
+    <h4 class="text-center">Administrators</h4>
+    <div class="">
+        <div class="table-responsive">
+            <table class="table-transaction" id="report-table">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Admin Name</th>
+                    <th>Email</th>
+                    <th>Last Login</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @{
+                    foreach (var user in admins)
+                    {
+                        var x = Helper.GetAdminProfile(user);
+                        <tr>
+                            <td>@x.UserName</td>
+                            <td>@x.AdminName</td>
+                            <td>@x.Email</td>
+                            <td>
+                                @if (x.LastLogin != null)
+                                {
+                                    @x.LastLogin.Value.ToString("MMM dd, yyyy")
+                                }
+                            </td>
+                            <td>@Html.ActionLink("Edit", "EditAdmin", new {username = x.UserName}, new {@class = "glyphicon glyphicon-edit"})</td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+            @*@Html.PagedListPager((IPagedList)ViewBag.OnePage, page => Url.Action("GenerateReport", new { page }))*@
+        </div>
+
+    </div>
+
+    <div class="row"></div>
+
+    <h4 class="text-center">Super Administrators</h4>
+    <div class="">
+        <div class="table-responsive">
+            <table class="table-transaction" id="report-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Admin Name</th>
+                        <th>Email</th>
+                        <th>Last Login</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var user in superAdmins)
+                        {
+                            var x = Helper.GetAdminProfile(user);
+                            <tr>
+                                <td>@x.UserName</td>
+                                <td>@x.AdminName</td>
+                                <td>@x.Email</td>
+                                <td>
+                                    @if (x.LastLogin != null)
+                                    {
+                                        @x.LastLogin.Value.ToString("MMM dd, yyyy")
+                                    }
+                                </td>
+                                <td>@Html.ActionLink("Edit", "EditAdmin", new { username = x.UserName }, new { @class = "glyphicon glyphicon-edit" })</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            @*@Html.PagedListPager((IPagedList)ViewBag.OnePage, page => Url.Action("GenerateReport", new { page }))*@
+        </div>
+
+    </div>
+</div>
+

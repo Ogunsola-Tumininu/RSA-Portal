@@ -1,0 +1,166 @@
+﻿@model PalRSA.Core.Models.BenefitProcessViewModel 
+
+
+@{
+    ViewBag.Title = "Benefit Application";
+}
+
+@using (Html.BeginForm("Enbloc", "Customer"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="view-profile">
+        <h4>Benefit Process </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.HiddenFor(model => model.Id)*@
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <h4><span class="label label-default">Pin</span></h4>
+                @Html.TextBoxFor(model => model.Pin, new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <h4><span class="label label-default">Surname</span></h4>
+                @Html.TextBoxFor(model => model.Surname, new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <h4><span class="label label-default">First Name</span></h4>
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <h4><span class="label label-default">Email</span></h4>
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <h4><span class="label label-default">Mobile</span></h4>
+                @Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <h4><span class="label label-default">Employer Code</span></h4>
+                @Html.TextBoxFor(model => model.EmployerDetail.Recno, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <h4><span class="label label-default">Employer Name</span></h4>
+                @Html.TextBoxFor(model => model.EmployerDetail.EmployerName, new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <h4><span class="label label-default">Benefit Type</span></h4>
+                @Html.DropDownListFor(model => model.BenefitClass, ViewData["SupportType"] as SelectList, "--Select Benefit Class--", new { @class = "form-control benefitClass" })
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <h4><span class="label label-default"> </span></h4>
+                <select id="subClass" name="subClass" class="form-control"></select>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <h4 style="color:green"> Required Documents (Upload)</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <p>
+                    If you want to submit documents for upload, kindly visit any of our branches with the following documents.   <br />
+                    Or Upload the documents yourself by select the drop down box below <br />
+
+                </p>
+
+            </div>
+        </div>
+
+        <div class="row">
+            @*<div class="col-md-3"> </div>*@
+            <div class="col-md-4">
+                <ul>
+                    <h4 style="color:blue"> Necessary Documents</h4>
+                    <li>2 Passport Photographs</li>
+                    <li>Birth Cert./Age Declaration</li>
+                    <li>Employer Confirmation Letter</li>
+                    <li>Bank Account Statement</li>
+                    <li>Exit Letter From Employer</li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <ul>
+                    <h4 style="color:blue"> Means Of Identification (Anyone)</h4>
+                    <li>National ID Card</li>
+                    <li>Valid International Passport</li>
+                    <li>Valid Drivers License</li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <ul>
+                    <h4 style="color:blue"> Pay Slip</h4>
+                    <li>Any of the 3 months before month of exit</li>
+                </ul>
+            </div>
+
+        </div>
+
+
+       @*<div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }*@
+
+
+
+        <div class="view-profile">
+            @*<div class="details">
+                    <h3>Benefits</h3>
+                </div>*@
+            <div class="clearfix"></div>
+            <div class="row">
+                @*<div class="col-md-6 col-sm-6">
+                        @Html.DropDownList("benefitClass", new SelectList((IEnumerable<SelectListItem>)ViewBag.BenefitClass, "Value", "Text"), "--Choose Benefit Class--", new { @class = "form-control benefitClass" })
+                    </div>*@
+
+                @*<div class="col-md-6 col-sm-6" style="display: none">
+                        <select id="subClass" name="subClass" class="form-control"></select>
+                    </div>*@
+                <br />
+                <br />
+                <br />
+
+                <div class="alert alert-warning col-md-12" id="warning" style="display: none">
+                    <span class="glyphicon glyphicon-record"></span> <strong>Warning!</strong> <span class="message"></span>
+                </div>
+
+                <div class="send text-center">
+                    <img id="preform-loading" src="@Url.Content("~/images/loading.gif")" style="display: none" />
+                </div>
+
+                <div class="formContainer container-fluid">
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Upload" name="submit" id="BenefitApplication" class="btn btn-default" />               
+            </div>
+        </div>
+    </div>
+}

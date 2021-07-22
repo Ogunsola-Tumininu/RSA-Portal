@@ -1,0 +1,97 @@
+﻿@using PalRSA.Core.DataAccess
+@using PalRSA.Core.Models
+
+@{
+    ViewBag.Title = "Dashboard";
+    var emp = (Employee) TempData["Employees"];
+	var sum = (GenerateReport) TempData["Summary"];
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#customer-dash').DataTable();
+    });
+</script>
+
+	<div class="retirement">
+		<h3>Retirement Savings Account Summary</h3>
+		<div class="right-details">
+		<div class="right-top-text">Statement Summary</div>
+			<div class="table-responsive main-transaction">
+                <table class="table-transaction retirement-table table-bordered table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th >RSA (₦)</th>
+                            <th >Voluntary (₦)</th>
+                            <th>Total (₦)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="text-left">Contributions from Inception</td><td class="text-right">@sum.Rsa.ContributionsFromInception.ToString("N2")</td><td class="text-right">@sum.Voluntary.ContributionsFromInception.ToString("N2")</td><td>11</td></tr>
+                        <tr><td class="text-left">Total Deduction (Admin Fee)</td><td class="text-right">@sum.Rsa.TotalDeduction.ToString("N2")</td><td class="text-right">@sum.Voluntary.TotalDeduction.ToString("N2")</td><td>11</td></tr>
+                        <tr><td class="text-left">Total Withdrawl from Inception</td><td class="text-right">@sum.Rsa.TotalWithdrawalFromInception.ToString("N2")</td><td class="text-right">@sum.Voluntary.TotalWithdrawalFromInception.ToString("N2")</td><td>11</td></tr>
+                        <tr><td class="text-left">NET Contribution</td><td class="text-right">@sum.Rsa.NetContribution.ToString("N2")</td><td class="text-right">@sum.Voluntary.NetContribution.ToString("N2")</td><td>11</td></tr>
+                        <tr><td class="text-left">Gain / Loss from Inception</td><td class="text-right">@sum.Rsa.GainLossFromInception.ToString("N2")</td><td class="text-right">@sum.Voluntary.GainLossFromInception.ToString("N2")</td><td>11</td></tr>
+                        <tr class="info"><td class="text-left">Current Value</td><td class="text-right">@sum.Rsa.CurrentValue.ToString("N2")</td><td class="text-right">@sum.Voluntary.CurrentValue.ToString("N2")</td><td>11</td></tr>
+                        <tr><td class="text-left">No. of Units Held</td><td class="text-right">@sum.Rsa.NumOfUnitsHeld.ToString("N2")</td><td class="text-right">@sum.Voluntary.NumOfUnitsHeld.ToString("N2")</td><td>11</td></tr>
+                        <tr><td class="text-left">Unit Price</td><td class="text-right">@sum.Rsa.UnitPrice.ToString("N4")</td><td class="text-right">@sum.Voluntary.UnitPrice.ToString("N4")</td><td>11</td></tr>
+                    </tbody>
+                </table>
+			</div>
+			
+			<div class="table-responsive main-transaction">
+				<table class="table-transaction employee-table" id="customer-dash">
+					<thead>
+					<tr>
+						<th>Employee Contribution</th>
+						<th>Employer Contribution</th>
+						<th>Contribution Date</th>
+						<th>Total Contributions</th>
+						<th></th>
+					</tr>
+					</thead>
+					<tbody>
+					@{
+						if (emp != null)
+						{
+
+							foreach (var trans in emp.Contributions)
+							{
+								<tr>
+									<td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.EmployeeContribution, 2))</td>
+									<td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal)@trans.EmployerContribution, 2))</td>
+									<td>@trans.ContributionDate.Value.ToString("MMM dd, yyyy")</td>
+									<td>@string.Format(new System.Globalization.CultureInfo("yo-NG"), "{0:C}", @Math.Round((decimal) @trans.TotalContribution, 2))</td>
+									<td></td>
+								</tr>
+							}
+
+						}
+					}
+					</tbody>
+				</table>
+			</div>
+	    </div>
+
+    @*<div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">Your Account Officer</div>
+                    <span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                </div>
+                <div class="panel-body">
+                    <label> Name: @emp.AccountManager.AccountManagers</label><br />
+                    <label> Phone: @emp.AccountManager.Phonenumber</label><br />
+                    <label> Email: @emp.AccountManager.EMAIL</label>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+</div>
+
+			
+		
+		

@@ -1,0 +1,56 @@
+﻿@model PalRSA.Core.DataAccess.TempCustomerInformation
+
+@{
+    ViewBag.Title = "Approve";
+}
+
+<script type="text/javascript" src="~/Scripts/new-profile-validator.js"></script>
+
+
+<div class="rightside view-profile">
+<div class="details">
+<h3>Approve Changes</h3>
+</div>
+    @if ((string)TempData["Status"] == "success")
+    {
+        <div class="alert alert-success exceed">
+            <span class="glyphicon glyphicon-ok"></span> <strong>Success! </strong><span class="stat">Customer Profile Updated Successfully</span>
+        </div>
+    }
+
+    <div class="">
+        @using (Html.BeginForm("Approve", "Admin", FormMethod.Post, new { @class = "form-horizontal", id = "edit-manager" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Mobile Number</span></h4>
+                    @Html.TextBoxFor(model => model.mobile_number, new { @class = "form-control", @readonly = true })
+                    @Html.HiddenFor(model => model.pin)
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.name)
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Mobile Number 2</span></h4>
+                    @Html.TextBoxFor(model => model.mobile_number2, new { @class = "form-control", @readonly = true })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4><span class="label label-default">Email</span></h4>
+                    @Html.TextBoxFor(model => model.email, new { @class = "form-control", @readonly = true })
+                </div>
+            </div>
+<br/>
+            <div class="row">
+                <div class="col-md-2 pull-right">
+                    <input type="submit" value="Approve Changes" class="btn-primary btn-block" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

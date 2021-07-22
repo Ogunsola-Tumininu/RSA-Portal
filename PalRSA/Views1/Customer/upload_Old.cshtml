@@ -1,0 +1,230 @@
+﻿@*@model PalRSA.Core.DataAccess.BenefitProcess*@
+@model PalRSA.Core.Models.UploadChecklistMV
+@using PalRSA.Core.DataAccess
+
+@{
+    PALSiteDBEntities db = new PALSiteDBEntities();
+    var BenefitProcess = db.BenefitProcesses.Where(d => d.PIN == User.Identity.Name).FirstOrDefault();
+   // var id = db.BenefitProcesses.Where(d => d.PIN == User.Identity.Name).FirstOrDefault().Id;
+    ViewBag.Title = "Edit Benefit Upload";
+}
+
+<style>
+    #success_alert {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99999
+    }
+</style>
+
+
+@*@using (Html.BeginForm("upload", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="">
+            @Html.Raw(ViewBag.Message)
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+        <div class="box box-default col-md-offset-1 col-md-9">
+            <h3 style="margin-top: 20px;">@ViewBag.Title</h3>
+            <hr />
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="control-label  col-md-2">Client Name</label>
+                    <div class="col-md-10">
+                        <input type="text" readonly="readonly" class="form-control" value="@BenefitProcess.EmployeeName" />
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="control-label  col-md-2">PIN</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PIN" name="PIN" readonly="readonly" class="form-control" value="@BenefitProcess.PIN" />
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="control-label  col-md-2">Benefit Class</label>
+                    <div class="col-md-10">
+                        <input type="text" id="PIN" name="PIN" readonly="readonly" class="form-control" value="@BenefitProcess.BenefitClass.BenefitName" />
+                    </div>
+                </div>
+
+                <div class="form-group hidden hide">
+                    @Html.LabelFor(model => model.BenefitFile.FilePath, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BenefitFile.FilePath, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BenefitFile.FilePath, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group  hidden hide">
+                    @Html.LabelFor(model => model.BenefitFile.BenefitProcessId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BenefitProcess.Id, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.BenefitProcess.PIN, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.BenefitProcess.PaymentTypeId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BenefitFile.BenefitProcessId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-12">
+                    <label class="control-label col-md-2">Document/File </label>
+
+                    <div class="col-md-4">
+                        @Html.DropDownList("BenefitDocument", ViewBag.BenefitDocument as IEnumerable<SelectListItem>, new { @class = "form-control dropdown col-md-3" })
+                        @Html.ValidationMessageFor(model => model.BenefitFile.PIN, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        <input type="file" name="file" id="file" class="form-control" />
+                        <input type="text" name="fileName" id="fileName" class="hidden" />
+                    </div>
+                    <div class="col-md-2">
+                        <div class="col-md-1"><input type="submit" value="Upload" onclick="upload()" name="submitDoc" id="submitDoc" class="btn" /></div>
+                        @*<input value="Upload" name="submit" onclick="upload()" id="submit" class="btn btn-default" />*@
+                    </div>
+                </div>
+
+                @*--------*@
+                <div class="col-md-12">
+                    <h3>Uploaded document(s)</h3>
+                    <table class="table">
+                        <tr><td>Document File</td><td>Document</td></tr>
+                        @{
+
+                            var docs = db.BenefitFiles.Where(x => x.BenefitProcessId == BenefitProcess.Id);
+                            foreach (var doc in docs)
+                            {
+
+                                <tr>
+                                    <td>@doc.FileName </td>
+                                    <td>
+                                        <a href="@Url.Action("ShowSupportFile",new { id=doc.BenefitProcessId })">
+                                            &nbsp;
+                                            <i class="fa fa-paperclip fa-3x" aria-hidden="true"></i>@doc.FileName &nbsp;
+                                            <img id="signature" width="100" height="100" src="@Url.Action("ShowSupportFile",new { id=doc.BenefitProcessId })" alt="@doc.FileName" title="@doc.FileName" />
+                                        </a>
+                                    </td>
+                                    @*<td>
+                                <a href="@Url.Content("~/uploads/"+@doc.FilePath)">&nbsp;<i class="fa fa-paperclip fa-3x" aria-hidden="true"></i>@doc.FileName &nbsp;<img src="@Url.Content("~/uploads/"+@doc.FilePath)" style="height:40px;" alt="@doc.FileName" title="@doc.FileName" /> </a>
+                            </td>*@
+                                <td><button class="btn btn-danger" onclick="DeleteImage(@doc.FileId);"><span>Remove Image</span></button></td>
+                                </tr>
+
+                            }
+                        }
+                    </table>
+                </div>
+                @*--------*@
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <a id="finish" name="submit" href="@Url.Action("Home", "Customer")" class="btn btn-primary">Submit </a>
+                    </div>
+                </div>
+
+            </div>
+
+            
+        </div>
+
+    @*</div>*@
+//}
+
+
+
+<script type="text/javascript">
+
+    function removeRow(Id) {
+        $("#table>tbody>tr").each(function () {
+            /*alert (Id)*/
+            var id = $(this).children("td").eq(0).html();//Name
+            if (Id == id) {
+                $(this).children("td").remove();
+
+                $("#success_alert").html("File Deleted Successfully").show();
+                //alert("Please Check Your Form");
+
+                setTimeout(function () {
+                    $("#success_alert").fadeOut('fast');
+                }, 5000);
+            }
+
+
+
+        });
+    }
+    function DeleteImage(id) {        
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: "/Customer/DeleteBenefitFile/" + id,
+            success: function (data) {
+                if (data.success) {
+                    /* alert(data.message)*/
+                    removeRow(id)
+                }
+                else {
+                    alert(data.message)
+                }
+            },
+            error: function (a, jqXHR, exception) {
+            }
+        });
+    }
+
+    function upload() {
+
+        if ($('#file').val() == "") {
+            alert("Please select a file");
+            return false
+        }
+        var fd = new FormData();
+        var files = $('#file')[0].files[0];
+        var benDoc = $('#BenefitDocument').val();
+        fd.append('file', files);
+        fd.append('BenefitDocument', benDoc);
+
+        $.ajax({
+            url: '/Customer/UploadAPI',
+            type: 'post',
+            data: fd,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response != 0) {
+                    markup = "<tr>" +
+                        "<td>" + benDoc + "</td>" +
+                        "<td> <a href='/Customer/ShowSupportFile/" + response.filepath + "'>&nbsp;" +
+                        "<i class='fa fa-paperclip fa-3x' aria-hidden='true'></i>" + benDoc
+                        + "<img id='signature' width='100' height='100' src='/Customer/ShowSupportFile/" + response.filepath + ' alt="' + benDoc + "' title='" + benDoc + "' /></a> </td>" +
+                        "<td><button class='btn btn-danger' onclick='DeleteImage(" + response.benefit.FileId + ")'><span>Remove Image</span></button></td>" + "</tr>";
+                    tableBody = $("table tbody");
+                    tableBody.append(markup);
+
+                    $("#success_alert").html("File Uploaded Successfully").show();
+                    //alert("Please Check Your Form");
+
+                    setTimeout(function () {
+                        $("#success_alert").fadeOut('fast');
+                    }, 5000);
+                    //alert('file uploaded');
+                }
+                else {
+                    alert('file not uploaded');
+                }
+            },
+        });
+
+    }
+
+</script>
+
+
+

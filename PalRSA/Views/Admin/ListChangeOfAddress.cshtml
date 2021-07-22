@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PalRSA.Core.DataAccess.ChangeOfAddressProfile>
+
+@{
+    ViewBag.Title = "Change of Adresses";
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#change-of-address').DataTable();
+    });
+</script>
+
+<div class="rightside  retirement">
+    <div class="details">
+    </div>
+    <h3>Change of Address Requests</h3>
+    <div class="right-details">
+        <div class="right-top-text">All Transactions</div>
+        <div class="table-responsive main-transaction">
+            <table class="table table-condensed" id="change-of-address">
+                <thead>
+                    <tr>
+                        <th>Pin</th>
+                        <th>Status</th>
+                        <th>Date Uploaded</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+                            foreach (var update in Model)
+                            {
+                                <tr>
+                                    <td>@update.Pin</td>
+                                    <td>@update.Status</td>
+                                    <td>@update.DateUploaded.Value.ToString("MMM dd, yyyy")</td>
+                                    <td>@Html.ActionLink("Approve Address Change", "ApproveAddressChange", new { id = update.Id }, new { @class = "glyphicon glyphicon-plus" })</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

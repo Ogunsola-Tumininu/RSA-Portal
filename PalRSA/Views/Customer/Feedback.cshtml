@@ -1,0 +1,108 @@
+﻿@model PalRSA.Core.DataAccess.SupportLog
+
+@{
+    ViewBag.Title = "Feedback";
+}
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-md-offset-3 col-md-6">
+
+        <!-- general form elements -->
+        <div>
+            <div class="box box-default" style="padding-left:40px; padding-right:40px;">
+                <div class="box-header with-border">
+
+                </div>
+                <h2>@ViewBag.Title</h2> <hr />
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.Label("RSA PIN", htmlAttributes: new { @class = "control-label col-md-12", @readonly = true })
+                            <div class="col-md-12">
+                                @*@Html.TextBoxFor("Pin", new { @class = "form-control", @readonly = "readonly" })*@
+                                <input id="Pin" class="form-control" name="Pin" value="@ViewBag.Pin" readonly />
+                                @Html.ValidationMessageFor(m => m.Pin, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CategoryId, "Support Category", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownList("CategoryId", ViewBag.SupportType as SelectList, "--Select Category--", new { @class = "form-control" })
+                                @*@Html.DropDownList("CategoryId", null, "Select Type", htmlAttributes: new { @class = "form-control" })*@
+                                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Summary, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Explanation, htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.Explanation, new { @class = "form-control", placeholder = "Explanation", rows = "6" })
+                                @*@Html.ValidationMessageFor(model => model.Explanation, "", new { @class = "text-danger", placeholder = "Explanation", rows = "4" })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <input type="submit" value="Submit request" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+                </div>
+
+            </div>
+
+</div>
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

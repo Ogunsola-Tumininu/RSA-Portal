@@ -1,0 +1,85 @@
+﻿@model PalRSA.Core.DataAccess.CFISupportDocument
+
+@{
+    ViewBag.Title = "Data Recapture Supporting Document";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>@ViewBag.Title</h4>
+
+@using (Html.BeginForm("SupportDoc", "Cfi", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>CFISupportDocument</h4>*@
+        <hr />
+        <div class="col-md-12">
+            @Html.Partial("_Response")
+        </div>        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("Pin", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Pin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DocumentId" class = "control-label col-md-2">Select document to upload</label>
+            <div class="col-md-10">
+                @Html.DropDownList("DocumentId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DocumentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Document/File </label>
+
+        
+           
+            <div class="col-md-4">
+                <input type="file" name="file" id="file" class="form-control" />
+                <input type="text" name="fileName" id="fileName" class="hidden" />
+                @* @Html.ValidationMessageFor(model => model.Name)*@
+            </div>
+            <div class="col-md-1"><input type="submit" value="Upload" name="submit" id="submit" class="btn" /></div>
+        </div>
+
+       </div>
+
+    <div>
+        <h3>Uploaded document(s)</h3>
+        <table class="table">
+            <tr><td>Document Tile</td><td>Document</td></tr>
+            @{
+
+                //Response.Write(id);
+                //return ;
+                PalRSA.Core.DataAccess.PALSiteDBEntities db = new PalRSA.Core.DataAccess.PALSiteDBEntities();
+                var docs = db.CFISupportDocuments.Include("CFIDocument").Where(x => x.Pin == User.Identity.Name);
+                foreach (var doc in docs)
+                {
+
+                    <tr>
+                        <td>@doc.CFIDocument.Name</td>
+                        <td>
+                            <a href="@Url.Content("~/uploads/CFIDocuments/"+@doc.DocumentName)">&nbsp;<i class="fa fa-paperclip fa-3x" aria-hidden="true"></i>@doc.CFIDocument.Name &nbsp;<img src="@Url.Content("~/uploads/CFIDocuments/"+@doc.DocumentName)" style="height:40px;" alt="@doc.CFIDocument.Name" title="@doc.CFIDocument.Name" /> </a> &nsub;
+                        </td>
+                    </tr>
+                                                        @*<embed src="@Url.Content("~/uploads/"+@doc.FilePath)" width="80px" height="210px">*@
+
+                }
+            }
+        </table>
+    </div>
+        @*--------*@
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Complete" id="finish" name="submit" class="btn btn-default" />
+                    </div>
+                </div>
+                }
+
+
